@@ -25,7 +25,6 @@ public class Main extends Application{
         stage.setTitle("NeonControl"); // Set the stage title
         stage.setScene(scene); // Place the scene in the stage
         stage.show(); // Display the stage
-        //Did it work?????
     }
     
     public static void main(String[] args) {
