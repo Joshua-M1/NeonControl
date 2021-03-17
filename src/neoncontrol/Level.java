@@ -17,7 +17,6 @@ public class Level extends ImageView{
    
 
     public Level() {
-        //WHAT UP HOMIES
         setBorders();
         this.setImage(new Image("Graphics/background level.jpg"));
     }
