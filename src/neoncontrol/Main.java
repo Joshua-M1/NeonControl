@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
    public void start(Stage stage) throws Exception{
-    
+          
         // Create a scene and place it in the stage
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Scene scene = new Scene(root);
