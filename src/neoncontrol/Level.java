@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package neoncontrol;
-//putain sa mere la pute
+
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
