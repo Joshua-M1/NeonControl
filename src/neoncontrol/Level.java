@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
  * @author addav
  */
 
-//sup losers
 public class Level extends ImageView{
     private ArrayList<Wall> wallList = new ArrayList<Wall>();
    
