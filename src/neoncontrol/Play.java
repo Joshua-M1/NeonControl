@@ -16,7 +16,7 @@ public class Play{
     private StickSpring ss;
     private Scene keyChecker;
     int count = 0;
-    private boolean collided = false, paused = false;
+    private boolean collided = false;
 
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
