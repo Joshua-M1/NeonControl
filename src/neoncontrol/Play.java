@@ -37,7 +37,7 @@ public class Play{
                             case 5: ss.setImage(new Image("Graphics/spring 1.png")); count=0; break;
                         }
                     };  
-                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(25), eventHandler));
+                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
                 }
@@ -54,7 +54,7 @@ public class Play{
                             case 5: ss.setImage(new Image("Graphics/spring 1.png")); count=0; break;
                         }
                     };  
-                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(25), eventHandler));
+                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
                 }
