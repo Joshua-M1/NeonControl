@@ -51,10 +51,6 @@ public class Play{
             ss.getHB3().setX(ss.getXPos() + 9);
         }
     };
-
-    public Play(){
-        
-    }
     
     public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker){
         this.level = level;
