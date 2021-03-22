@@ -16,6 +16,8 @@ import javafx.stage.Stage;
  * @author jakot
  */
 public class Main extends Application{
+   
+   public static Scene scene;
 
    public void start(Stage stage) throws Exception{
        
