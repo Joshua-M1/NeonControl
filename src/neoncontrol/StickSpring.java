@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 
 /**
@@ -19,7 +20,7 @@ import javafx.scene.paint.Color;
 public class StickSpring extends ImageView{
     private double yPos;
     private double xPos;
-    private double angle;
+    private double angle = 0;
     
     private Vector velVector;
     private double mass;
@@ -66,10 +67,27 @@ public class StickSpring extends ImageView{
     }
 
     public void setAngle(double angle) {
+        double change = angle-this.angle;
         this.angle = angle;
         this.setRotate(angle);
+        stickHB.setRotate(angle);
+        Rotate rotate = new Rotate();
+        rotate.setPivotX(getCenterX());
+        rotate.setPivotY(getCenterY());
+        rotate.setAngle(change);
+        spring1HB.getTransforms().add(rotate);
+        spring2HB.getTransforms().add(rotate);
+        
     }
-
+    
+    public double getCenterX(){
+        return getXPos()+(35/2);
+    }
+    
+    public double getCenterY(){
+        return getYPos()+(110/2);
+    }
+    
     public Vector getVelocityVec(){
         return velVector;
     }
@@ -93,12 +111,10 @@ public class StickSpring extends ImageView{
             hb.setX(hb.getX()+xMove);
             hb.setY(hb.getY()+yMove);
         }
+        
+        
     }
     
-    //this will need fixing
-    public void rotate(){
-        double currentAngle = this.getAngle();
-    }
     
     public double calculateNewX(){
         double newX = getXPos()+getVelocityVec().getX();
