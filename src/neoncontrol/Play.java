@@ -73,8 +73,12 @@ public class Play{
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
                 case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
+                case LEFT:
                 case A: ss.setAngle(ss.getAngle() - 5); break;
+                case RIGHT:
                 case D: ss.setAngle(ss.getAngle() + 5); break;
+                
+                
             }
         });
     }
