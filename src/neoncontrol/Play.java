@@ -10,6 +10,7 @@ import javafx.scene.*;
 import javafx.scene.layout.AnchorPane;
 
 public class Play{
+    private boolean paused = false;
     private Level level;
     private PhysicsEngine physics;
     private StickSpring ss;
@@ -54,8 +55,8 @@ public class Play{
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
                 case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
-                case A: ss.setAngle(ss.getAngle() + 5); break;
-                case D: ss.setAngle(ss.getAngle() - 5); break;
+                case A: ss.setAngle(ss.getAngle() - 5); break;
+                case D: ss.setAngle(ss.getAngle() + 5); break;
             }
         });
     }

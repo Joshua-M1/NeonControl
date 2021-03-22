@@ -13,8 +13,8 @@ public class PhysicsEngine {
     
     public Vector collisionSpring(Vector v, double angle){
         double x, y;
-        x = Math.sqrt((v.getX() * v.getX()) + (v.getY() * v.getY())) * Math.cos(angle*(Math.PI/180));
-        y = -Math.sqrt((v.getX() * v.getX()) + (v.getY() * v.getY())) * Math.sin(angle*(Math.PI/180)); //the negative signs might be an issue
+        x = Math.sqrt((v.getX() * v.getX()) + (v.getY() * v.getY())) * Math.sin(angle*(Math.PI/180));
+        y = -Math.sqrt((v.getX() * v.getX()) + (v.getY() * v.getY())) * Math.cos(angle*(Math.PI/180)); //the negative signs might be an issue
         return new Vector((((int)(x*100)))/100.0, (((int)(y*100)))/100.0);
     }
     
