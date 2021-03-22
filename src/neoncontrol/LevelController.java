@@ -47,5 +47,4 @@ public class LevelController implements Initializable {
         Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene);
         play.start();
     }     
-    
 }

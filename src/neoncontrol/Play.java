@@ -1,9 +1,13 @@
 package neoncontrol;
 
+import java.io.IOException;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.layout.AnchorPane;
 
 public class Play{
     private Level level;
@@ -13,7 +17,7 @@ public class Play{
     boolean collided = false;
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
-        public void handle(long l) {
+        public void handle(long l){
             collided = false;
 
             level.getWallList().forEach((wall) -> {
@@ -37,10 +41,6 @@ public class Play{
             ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
         }
     };
-
-    public Play(){
-        
-    }
     
     public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker){
         this.level = level;

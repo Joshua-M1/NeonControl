@@ -8,8 +8,7 @@ public class PhysicsEngine {
     }
     
     public Vector collisionSide(Vector v, Wall wall){
-        double dot = v.dot(wall.getNormal());
-        return new Vector(v.add(wall.getNormal().multiplyConstant(dot * -2)));
+        return new Vector(v.add(wall.getNormal().multiplyConstant(v.dot(wall.getNormal()) * -2)));
     }
     
     public Vector collisionSpring(Vector v, double angle){

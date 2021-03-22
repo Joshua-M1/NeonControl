@@ -16,6 +16,7 @@ public class Wall extends ImageView{
     
     private double xPos, yPos, angle, xSize, ySize;
     private Rectangle wallHB;
+    private Vector normal = new Vector();
     
     public Wall(){
         setImage(new Image("Graphics/wall.png"));
@@ -28,6 +29,11 @@ public class Wall extends ImageView{
         setYSize(ySize);
         setAngle(angle);
         wallHB = new Rectangle(xPos, yPos, xSize, ySize);
+        //wallHB.setRotate(angle); //uncomment this later
+        normal.setVectorAlternate(1, angle);
+        double x = normal.getX();
+        normal.setX(-normal.getY());
+        normal.setY(x);
         setImage(new Image("Graphics/wall.png"));
     }
     
@@ -59,7 +65,7 @@ public class Wall extends ImageView{
 
     public void setAngle(double angle) {
         this.angle = angle;
-        this.setRotate(angle);
+        //this.setRotate(angle); //uncomment this later
     }
 
 
@@ -88,7 +94,8 @@ public class Wall extends ImageView{
     }
     
     public Vector getNormal(){
-        return new Vector();
+        
+        return normal;
     }
     
 }
