@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 public class Play{
-    private boolean paused = false;
     private Level level;
     private PhysicsEngine physics;
     private StickSpring ss;
