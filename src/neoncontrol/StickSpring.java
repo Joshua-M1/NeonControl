@@ -70,13 +70,14 @@ public class StickSpring extends ImageView{
         double change = angle-this.angle;
         this.angle = angle;
         this.setRotate(angle);
-        stickHB.setRotate(angle);
+        
         Rotate rotate = new Rotate();
         rotate.setPivotX(getCenterX());
         rotate.setPivotY(getCenterY());
         rotate.setAngle(change);
         spring1HB.getTransforms().add(rotate);
         spring2HB.getTransforms().add(rotate);
+        stickHB.getTransforms().add(rotate);
         
     }
     
@@ -110,9 +111,7 @@ public class StickSpring extends ImageView{
         for(Rectangle hb : HBList){
             hb.setX(hb.getX()+xMove);
             hb.setY(hb.getY()+yMove);
-        }
-        
-        
+        }   
     }
     
     
