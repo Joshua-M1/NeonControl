@@ -8,7 +8,7 @@ package neoncontrol;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-//comment
+
 
 
 /**
