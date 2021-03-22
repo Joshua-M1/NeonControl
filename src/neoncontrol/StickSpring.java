@@ -18,7 +18,7 @@ import javafx.scene.shape.Rectangle;
 public class StickSpring extends ImageView{
     private double yPos;
     private double xPos;
-    private double angle = 0;
+    private double angle = 90;
     
     private Vector velVector;
     private double mass;
