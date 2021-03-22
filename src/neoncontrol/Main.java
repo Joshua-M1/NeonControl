@@ -23,7 +23,7 @@ public class Main extends Application{
        
         // Create a scene and place it in the stage
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         stage.setTitle("NeonControl"); // Set the stage title
         stage.setScene(scene); // Place the scene in the stage
         stage.show(); // Display the stage
