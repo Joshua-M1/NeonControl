@@ -14,7 +14,7 @@ public class Play{
     private PhysicsEngine physics;
     private StickSpring ss;
     private Scene keyChecker;
-    boolean collided = false;
+    private boolean collided = false, paused = false;
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle(long l){
