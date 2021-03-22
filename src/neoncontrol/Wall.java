@@ -30,6 +30,10 @@ public class Wall extends ImageView{
         wallHB = new Rectangle(xPos, yPos, xSize, ySize);
         setImage(new Image("Graphics/wall.png"));
     }
+    
+    public Rectangle getHB(){
+        return wallHB;
+    }
 
     public double getXPos() {
         return xPos;
