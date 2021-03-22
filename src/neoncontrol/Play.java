@@ -1,13 +1,19 @@
 package neoncontrol;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 public class Play{
     private Level level;
@@ -15,6 +21,7 @@ public class Play{
     private StickSpring ss;
     private Scene keyChecker;
     boolean collided = false;
+    int count = 0;
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle(long l){
@@ -29,12 +36,42 @@ public class Play{
             level.getWallList().forEach((wall) -> {
                 
                 if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle()));
-                    collided = true;
+                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle()));  
+                    EventHandler<ActionEvent> eventHandler = e -> {
+                        switch(count){
+                            case 0: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
+                            case 1: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
+                            case 2: ss.setImage(new Image("Graphics/spring 7.png")); count++; break;
+                            case 3: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
+                            case 4: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
+                            case 5: ss.setImage(new Image("Graphics/spring 1.png")); count++; break;
+                        }
+                    };
+                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(20), eventHandler));
+                    animation.setCycleCount(10);
+                    animation.setAutoReverse(true);
+                    animation.play();
+                    collided = true;                    
+                    count = 0;
                 }
                 else if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 180));
-                    collided = true;
+                    EventHandler<ActionEvent> eventHandler = e -> {
+                        switch(count){
+                            case 0: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
+                            case 1: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
+                            case 2: ss.setImage(new Image("Graphics/spring 4.png")); count++; break;
+                            case 3: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
+                            case 4: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
+                            case 5: ss.setImage(new Image("Graphics/spring 1.png")); count++; break;
+                        }
+                    };
+                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(20), eventHandler));
+                    animation.setCycleCount(10);
+                    animation.setAutoReverse(true);
+                    animation.play();
+                    collided = true;                    
+                    count = 0;
                 }
                 else if(ss.getHB3().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
@@ -53,11 +90,7 @@ public class Play{
             ss.getHB2().setX(ss.getXPos() + 9);
             ss.getHB3().setY(ss.getYPos() + 20);
             ss.getHB3().setX(ss.getXPos() + 9);
-            
-            
-            if(ss.getXPos()==200 && ss.getYPos()>=499){
-                
-            }
+
         }
     };
     
