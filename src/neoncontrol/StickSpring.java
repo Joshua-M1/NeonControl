@@ -5,10 +5,11 @@
  */
 package neoncontrol;
 
+import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
-
+import javafx.scene.paint.Color;
 
 
 /**
@@ -18,28 +19,27 @@ import javafx.scene.shape.Rectangle;
 public class StickSpring extends ImageView{
     private double yPos;
     private double xPos;
-    private double angle = 0;
+    private double angle = 90;
     
     private Vector velVector;
     private double mass;
     
-    private Rectangle spring1HB;
-    private Rectangle spring2HB;
-    private Rectangle stickHB;
+    private ArrayList<Rectangle> HBList = new ArrayList<>();
+    private Rectangle spring1HB = new Rectangle(16,20);
+    private Rectangle spring2HB = new Rectangle(16,20);
+    private Rectangle stickHB = new Rectangle(16,62);
 
     public StickSpring() {
         this.setImage(new Image("Graphics/spring 1.png"));
         setPos(200,200);
+        setHitboxes();
     }
     
     public StickSpring(Vector velVector){
         this.velVector = velVector;
         this.setImage(new Image("Graphics/spring 1.png"));
-        spring1HB = new Rectangle(209, 400, 17, 20);
-        spring2HB = new Rectangle(209, 300, 17, 20);
-        stickHB = new Rectangle(209, 320, 17, 80);
         setPos(200, 300);
-
+        setHitboxes();
         this.setImage(new Image("Graphics/spring 1.png"));
     }
 
@@ -86,6 +86,15 @@ public class StickSpring extends ImageView{
         this.mass = mass;
     }
     
+    public void move(double xMove, double yMove){
+        this.setXPos(getXPos()+xMove);
+        this.setYPos(getYPos()+yMove);
+        for(Rectangle hb : HBList){
+            hb.setX(hb.getX()+xMove);
+            hb.setY(hb.getY()+yMove);
+        }
+    }
+    
     //this will need fixing
     public void rotate(){
         double currentAngle = this.getAngle();
@@ -116,5 +125,24 @@ public class StickSpring extends ImageView{
     
     public Rectangle getHB3() {
         return stickHB;
+    }
+    
+    public ArrayList<Rectangle> getHBList(){
+        return HBList;
+    }
+    
+    public void setHitboxes(){
+        HBList.add(spring1HB);
+        HBList.add(spring2HB);
+        HBList.add(stickHB);
+        spring1HB.setX(this.getX()+9);
+        spring1HB.setY(this.getY()+4);
+        spring1HB.setFill(Color.RED);
+        spring2HB.setX(this.getX()+9);
+        spring2HB.setY(this.getY()+86);
+        spring2HB.setFill(Color.GREEN);
+        stickHB.setX(this.getX()+9);
+        stickHB.setY(this.getY()+24);
+        stickHB.setFill(Color.BLUE);  
     }
 }
