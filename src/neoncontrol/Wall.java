@@ -4,91 +4,57 @@
  * and open the template in the editor.
  */
 package neoncontrol;
+
+import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
-
 /**
  *
- * @author jakot
+ * @author addav
  */
-public class Wall extends ImageView{
-    
-    private double xPos, yPos, angle, xSize, ySize;
-    private Rectangle wallHB;
-    
-    public Wall(){
-        setImage(new Image("Graphics/wall.png"));
+public class Level extends ImageView{
+    private ArrayList<Wall> wallList = new ArrayList<Wall>();
+   
+
+    public Level() {
+        setBorders();
+        this.setImage(new Image("Graphics/background level.jpg"));
     }
-    
-    public Wall(double xPos, double yPos, double xSize, double ySize, double angle){
-        setXPos(xPos);
-        setYPos(yPos);
-        setXSize(xSize);
-        setYSize(ySize);
-        setAngle(angle);
-        wallHB = new Rectangle(xPos, yPos, xSize, ySize);
-        setImage(new Image("Graphics/wall.png"));
+
+    public Level(ArrayList<Wall> wallList, Image background) {
+        this.wallList = wallList;
+        setImage(background);
+        setBorders();
     }
     
-    public Rectangle getHB(){
-        return wallHB;
-    }
-
-    public double getXPos() {
-        return xPos;
-    }
-
-    public void setXPos(double xPos) {
-        this.xPos = xPos;
-        this.setX(xPos);
-    }
-
-    public double getYPos() {
-        return yPos;
-    }
-
-    public void setYPos(double yPos) {
-        this.yPos = yPos;
-        this.setY(yPos);
-    }
-
-    public double getAngle() {
-        return angle;
-    }
-
-    public void setAngle(double angle) {
-        this.angle = angle;
-        this.setRotate(angle);
-    }
-
-
-    public double getXSize() {
-        return xSize;
-    }
-
-    public void setXSize(double xSize) {
-        this.xSize = xSize;
-        this.setFitWidth(xSize);
-    }
-
-    public double getYSize() {
-        return ySize;
-    }
-
-    public void setYSize(double ySize) {
-        this.ySize = ySize;
-        this.setFitHeight(ySize);
+    public void setWallList(ArrayList<Wall> wallList){
+        this.wallList = wallList;
     }
     
-    public void setPos(double newXPos, double newYPos){
-        setXPos(newXPos);
-        setYPos(newYPos);
-       
+    public void setBackground(Image background){
+        setImage(background);
     }
     
-    public Vector getNormal(){
-        return new Vector();
+    public void addWall(Wall w){
+        wallList.add(w);
+    }
+
+    public ArrayList<Wall> getWallList() {
+        return wallList;
+    }
+
+    public Image getBackground() {
+        return this.getImage();
     }
     
+    public Wall getWall(int index){
+        return wallList.get(index);
+    }
+    
+    private void setBorders(){
+        addWall(new Wall(-10,-100,75,900,270));
+        addWall(new Wall(1215,-100,75,900,90));
+        addWall(new Wall(-110,-10,1500,75,180));
+        addWall(new Wall(-110,630,1500,75,0));
+    }
 }
