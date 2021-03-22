@@ -1,9 +1,13 @@
 package neoncontrol;
 
+import java.io.IOException;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
+import javafx.scene.layout.AnchorPane;
 
 public class Play{
     private Level level;
@@ -13,7 +17,7 @@ public class Play{
     boolean collided = false;
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
-        public void handle(long l) {
+        public void handle(long l){
             collided = false;
             ss.getHB1().setY(ss.getHB1().getY() + ss.getVelocityVec().getY());
             ss.getHB1().setX(ss.getHB1().getX() + ss.getVelocityVec().getX());
@@ -49,6 +53,11 @@ public class Play{
             ss.getHB2().setX(ss.getXPos() + 9);
             ss.getHB3().setY(ss.getYPos() + 20);
             ss.getHB3().setX(ss.getXPos() + 9);
+            
+            
+            if(ss.getXPos()==200 && ss.getYPos()>=499){
+                
+            }
         }
     };
     
