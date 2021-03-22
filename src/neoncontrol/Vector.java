@@ -19,8 +19,8 @@ public class Vector {
     }
     
     public void setVectorAlternate(double magnitude, double angle){
-        x = magnitude*(Math.cos(angle));
-        y = magnitude*(Math.sin(angle));
+        x = ((int)(100*magnitude*(Math.cos(angle*Math.PI/180))))/100.0;
+        y = ((int)(100*-magnitude*(Math.sin(angle*Math.PI/180))))/100.0;
     }
     
     public void setX(double x){
