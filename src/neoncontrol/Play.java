@@ -14,25 +14,19 @@ public class Play{
     private PhysicsEngine physics;
     private StickSpring ss;
     private Scene keyChecker;
-    boolean collided = false;
+    private boolean collided = false, paused = false;
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle(long l){
             collided = false;
-            ss.getHB1().setY(ss.getHB1().getY() + ss.getVelocityVec().getY());
-            ss.getHB1().setX(ss.getHB1().getX() + ss.getVelocityVec().getX());
-            ss.getHB2().setY(ss.getHB2().getY() + ss.getVelocityVec().getY());
-            ss.getHB2().setX(ss.getHB2().getX() + ss.getVelocityVec().getX());
-            ss.getHB3().setY(ss.getHB3().getY() + ss.getVelocityVec().getY());
-            ss.getHB3().setX(ss.getHB3().getX() + ss.getVelocityVec().getX());
 
             level.getWallList().forEach((wall) -> {
                 
-                if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle()));
                     collided = true;
                 }
-                else if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 180));
                     collided = true;
                 }
@@ -44,16 +38,7 @@ public class Play{
             if(!collided)
                 ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
             
-            ss.setYPos(ss.getVelocityVec().getY() + ss.getYPos());
-            ss.setXPos(ss.getVelocityVec().getX() + ss.getXPos());
-            
-            ss.getHB1().setY(ss.getYPos() + 100);
-            ss.getHB1().setX(ss.getXPos() + 9);
-            ss.getHB2().setY(ss.getYPos());
-            ss.getHB2().setX(ss.getXPos() + 9);
-            ss.getHB3().setY(ss.getYPos() + 20);
-            ss.getHB3().setX(ss.getXPos() + 9);
-            
+            ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
             
             if(ss.getXPos()==200 && ss.getYPos()>=499){
                 
@@ -72,7 +57,9 @@ public class Play{
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: gameTimer.stop();break;
+                case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
+                case A: ss.setAngle(ss.getAngle() + 5); break;
+                case D: ss.setAngle(ss.getAngle() - 5); break;
             }
         });
     }

@@ -39,7 +39,7 @@ public class LevelController implements Initializable {
         Level lvl1 = new Level();
         background.setImage(lvl1.getImage());
         pane.getChildren().addAll(lvl1.getWallList());
-        StickSpring sp = new StickSpring(new Vector(0, 0));
+        StickSpring sp = new StickSpring(new Vector(0, 0), 90);
         pane.getChildren().add(sp);
         Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene);
         play.start();
