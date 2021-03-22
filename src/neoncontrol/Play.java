@@ -1,18 +1,12 @@
 package neoncontrol;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Play{
