@@ -29,7 +29,7 @@ public class StickSpring extends ImageView{
 
     public StickSpring() {
         this.setImage(new Image("Graphics/spring 1.png"));
-        setPos(200,200);
+        setPos(200,300);
     }
     
     public StickSpring(Vector velVector){
