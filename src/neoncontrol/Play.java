@@ -28,7 +28,6 @@ public class Play{
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {
-                        System.out.println("count is "+count);
                         switch(count){
                             case 0: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
                             case 1: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
@@ -46,7 +45,6 @@ public class Play{
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {
-                        System.out.println("count is "+count);
                         switch(count){
                             case 0: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
                             case 1: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
