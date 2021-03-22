@@ -27,13 +27,6 @@ public class Play{
                 if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
-                }
-                if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle()));
-                collided = true;
-                }
-                else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 180));
                     EventHandler<ActionEvent> eventHandler = e -> {
                         switch(count){
                             case 0: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
@@ -51,6 +44,11 @@ public class Play{
                     collided = true;                    
                     count = 0;
                 }
+                if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
+                collided = true;
+                }
+
                 else if(ss.getHB3().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
