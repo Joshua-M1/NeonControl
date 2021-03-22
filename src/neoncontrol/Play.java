@@ -29,11 +29,11 @@ public class Play{
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {
                         switch(count){
-                            case 0: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
-                            case 1: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
-                            case 2: ss.setImage(new Image("Graphics/spring 4.png")); count++; break;
-                            case 3: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
-                            case 4: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
+                            case 0: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
+                            case 1: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
+                            case 2: ss.setImage(new Image("Graphics/spring 7.png")); count++; break;
+                            case 3: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
+                            case 4: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
                             case 5: ss.setImage(new Image("Graphics/spring 1.png")); count++; break;
                         }
                     };
@@ -45,8 +45,18 @@ public class Play{
                     count = 0;
                 }
                 if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
-                collided = true;
+                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
+                    collided = true;
+                    EventHandler<ActionEvent> eventHandler = e -> {
+                            switch(count){
+                                case 0: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
+                                case 1: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
+                                case 2: ss.setImage(new Image("Graphics/spring 4.png")); count++; break;
+                                case 3: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
+                                case 4: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
+                                case 5: ss.setImage(new Image("Graphics/spring 1.png")); count++; break;
+                            }
+                        };
                 }
 
                 else if(ss.getHB3().intersects(wall.getHB().getBoundsInLocal()) && !collided){
