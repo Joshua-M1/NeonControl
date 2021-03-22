@@ -36,12 +36,12 @@ public class StickSpring extends ImageView{
         setHitboxes();
     }
     
-    public StickSpring(Vector velVector){
+    public StickSpring(Vector velVector, double angle){
         this.velVector = velVector;
         this.setImage(new Image("Graphics/spring 1.png"));
         setPos(200, 300);
         setHitboxes();
-        this.setImage(new Image("Graphics/spring 1.png"));
+        setAngle(angle);
     }
 
     public double getYPos() {
