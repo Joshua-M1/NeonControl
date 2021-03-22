@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
-//comment
 
 
 /**
@@ -26,26 +25,22 @@ public class StickSpring extends ImageView{
     private double mass;
     
     private ArrayList<Rectangle> HBList = new ArrayList<>();
-    private Rectangle spring1HB;
-    private Rectangle spring2HB;
-    private Rectangle stickHB;
+    private Rectangle spring1HB = new Rectangle(16,20);
+    private Rectangle spring2HB = new Rectangle(16,20);
+    private Rectangle stickHB = new Rectangle(16,62);
 
     public StickSpring() {
         this.setImage(new Image("Graphics/spring 1.png"));
-        setPos(200,300);
+        setPos(200,200);
+        setHitboxes();
     }
     
     public StickSpring(Vector velVector, double angle){
         this.velVector = velVector;
         this.setImage(new Image("Graphics/spring 1.png"));
-        spring1HB = new Rectangle(209, 400, 17, 20);
-        spring2HB = new Rectangle(209, 300, 17, 20);
-        stickHB = new Rectangle(209, 320, 17, 80);
-        setAngle(angle);
-        this.angle -= 90;
         setPos(200, 300);
-
-        this.setImage(new Image("Graphics/spring 1.png"));
+        setHitboxes();
+        setAngle(angle);
     }
 
     public double getYPos() {

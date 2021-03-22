@@ -23,11 +23,11 @@ public class Play{
             level.getWallList().forEach((wall) -> {
                 
                 if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle()));
+                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
                 }
                 else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 180));
+                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                     collided = true;
                 }
                 else if(ss.getHB3().intersects(wall.getHB().getBoundsInLocal()) && !collided){
@@ -39,10 +39,6 @@ public class Play{
                 ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
             
             ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
-            
-            if(ss.getXPos()==200 && ss.getYPos()>=499){
-                
-            }
         }
     };
     
@@ -58,8 +54,8 @@ public class Play{
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
                 case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
-                case A: ss.setAngle(ss.getAngle() + 5); break;
-                case D: ss.setAngle(ss.getAngle() - 5); break;
+                case A: ss.setAngle(ss.getAngle() - 5); break;
+                case D: ss.setAngle(ss.getAngle() + 5); break;
             }
         });
     }
