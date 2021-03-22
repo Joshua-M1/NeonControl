@@ -36,13 +36,12 @@ public class Play{
                             case 4: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
                             case 5: ss.setImage(new Image("Graphics/spring 1.png")); count++; break;
                         }
+                        count = 0;
                     };
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(20), eventHandler));
-                    animation.setCycleCount(10);
                     animation.setAutoReverse(true);
-                    animation.play();
-                    collided = true;                    
-                    count = 0;
+                    animation.play();                   
+                    
                 }
                 if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
