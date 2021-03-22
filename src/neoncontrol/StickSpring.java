@@ -34,7 +34,13 @@ public class StickSpring extends ImageView{
     
     public StickSpring(Vector velVector){
         this.velVector = velVector;
-        this.setImage(new Image("Graphics/spring 1.png"));
+        this.setImage(new Image("neoncontrol/Graphics/spring 1.png"));
+        spring1HB = new Rectangle(209, 400, 17, 20);
+        spring2HB = new Rectangle(209, 300, 17, 20);
+        stickHB = new Rectangle(209, 320, 17, 80);
+        setPos(200, 300);
+
+        this.setImage(new Image("neoncontrol/Graphics/spring 1.png"));
     }
 
     public double getYPos() {
