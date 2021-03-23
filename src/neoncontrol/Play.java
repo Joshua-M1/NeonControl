@@ -27,7 +27,7 @@ public class Play{
                 if(ss.getHB2().intersects(wall.getBoundsInLocal()) && !ss.getHB1().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
-                    EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss);
+                    EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);
                         
                     };  
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
@@ -38,7 +38,7 @@ public class Play{
                 else if(ss.getHB1().intersects(wall.getBoundsInLocal()) && !ss.getHB2().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                     collided = true;
-                    EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss);
+                    EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
                     };  
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
@@ -107,16 +107,26 @@ public class Play{
         sp.setAngle(sp.getAngle()-1);
     }
     
-    public void runAnimation(StickSpring ss) {
+    public void runAnimation(StickSpring ss, int index) {
         try{
-            switch(count){
-                case 0: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
-                case 1: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
-                case 2: ss.setImage(new Image("Graphics/spring 7.png")); Thread.sleep(2);count++; break;
-                case 3: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
-                case 4: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
-                case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
-            }
+            if(index == 1)
+                switch(count){
+                    case 0: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
+                    case 1: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
+                    case 2: ss.setImage(new Image("Graphics/spring 7.png")); Thread.sleep(2);count++; break;
+                    case 3: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
+                    case 4: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
+                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
+                }
+            if(index == 2)
+                switch(count){
+                    case 0: ss.setImage(new Image("Graphics/spring 2.png")); Thread.sleep(2);count++; break;
+                    case 1: ss.setImage(new Image("Graphics/spring 3.png")); Thread.sleep(2);count++; break;
+                    case 2: ss.setImage(new Image("Graphics/spring 4.png")); Thread.sleep(2);count++; break;
+                    case 3: ss.setImage(new Image("Graphics/spring 3.png")); Thread.sleep(2);count++; break;
+                    case 4: ss.setImage(new Image("Graphics/spring 2.png")); Thread.sleep(2);count++; break;
+                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
+                }
         }
         catch(InterruptedException ex){
             System.out.println("Animation Bug");
