@@ -38,7 +38,6 @@ public class Wall extends ImageView{
             normal.setX(0);
         if(Math.abs(normal.getY()) == 0)
             normal.setY(0);
-        System.out.println(normal.toString());
         setImage(new Image("Graphics/wall.png"));
     }
     
