@@ -15,7 +15,6 @@ import javafx.scene.shape.Rectangle;
 public class Wall extends ImageView{
     
     private double xPos, yPos, angle, xSize, ySize;
-    private Rectangle wallHB;
     private Vector normal = new Vector();
     
     public Wall(){
@@ -28,7 +27,6 @@ public class Wall extends ImageView{
         setXSize(xSize);
         setYSize(ySize);
         setAngle(angle);
-        wallHB = new Rectangle(xPos, yPos, xSize, ySize);
         //wallHB.setRotate(angle); //uncomment this later
         normal.setVectorAlternate(1, angle);
         double x = normal.getY();
@@ -39,10 +37,6 @@ public class Wall extends ImageView{
         if(Math.abs(normal.getY()) == 0)
             normal.setY(0);
         setImage(new Image("Graphics/wall.png"));
-    }
-    
-    public Rectangle getHB(){
-        return wallHB;
     }
 
     public double getXPos() {
@@ -69,7 +63,7 @@ public class Wall extends ImageView{
 
     public void setAngle(double angle) {
         this.angle = angle;
-        this.setRotate(angle); //uncomment this later
+        //this.setRotate(angle); //uncomment this later
     }
 
 
