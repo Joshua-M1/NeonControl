@@ -10,13 +10,12 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 public class Play{
-    private boolean paused = false;
     private Level level;
     private PhysicsEngine physics;
     private StickSpring ss;
     private Scene keyChecker;
     int count = 0;
-    private boolean collided = false;
+    private boolean collided = false, paused = false;
 
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
@@ -28,13 +27,23 @@ public class Play{
                 if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
+                    EventHandler<ActionEvent> eventHandler = e -> {
+                        switch(count){
+                            case 0: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
+                            case 1: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
+                            case 2: ss.setImage(new Image("Graphics/spring 7.png")); count++; break;
+                            case 3: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
+                            case 4: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
+                            case 5: ss.setImage(new Image("Graphics/spring 1.png")); count=0; break;
+                        }
+                    };  
+                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                    animation.setCycleCount(6);
+                    animation.play();
                 }
-                else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle()));
-                collided = true;
-                }
-                else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 180));
+                if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
+                    collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {
                         switch(count){
                             case 0: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
@@ -42,15 +51,12 @@ public class Play{
                             case 2: ss.setImage(new Image("Graphics/spring 4.png")); count++; break;
                             case 3: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
                             case 4: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
-                            case 5: ss.setImage(new Image("Graphics/spring 1.png")); count++; break;
+                            case 5: ss.setImage(new Image("Graphics/spring 1.png")); count=0; break;
                         }
-                    };
-                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(20), eventHandler));
-                    animation.setCycleCount(10);
-                    animation.setAutoReverse(true);
+                    };  
+                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                    animation.setCycleCount(6);
                     animation.play();
-                    collided = true;                    
-                    count = 0;
                 }
                 else if(ss.getHB3().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
@@ -76,8 +82,12 @@ public class Play{
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
                 case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
+                case LEFT:
                 case A: ss.setAngle(ss.getAngle() - 5); break;
+                case RIGHT:
                 case D: ss.setAngle(ss.getAngle() + 5); break;
+                
+                
             }
         });
     }
