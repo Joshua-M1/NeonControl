@@ -28,7 +28,7 @@ public class StickSpring extends ImageView{
     private ArrayList<Rectangle> HBList = new ArrayList<>();
     private Rectangle spring1HB = new Rectangle(16,20);
     private Rectangle spring2HB = new Rectangle(16,20);
-    private Rectangle stickHB = new Rectangle(16,62);
+    private Rectangle stickHB = new Rectangle(16,60);
 
     public StickSpring() {
         this.setImage(new Image("Graphics/spring 1.png"));
@@ -71,21 +71,20 @@ public class StickSpring extends ImageView{
         this.angle = angle;
         this.setRotate(angle);
         stickHB.setRotate(angle);
-        Rotate rotate = new Rotate();
-        rotate.setPivotX(getCenterX());
-        rotate.setPivotY(getCenterY());
-        rotate.setAngle(change);
-        spring1HB.getTransforms().add(rotate);
-        spring2HB.getTransforms().add(rotate);
-        
+        spring1HB.setRotate(angle);
+        spring2HB.setRotate(angle);
+        spring1HB.setX(getX()+9+(40*Math.sin(Math.toRadians(angle))));
+        spring1HB.setY(getY()+44-(40*Math.cos(Math.toRadians(angle))));
+        spring2HB.setX(getX()+9-(40*Math.sin(Math.toRadians(angle))));
+        spring2HB.setY(getY()+44+(40*Math.cos(Math.toRadians(angle))));
     }
     
     public double getCenterX(){
-        return getXPos()+(35/2);
+        return getXPos()+9;
     }
     
     public double getCenterY(){
-        return getYPos()+(110/2);
+        return getYPos()+30;
     }
     
     public Vector getVelocityVec(){
@@ -110,9 +109,7 @@ public class StickSpring extends ImageView{
         for(Rectangle hb : HBList){
             hb.setX(hb.getX()+xMove);
             hb.setY(hb.getY()+yMove);
-        }
-        
-        
+        }   
     }
     
     
