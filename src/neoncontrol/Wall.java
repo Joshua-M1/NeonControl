@@ -31,13 +31,14 @@ public class Wall extends ImageView{
         wallHB = new Rectangle(xPos, yPos, xSize, ySize);
         //wallHB.setRotate(angle); //uncomment this later
         normal.setVectorAlternate(1, angle);
-        double x = normal.getX();
-        normal.setX(-normal.getY());
-        normal.setY(x);
+        double x = normal.getY();
+        normal.setY(-normal.getX());
+        normal.setX(x);
         if(Math.abs(normal.getX()) == 0)
             normal.setX(0);
         if(Math.abs(normal.getY()) == 0)
             normal.setY(0);
+        System.out.println(normal.toString());
         setImage(new Image("Graphics/wall.png"));
     }
     

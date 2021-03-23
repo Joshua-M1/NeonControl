@@ -26,6 +26,7 @@ public class Play{
                 
                 if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
+                    System.out.println(ss.getVelocityVec().toString());
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {
                         switch(count){
@@ -41,8 +42,10 @@ public class Play{
                     animation.setCycleCount(6);
                     animation.play();
                 }
-                if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
+                
+                else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + + 180 + 90));
+                    System.out.println(ss.getVelocityVec().toString() + " 2");
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {
                         switch(count){
@@ -58,6 +61,7 @@ public class Play{
                     animation.setCycleCount(6);
                     animation.play();
                 }
+                
                 else if(ss.getHB3().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
@@ -83,9 +87,9 @@ public class Play{
             switch (e.getCode()){
                 case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
                 case LEFT:
-                case A: ss.setAngle(ss.getAngle() - 5); break;
+                case A: ss.setAngle(ss.getAngle() - 10); break;
                 case RIGHT:
-                case D: ss.setAngle(ss.getAngle() + 5); break;
+                case D: ss.setAngle(ss.getAngle() + 10); break;
                 
                 
             }
