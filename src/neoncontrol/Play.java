@@ -29,7 +29,7 @@ public class Play{
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
                 }
-                if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                 ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle()));
                 collided = true;
                 }
