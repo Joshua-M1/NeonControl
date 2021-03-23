@@ -19,7 +19,7 @@ public class Play{
 
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
-        public void handle(long l){
+        public void handle (long l){
             collided = false;
 
             level.getWallList().forEach((wall) -> {
@@ -27,15 +27,8 @@ public class Play{
                 if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
-                    EventHandler<ActionEvent> eventHandler = e -> {
-                        switch(count){
-                            case 0: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
-                            case 1: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
-                            case 2: ss.setImage(new Image("Graphics/spring 7.png")); count++; break;
-                            case 3: ss.setImage(new Image("Graphics/spring 6.png")); count++; break;
-                            case 4: ss.setImage(new Image("Graphics/spring 5.png")); count++; break;
-                            case 5: ss.setImage(new Image("Graphics/spring 1.png")); count=0; break;
-                        }
+                    EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss);
+                        
                     };  
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
@@ -44,15 +37,7 @@ public class Play{
                 if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                     collided = true;
-                    EventHandler<ActionEvent> eventHandler = e -> {
-                        switch(count){
-                            case 0: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
-                            case 1: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
-                            case 2: ss.setImage(new Image("Graphics/spring 4.png")); count++; break;
-                            case 3: ss.setImage(new Image("Graphics/spring 3.png")); count++; break;
-                            case 4: ss.setImage(new Image("Graphics/spring 2.png")); count++; break;
-                            case 5: ss.setImage(new Image("Graphics/spring 1.png")); count=0; break;
-                        }
+                    EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss);
                     };  
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
@@ -119,5 +104,22 @@ public class Play{
     
     public void setRotateCCW(StickSpring sp){
         sp.setAngle(sp.getAngle()-1);
+    }
+    
+    public void runAnimation(StickSpring ss) {
+        try{
+            switch(count){
+                case 0: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
+                case 1: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
+                case 2: ss.setImage(new Image("Graphics/spring 7.png")); Thread.sleep(2);count++; break;
+                case 3: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
+                case 4: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
+                case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
+            }
+        }
+        catch(InterruptedException ex){
+            System.out.println("Animation Bug");
+        }
+        
     }
 }
