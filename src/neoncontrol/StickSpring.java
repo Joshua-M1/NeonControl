@@ -150,12 +150,12 @@ public class StickSpring extends ImageView{
         HBList.add(stickHB);
         spring1HB.setX(this.getX()+9);
         spring1HB.setY(this.getY()+4);
-        spring1HB.setFill(Color.RED);
+        //spring1HB.setFill(Color.RED);
         spring2HB.setX(this.getX()+9);
         spring2HB.setY(this.getY()+84);
-        spring2HB.setFill(Color.GREEN);
+        //spring2HB.setFill(Color.GREEN);
         stickHB.setX(this.getX()+9);
         stickHB.setY(this.getY()+24);
-        stickHB.setFill(Color.BLUE);  
+        //stickHB.setFill(Color.BLUE);  
     }
 }
