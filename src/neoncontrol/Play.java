@@ -15,12 +15,20 @@ public class Play{
     private StickSpring ss;
     private Scene keyChecker;
     int count = 0;
-    private boolean collided = false, paused = false;
+    private boolean collided = false, paused = false, A = false, D = false;
 
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
             collided = false;
+            
+            if(A){
+            ss.setAngle(ss.getAngle() - 3);
+        }
+        
+        if(D){
+            ss.setAngle(ss.getAngle() + 3);
+        }
 
             level.getWallList().forEach((wall) -> {
                 
@@ -70,12 +78,23 @@ public class Play{
             switch (e.getCode()){
                 case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
                 case LEFT:
-                case A: if(!paused) ss.setAngle(ss.getAngle() - 5); break;
+                case A: if(!paused) A = true; break;
                 case RIGHT:
-                case D: if(!paused) ss.setAngle(ss.getAngle() + 5); break;
-            
+                case D: if(!paused) D = true; break;
             }
         });
+        
+        keyChecker.setOnKeyReleased((KeyEvent e) -> {
+            switch (e.getCode()){
+                case LEFT:
+                case A: if(!paused) A = false; break;
+                case RIGHT:
+                case D: if(!paused) D = false; break;
+            }
+        });
+        
+        
+        
     }
     
     public void showMenu(Menu menu){
