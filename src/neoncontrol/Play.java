@@ -24,7 +24,7 @@ public class Play{
 
             level.getWallList().forEach((wall) -> {
                 
-                if(ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                if(ss.getHB2().intersects(wall.getBoundsInLocal()) && !ss.getHB1().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss);
@@ -35,7 +35,7 @@ public class Play{
                     animation.play();
                 }
                 
-                else if(ss.getHB1().intersects(wall.getHB().getBoundsInLocal()) && !ss.getHB2().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                else if(ss.getHB1().intersects(wall.getBoundsInLocal()) && !ss.getHB2().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss);
@@ -45,7 +45,7 @@ public class Play{
                     animation.play();
                 }
                 
-                else if(ss.getHB3().intersects(wall.getHB().getBoundsInLocal()) && !collided){
+                else if(ss.getHB3().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
                 }
