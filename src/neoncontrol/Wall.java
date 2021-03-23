@@ -62,7 +62,7 @@ public class Wall extends ImageView{
 
     public void setAngle(double angle) {
         this.angle = angle;
-        this.setRotate(angle); //uncomment this later
+        //this.setRotate(angle); //uncomment this later
     }
 
 
