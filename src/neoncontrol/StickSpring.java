@@ -20,7 +20,7 @@ import javafx.scene.transform.Rotate;
 public class StickSpring extends ImageView{
     private double yPos;
     private double xPos;
-    private double angle = 0;
+    private double angle;
     
     private Vector velVector;
     private double mass;
