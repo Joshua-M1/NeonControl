@@ -3,20 +3,20 @@ package neoncontrol;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.event.*;
 import javafx.scene.*;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
 import javafx.util.Duration;
 
 public class Play{
     private Level level;
     private PhysicsEngine physics;
     private StickSpring ss;
-    private Scene keyChecker;
+    private final Scene keyChecker;
     private Arrow arrow;
     private Label lb;
+    private Circle c1;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
 
@@ -35,8 +35,6 @@ public class Play{
 
             level.getWallList().forEach((wall) -> {
                 
-                double arrowEndX, arrowEndY;
-                
                 if(ss.getHB2().intersects(wall.getBoundsInLocal()) && !ss.getHB1().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
@@ -48,10 +46,7 @@ public class Play{
                     animation.play();
                     
                     arrow.getElements().clear();
-                    arrowEndX = (ss.getVelocityVec().getX()*8 > 200) ? 200 : ss.getVelocityVec().getX()*8;
-                    arrowEndY = (ss.getVelocityVec().getY()*8 > 200) ? 200 : ss.getVelocityVec().getY()*8;
-                    //arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
-                    arrow.setCoordinates(200, 200, arrowEndX+200, arrowEndY+200);
+                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*5, 200+ss.getVelocityVec().getY()*5);
                 }
                 
                 else if(ss.getHB1().intersects(wall.getBoundsInLocal()) && !ss.getHB2().intersects(wall.getBoundsInLocal()) && !collided){
@@ -63,21 +58,14 @@ public class Play{
                     animation.setCycleCount(6);
                     animation.play();
                     arrow.getElements().clear();
-                    arrowEndX = (ss.getVelocityVec().getX()*8 > 200) ? 200 : ss.getVelocityVec().getX()*8;
-                    arrowEndY = (ss.getVelocityVec().getY()*8 > 200) ? 200 : ss.getVelocityVec().getY()*8;
-                    //arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
-                    arrow.setCoordinates(200, 200, arrowEndX+200, arrowEndY+200);
+                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*5, 200+ss.getVelocityVec().getY()*5);
                 }
                 
                 else if(ss.getHB3().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
                     arrow.getElements().clear();
-                    arrow.getElements().clear();
-                    arrowEndX = (ss.getVelocityVec().getX()*8 > 200) ? 200 : ss.getVelocityVec().getX()*8;
-                    arrowEndY = (ss.getVelocityVec().getY()*8 > 200) ? 200 : ss.getVelocityVec().getY()*8;
-                    //arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
-                    arrow.setCoordinates(200, 200, arrowEndX+200, arrowEndY+200);
+                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*5, 200+ss.getVelocityVec().getY()*5);
                 }                
             });
             
@@ -88,13 +76,14 @@ public class Play{
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb, Circle c1){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
         this.arrow = arrow;
         this.lb = lb;
+        this.c1 = c1;
     }    
     
     public void start(){

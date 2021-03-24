@@ -17,7 +17,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 /**
  * FXML Controller class
@@ -47,7 +49,7 @@ public class LevelController implements Initializable {
         pane.getChildren().add(sp.getHB2());
         pane.getChildren().add(sp.getHB3());
         
-        Arrow arrow = new Arrow(200, 200, 200, 300, 20);
+        Arrow arrow = new Arrow(200, 200, 200, 250, 20);
         pane.getChildren().add(arrow);
         
         Label lb = new Label("Force Vector");
@@ -55,8 +57,14 @@ public class LevelController implements Initializable {
         lb.setStyle("-fx-text-fill: red; -fx-font-size: 25px");
         pane.getChildren().add(lb);
         
+        Circle c1 = new Circle(70);
+        c1.setLayoutX(200); c1.setLayoutY(200);
+        c1.setFill(Color.TRANSPARENT);
+        c1.setStroke(Color.PURPLE);
+        c1.setStrokeWidth(3);
+        pane.getChildren().add(c1);
         
-        Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb);
+        Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb, c1);
         play.start();
     }     
 }
