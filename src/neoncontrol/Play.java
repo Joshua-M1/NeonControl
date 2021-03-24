@@ -3,11 +3,14 @@ package neoncontrol;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
+import javafx.animation.Animation.Status;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import javafx.scene.shape.*;
 
 public class Play{
     private Level level;
@@ -16,48 +19,50 @@ public class Play{
     private Scene keyChecker;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
+    EventHandler<ActionEvent> noEvent;
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
 
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
             collided = false;
-            
             if(A){
-            ss.setAngle(ss.getAngle() - 3);
-        }
+                ss.setAngle(ss.getAngle() - 3);
+            }
         
-        if(D){
-            ss.setAngle(ss.getAngle() + 3);
-        }
+            if(D){
+                ss.setAngle(ss.getAngle() + 3);
+            }
 
             level.getWallList().forEach((wall) -> {
                 
-                if(ss.getHB2().intersects(wall.getBoundsInLocal()) && !ss.getHB1().intersects(wall.getBoundsInLocal()) && !collided){
+                if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);
                         
                     };  
-                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                    animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
                 }
                 
-                else if(ss.getHB1().intersects(wall.getBoundsInLocal()) && !ss.getHB2().intersects(wall.getBoundsInLocal()) && !collided){
+                else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
                     };  
-                    Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                    animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
                 }
                 
-                else if(ss.getHB3().intersects(wall.getBoundsInLocal()) && !collided){
+                else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
                 }
             });
+            
             if(!collided)
                 ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
             
@@ -72,11 +77,13 @@ public class Play{
         this.keyChecker = keyChecker;
     }    
     
+    
     public void start(){
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: if(paused){gameTimer.start(); paused = false;} else{gameTimer.stop(); paused = true;} break;
+                case ESCAPE: if(paused){gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
+                             else{gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
                 case LEFT:
                 case A: if(!paused) A = true; break;
                 case RIGHT:
