@@ -45,6 +45,7 @@ public class LevelController implements Initializable {
         pane.getChildren().add(sp.getHB2());
         pane.getChildren().add(sp.getHB3());
         
+        Arrow arrow = new Arrow(150, 150, 250, 250, 20);
         Arrow arrow = new Arrow(200, 200, 200, 300, 20);
         pane.getChildren().add(arrow);
         
