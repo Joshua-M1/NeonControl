@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 
 /**
@@ -34,12 +34,20 @@ public class LevelController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ArrayList wallList = new ArrayList<Wall>();
+        
+        background.fitWidthProperty().bind(Main.stage.widthProperty());
+        background.fitHeightProperty().bind(Main.stage.heightProperty());
+        background.preserveRatioProperty().set(false);
         
         Level lvl1 = new Level();
-        background.setImage(lvl1.getImage());
         pane.getChildren().addAll(lvl1.getWallList());
+
         StickSpring sp = new StickSpring(new Vector(0, 0), 0);
+        /*sp.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.0275));
+        sp.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.1525));
+        sp.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.0001));
+        sp.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.0001));*/
+        
         pane.getChildren().add(sp);
         pane.getChildren().add(sp.getHB1());
         pane.getChildren().add(sp.getHB2());

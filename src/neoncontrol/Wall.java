@@ -6,7 +6,8 @@
 package neoncontrol;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.*;
+import javafx.scene.shape.*;
 
 /**
  *
@@ -16,27 +17,32 @@ public class Wall extends ImageView{
     
     private double xPos, yPos, angle, xSize, ySize;
     private Vector normal = new Vector();
+    private Rectangle hb;
     
     public Wall(){
         setImage(new Image("Graphics/wall.png"));
     }
     
     public Wall(double xPos, double yPos, double xSize, double ySize, double angle){
+        hb = new Rectangle(xPos, yPos, xSize, ySize);
         setXPos(xPos);
         setYPos(yPos);
         setXSize(xSize);
         setYSize(ySize);
         setAngle(angle);
-        //wallHB.setRotate(angle); //uncomment this later
         normal.setVectorAlternate(1, angle);
-        double x = normal.getY();
-        normal.setY(-normal.getX());
-        normal.setX(x);
+        double x = normal.getX();
+        normal.setX(-normal.getY());
+        normal.setY(-x);
         if(Math.abs(normal.getX()) == 0)
             normal.setX(0);
         if(Math.abs(normal.getY()) == 0)
             normal.setY(0);
         setImage(new Image("Graphics/wall.png"));
+    }
+    
+    public Rectangle getHB(){
+        return hb;
     }
 
     public double getXPos() {
@@ -63,7 +69,8 @@ public class Wall extends ImageView{
 
     public void setAngle(double angle) {
         this.angle = angle;
-        //this.setRotate(angle); //uncomment this later
+        this.setRotate(angle);
+        hb.setRotate(angle);
     }
 
 

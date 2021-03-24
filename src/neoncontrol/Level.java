@@ -52,10 +52,10 @@ public class Level extends ImageView{
     }
     
     private void setBorders(){
-        addWall(new Wall(-10,-100,75,900,90)); //left wall
-        addWall(new Wall(1215,-100,75,900,270)); //right wall
+        addWall(new Wall(-435,300,900,75,90)); //left wall
+        addWall(new Wall(800,300,900,75,270)); //right wall
         addWall(new Wall(-110,-10,1500,75,180)); //top wall
         addWall(new Wall(-110,630,1500,75,0)); //bottom wall
-        addWall(new Wall(400,550,300,100,0));
+        addWall(new Wall(400,550,300,100,45));
     }
 }
