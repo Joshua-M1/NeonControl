@@ -66,5 +66,4 @@ public class Arrow extends Path{
         getElements().add(new LineTo(x2, y2));
         getElements().add(new LineTo(endX, endY));
     }
-
 }

@@ -16,6 +16,7 @@ public class Play{
     private StickSpring ss;
     private Scene keyChecker;
     private Arrow arrow;
+    private Label lb;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
 
@@ -34,6 +35,8 @@ public class Play{
 
             level.getWallList().forEach((wall) -> {
                 
+                double arrowEndX, arrowEndY;
+                
                 if(ss.getHB2().intersects(wall.getBoundsInLocal()) && !ss.getHB1().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
@@ -43,8 +46,12 @@ public class Play{
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
+                    
                     arrow.getElements().clear();
-                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
+                    arrowEndX = (ss.getVelocityVec().getX()*8 > 200) ? 200 : ss.getVelocityVec().getX()*8;
+                    arrowEndY = (ss.getVelocityVec().getY()*8 > 200) ? 200 : ss.getVelocityVec().getY()*8;
+                    //arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
+                    arrow.setCoordinates(200, 200, arrowEndX+200, arrowEndY+200);
                 }
                 
                 else if(ss.getHB1().intersects(wall.getBoundsInLocal()) && !ss.getHB2().intersects(wall.getBoundsInLocal()) && !collided){
@@ -56,14 +63,21 @@ public class Play{
                     animation.setCycleCount(6);
                     animation.play();
                     arrow.getElements().clear();
-                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
+                    arrowEndX = (ss.getVelocityVec().getX()*8 > 200) ? 200 : ss.getVelocityVec().getX()*8;
+                    arrowEndY = (ss.getVelocityVec().getY()*8 > 200) ? 200 : ss.getVelocityVec().getY()*8;
+                    //arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
+                    arrow.setCoordinates(200, 200, arrowEndX+200, arrowEndY+200);
                 }
                 
                 else if(ss.getHB3().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
                     arrow.getElements().clear();
-                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
+                    arrow.getElements().clear();
+                    arrowEndX = (ss.getVelocityVec().getX()*8 > 200) ? 200 : ss.getVelocityVec().getX()*8;
+                    arrowEndY = (ss.getVelocityVec().getY()*8 > 200) ? 200 : ss.getVelocityVec().getY()*8;
+                    //arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
+                    arrow.setCoordinates(200, 200, arrowEndX+200, arrowEndY+200);
                 }                
             });
             
@@ -74,12 +88,13 @@ public class Play{
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
         this.arrow = arrow;
+        this.lb = lb;
     }    
     
     public void start(){

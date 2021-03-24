@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -48,7 +50,13 @@ public class LevelController implements Initializable {
         Arrow arrow = new Arrow(200, 200, 200, 300, 20);
         pane.getChildren().add(arrow);
         
-        Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene, arrow);
+        Label lb = new Label("Force Vector");
+        lb.setLayoutX(135); lb.setLayoutY(75);
+        lb.setStyle("-fx-text-fill: red; -fx-font-size: 25px");
+        pane.getChildren().add(lb);
+        
+        
+        Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb);
         play.start();
     }     
 }
