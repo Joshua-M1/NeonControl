@@ -16,7 +16,10 @@ public class Play{
     private Level level;
     private PhysicsEngine physics;
     private StickSpring ss;
-    private Scene keyChecker;
+    private final Scene keyChecker;
+    private Arrow arrow;
+    private Label lb;
+    private Circle c1;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
@@ -45,6 +48,7 @@ public class Play{
                     animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
+                    setArrow();
                 }
                 
                 else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -55,12 +59,14 @@ public class Play{
                     animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
+                    setArrow();
                 }
                 
                 else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
-                }
+                    setArrow();
+                }                
             });
             
             if(!collided)
@@ -70,11 +76,14 @@ public class Play{
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb, Circle c1){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
+        this.arrow = arrow;
+        this.lb = lb;
+        this.c1 = c1;
     }    
     
     
@@ -104,9 +113,9 @@ public class Play{
         
     }
     
-    public void showMenu(Menu menu){
-        
-    }
+//    public void showMenu(Menu menu){
+//        
+//    }
 
     
     public void setPhysics(PhysicsEngine physics){
@@ -142,7 +151,7 @@ public class Play{
                     case 2: ss.setImage(new Image("Graphics/spring 7.png")); Thread.sleep(2);count++; break;
                     case 3: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
                     case 4: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
-                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
+                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count = 0; break;
                 }
             if(index == 2)
                 switch(count){
@@ -151,12 +160,35 @@ public class Play{
                     case 2: ss.setImage(new Image("Graphics/spring 4.png")); Thread.sleep(2);count++; break;
                     case 3: ss.setImage(new Image("Graphics/spring 3.png")); Thread.sleep(2);count++; break;
                     case 4: ss.setImage(new Image("Graphics/spring 2.png")); Thread.sleep(2);count++; break;
-                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
+                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count = 0; break;
                 }
         }
         catch(InterruptedException ex){
             System.out.println("Animation Bug");
-        }
+        } 
+    }
+    
+    public void setArrow(){
+        double xEnd = ss.getVelocityVec().getX()*5, yEnd = ss.getVelocityVec().getY()*5;
+        arrow.getElements().clear();
+        if(ss.getVelocityVec().getX()*5>60){
+            xEnd = 60;
+            System.out.println("x was changed (too big)");
+        }    
+        else if(ss.getVelocityVec().getX()*5<-60){
+            xEnd = -60;
+            System.out.println("x was changed (too small)");
+        }    
         
+        if(ss.getVelocityVec().getY()*5>60){
+            yEnd = 60;
+            System.out.println("y was changed (too big)");
+        }    
+        else if(ss.getVelocityVec().getY()*5<-60){
+            yEnd = -60;
+            System.out.println("y was changed (too small)");
+        }    
+        
+        arrow.setCoordinates(200, 180, 200+xEnd, 180+yEnd);
     }
 }
