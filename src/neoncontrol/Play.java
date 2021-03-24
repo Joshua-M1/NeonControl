@@ -44,9 +44,7 @@ public class Play{
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
-                    
-                    arrow.getElements().clear();
-                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*5, 200+ss.getVelocityVec().getY()*5);
+                    setArrow();
                 }
                 
                 else if(ss.getHB1().intersects(wall.getBoundsInLocal()) && !ss.getHB2().intersects(wall.getBoundsInLocal()) && !collided){
@@ -57,18 +55,15 @@ public class Play{
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
-                    arrow.getElements().clear();
-                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*5, 200+ss.getVelocityVec().getY()*5);
+                    setArrow();
                 }
                 
                 else if(ss.getHB3().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
-                    arrow.getElements().clear();
-                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*5, 200+ss.getVelocityVec().getY()*5);
+                    setArrow();
                 }                
             });
-            
             if(!collided)
                 ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
             
@@ -163,7 +158,30 @@ public class Play{
         }
         catch(InterruptedException ex){
             System.out.println("Animation Bug");
-        }
+        } 
+    }
+    
+    public void setArrow(){
+        double xEnd = ss.getVelocityVec().getX()*5, yEnd = ss.getVelocityVec().getY()*5;
+        arrow.getElements().clear();
+        if(ss.getVelocityVec().getX()*5>60){
+            xEnd = 60;
+            System.out.println("x was changed (too big)");
+        }    
+        else if(ss.getVelocityVec().getX()*5<-60){
+            xEnd = -60;
+            System.out.println("x was changed (too small)");
+        }    
         
+        if(ss.getVelocityVec().getY()*5>60){
+            yEnd = 60;
+            System.out.println("y was changed (too big)");
+        }    
+        else if(ss.getVelocityVec().getY()*5<-60){
+            yEnd = -60;
+            System.out.println("y was changed (too small)");
+        }    
+        
+        arrow.setCoordinates(200, 180, 200+xEnd, 180+yEnd);
     }
 }
