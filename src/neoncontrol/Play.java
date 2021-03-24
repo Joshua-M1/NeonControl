@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Play{
@@ -14,6 +15,7 @@ public class Play{
     private PhysicsEngine physics;
     private StickSpring ss;
     private Scene keyChecker;
+    private Arrow arrow;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
 
@@ -41,6 +43,8 @@ public class Play{
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
+                    arrow.getElements().clear();
+                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
                 }
                 
                 else if(ss.getHB1().intersects(wall.getBoundsInLocal()) && !ss.getHB2().intersects(wall.getBoundsInLocal()) && !collided){
@@ -51,12 +55,16 @@ public class Play{
                     Timeline animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
                     animation.play();
+                    arrow.getElements().clear();
+                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
                 }
                 
                 else if(ss.getHB3().intersects(wall.getBoundsInLocal()) && !collided){
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
-                }
+                    arrow.getElements().clear();
+                    arrow.setCoordinates(200, 200, 200+ss.getVelocityVec().getX()*8, 200+ss.getVelocityVec().getY()*8);
+                }                
             });
             if(!collided)
                 ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
@@ -65,11 +73,12 @@ public class Play{
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
+        this.arrow = arrow;
     }    
     
     public void start(){
@@ -97,9 +106,9 @@ public class Play{
         
     }
     
-    public void showMenu(Menu menu){
-        
-    }
+//    public void showMenu(Menu menu){
+//        
+//    }
 
     
     public void setPhysics(PhysicsEngine physics){
@@ -135,7 +144,7 @@ public class Play{
                     case 2: ss.setImage(new Image("Graphics/spring 7.png")); Thread.sleep(2);count++; break;
                     case 3: ss.setImage(new Image("Graphics/spring 6.png")); Thread.sleep(2);count++; break;
                     case 4: ss.setImage(new Image("Graphics/spring 5.png")); Thread.sleep(2);count++; break;
-                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
+                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count = 0; break;
                 }
             if(index == 2)
                 switch(count){
@@ -144,7 +153,7 @@ public class Play{
                     case 2: ss.setImage(new Image("Graphics/spring 4.png")); Thread.sleep(2);count++; break;
                     case 3: ss.setImage(new Image("Graphics/spring 3.png")); Thread.sleep(2);count++; break;
                     case 4: ss.setImage(new Image("Graphics/spring 2.png")); Thread.sleep(2);count++; break;
-                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count=0; break;
+                    case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count = 0; break;
                 }
         }
         catch(InterruptedException ex){
