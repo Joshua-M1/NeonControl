@@ -44,7 +44,11 @@ public class LevelController implements Initializable {
         pane.getChildren().add(sp.getHB1());
         pane.getChildren().add(sp.getHB2());
         pane.getChildren().add(sp.getHB3());
-        Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene);
+        
+        Arrow arrow = new Arrow(200, 200, 200, 300, 20);
+        pane.getChildren().add(arrow);
+        
+        Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene, arrow);
         play.start();
     }     
 }
