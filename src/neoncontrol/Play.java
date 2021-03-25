@@ -42,8 +42,7 @@ public class Play{
                 if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
-                    EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);
-                        
+                    EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);                    
                     };  
                     animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                     animation.setCycleCount(6);
@@ -188,9 +187,6 @@ public class Play{
             yEnd = -60;
 //            System.out.println("y was changed (too small)");
         }    
-        if((Math.pow(xEnd*xEnd+yEnd*yEnd, 1/2))>60){
-            System.out.println("Uh oh");
-        }
         arrow.setCoordinates(200, 180, 200+xEnd, 180+yEnd);
     }
 }

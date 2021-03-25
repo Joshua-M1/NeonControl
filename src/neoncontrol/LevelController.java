@@ -58,7 +58,7 @@ public class LevelController implements Initializable {
         pane.getChildren().add(arrow);
         
         Label lb = new Label("Force Vector");
-        lb.setLayoutX(135); lb.setLayoutY(75);
+        lb.setLayoutX(140); lb.setLayoutY(75);
         lb.setFont(Font.font ("Verdana", 20));
         lb.setStyle("-fx-text-fill: red");
         pane.getChildren().add(lb);
@@ -69,6 +69,11 @@ public class LevelController implements Initializable {
         c1.setStroke(Color.PURPLE);
         c1.setStrokeWidth(3);
         pane.getChildren().add(c1);
+        
+        Circle c2 = new Circle(3);
+        c2.setFill(Color.RED);
+        c2.setLayoutX(200); c2.setLayoutY(180);
+        pane.getChildren().add(c2);
         
         Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb, c1);
         play.start();
