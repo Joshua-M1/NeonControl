@@ -168,22 +168,22 @@ public class Play{
     }
     
     public void setArrow(){
-        double xEnd = ss.getVelocityVec().getX()*5, yEnd = ss.getVelocityVec().getY()*5;
+        double xEnd = ss.getVelocityVec().getX()*4, yEnd = ss.getVelocityVec().getY()*4;
         arrow.getElements().clear();
-        if(ss.getVelocityVec().getX()*5>60){
+        if(ss.getVelocityVec().getX()*4>60){
             xEnd = 60;
 //            System.out.println("x was changed (too big)");
         }    
-        else if(ss.getVelocityVec().getX()*5<-60){
+        else if(ss.getVelocityVec().getX()*4<-60){
             xEnd = -60;
 //            System.out.println("x was changed (too small)");
         }    
 //        
-        if(ss.getVelocityVec().getY()*5>60){
+        if(ss.getVelocityVec().getY()*4>60){
             yEnd = 60;
 //            System.out.println("y was changed (too big)");
         }    
-        else if(ss.getVelocityVec().getY()*5<-60){
+        else if(ss.getVelocityVec().getY()*4<-60){
             yEnd = -60;
 //            System.out.println("y was changed (too small)");
         }    
