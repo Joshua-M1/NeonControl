@@ -26,9 +26,9 @@ public class StickSpring extends ImageView{
     private double mass;
     
     private ArrayList<Rectangle> HBList = new ArrayList<>();
-    private Rectangle spring1HB = new Rectangle(16,20);
-    private Rectangle spring2HB = new Rectangle(16,20);
-    private Rectangle stickHB = new Rectangle(16,60);
+    private Rectangle spring1HB = new Rectangle(10,6);
+    private Rectangle spring2HB = new Rectangle(10,6);
+    private Rectangle stickHB = new Rectangle(18,64);
 
     public StickSpring() {
         this.setImage(new Image("Graphics/spring 1.png"));
@@ -39,7 +39,7 @@ public class StickSpring extends ImageView{
     public StickSpring(Vector velVector, double angle){
         this.velVector = velVector;
         this.setImage(new Image("Graphics/spring 1.png"));
-        setPos(200, 300);
+        setPos(200, 200);
         setHitboxes();
         setAngle(angle);
     }
@@ -73,10 +73,10 @@ public class StickSpring extends ImageView{
         stickHB.setRotate(angle);
         spring1HB.setRotate(angle);
         spring2HB.setRotate(angle);
-        spring1HB.setX(getX()+9+(40*Math.sin(Math.toRadians(angle))));
-        spring1HB.setY(getY()+44-(40*Math.cos(Math.toRadians(angle))));
-        spring2HB.setX(getX()+9-(40*Math.sin(Math.toRadians(angle))));
-        spring2HB.setY(getY()+44+(40*Math.cos(Math.toRadians(angle))));
+        spring1HB.setX(getX()+12+(36*Math.sin(Math.toRadians(angle))));
+        spring1HB.setY(getY()+52-(36*Math.cos(Math.toRadians(angle))));
+        spring2HB.setX(getX()+12-(36*Math.sin(Math.toRadians(angle))));
+        spring2HB.setY(getY()+52+(36*Math.cos(Math.toRadians(angle))));
     }
     
     public double getCenterX(){
@@ -148,11 +148,11 @@ public class StickSpring extends ImageView{
         HBList.add(spring1HB);
         HBList.add(spring2HB);
         HBList.add(stickHB);
-        spring1HB.setX(this.getX()+9);
-        spring1HB.setY(this.getY()+4);
+        spring1HB.setX(this.getX()+12);
+        spring1HB.setY(this.getY()+12);
         spring1HB.setStroke(Color.RED);
         spring1HB.setFill(Color.TRANSPARENT);
-        spring2HB.setX(this.getX()+9);
+        spring2HB.setX(this.getX()+12);
         spring2HB.setY(this.getY()+86);
         spring2HB.setStroke(Color.GREEN);
         spring2HB.setFill(Color.TRANSPARENT);

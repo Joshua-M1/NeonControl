@@ -18,6 +18,7 @@ public class Level extends ImageView{
 
     public Level() {
         setBorders();
+        setLevel1();
         this.setImage(new Image("Graphics/background level.jpg"));
     }
 
@@ -56,6 +57,12 @@ public class Level extends ImageView{
         addWall(new Wall(800,300,900,75,270)); //right wall
         addWall(new Wall(-110,-10,1500,75,180)); //top wall
         addWall(new Wall(-110,630,1500,75,0)); //bottom wall
-        addWall(new Wall(400,550,300,100,45));
+        //addWall(new Wall(600,300,100,100,45));
+    }
+    
+    private void setLevel1(){
+        addWall(new Wall(400,500,200,50,0)); 
+        addWall(new Wall(700,400,200,50,0)); 
+        addWall(new Wall(1000,300,200,50,0)); 
     }
 }

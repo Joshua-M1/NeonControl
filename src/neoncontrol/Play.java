@@ -28,13 +28,14 @@ public class Play{
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
+            setArrow();
             collided = false;
             if(A){
-                ss.setAngle(ss.getAngle() - 3);
+                ss.setAngle(ss.getAngle() - 4);
             }
         
             if(D){
-                ss.setAngle(ss.getAngle() + 3);
+                ss.setAngle(ss.getAngle() + 4);
             }
 
             level.getWallList().forEach((wall) -> {
