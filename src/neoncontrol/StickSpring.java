@@ -43,7 +43,14 @@ public class StickSpring extends ImageView{
         setHitboxes();
         setAngle(angle);
     }
-
+    
+    public void reset(){
+        setVelocityVec(new Vector(0,0));
+        setPos(200, 200);
+        setAngle(0);
+        resetHitboxes();
+    }
+    
     public double getYPos() {
         return yPos;
     }
@@ -160,5 +167,14 @@ public class StickSpring extends ImageView{
         stickHB.setY(this.getY()+24);
         stickHB.setStroke(Color.BLUE);
         stickHB.setFill(Color.TRANSPARENT);
+    }
+    
+    public void resetHitboxes(){
+        spring1HB.setX(this.getX()+12);
+        spring1HB.setY(this.getY()+12);
+        spring2HB.setX(this.getX()+12);
+        spring2HB.setY(this.getY()+86);
+        stickHB.setX(this.getX()+9);
+        stickHB.setY(this.getY()+24);
     }
 }

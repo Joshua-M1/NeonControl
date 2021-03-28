@@ -40,8 +40,8 @@ public class LevelController implements Initializable {
         background.fitHeightProperty().bind(Main.stage.heightProperty());
         background.preserveRatioProperty().set(false);
         
-        Level lvl1 = new Level();
-        pane.getChildren().addAll(lvl1.getWallList());
+        Level lvl = new Level();
+        pane.getChildren().addAll(lvl.getWallList());
 
         StickSpring sp = new StickSpring(new Vector(0, 0), 0);
         /*sp.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.0275));
@@ -75,7 +75,7 @@ public class LevelController implements Initializable {
         c2.setLayoutX(200); c2.setLayoutY(180);
         pane.getChildren().add(c2);
         
-        Play play = new Play(lvl1, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb, c1);
+        Play play = new Play(lvl, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb, c1, pane);
         play.start();
     }     
 }

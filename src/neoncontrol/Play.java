@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.*;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
@@ -20,6 +21,7 @@ public class Play{
     private Arrow arrow;
     private Label lb;
     private Circle c1;
+    private Pane pane;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
@@ -41,6 +43,10 @@ public class Play{
             level.getWallList().forEach((wall) -> {
                 
                 if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
+                    
+                    //touching objective
+                    ifLevelComplete(wall);
+                    
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);                    
@@ -52,6 +58,10 @@ public class Play{
                 }
                 
                 else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
+                    
+                    //touching objective
+                    ifLevelComplete(wall);
+                    
                     ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                     collided = true;
                     EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
@@ -63,6 +73,10 @@ public class Play{
                 }
                 
                 else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
+                    
+                    //touching objective
+                    ifLevelComplete(wall);
+                    
                     ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
                     collided = true;
                     setArrow();
@@ -76,7 +90,7 @@ public class Play{
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb, Circle c1){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb, Circle c1, Pane pane){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
@@ -84,6 +98,7 @@ public class Play{
         this.arrow = arrow;
         this.lb = lb;
         this.c1 = c1;
+        this.pane = pane;
     }    
     
     
@@ -189,5 +204,14 @@ public class Play{
 //            System.out.println("y was changed (too small)");
         }    
         arrow.setCoordinates(200, 180, 200+xEnd, 180+yEnd);
+    }
+    
+    public void ifLevelComplete(Wall wall){
+        if(wall instanceof Objective){
+                       pane.getChildren().removeAll(level.getWallList());
+                       level.setNextLevel();
+                       ss.reset();
+                       pane.getChildren().addAll(level.getWallList());
+                    }
     }
 }

@@ -14,11 +14,12 @@ import javafx.scene.image.ImageView;
  */
 public class Level extends ImageView{
     private ArrayList<Wall> wallList = new ArrayList<Wall>();
+    int levelCount = 0;
    
 
     public Level() {
         setBorders();
-        setLevel1();
+        setTutorial();
         this.setImage(new Image("Graphics/background level.jpg"));
     }
 
@@ -52,6 +53,20 @@ public class Level extends ImageView{
         return wallList.get(index);
     }
     
+    public void setNextLevel(){
+        levelCount++;
+        ArrayList<Wall> tempList = new ArrayList<>();
+        tempList.addAll(wallList);
+        wallList.removeAll(tempList);
+        
+        setBorders();
+        switch(levelCount){
+            case 1: setLevel1(); break;
+            default: setTutorial();break;
+        }
+        
+    }
+    
     private void setBorders(){
         addWall(new Wall(-435,300,900,75,90)); //left wall
         addWall(new Wall(800,300,900,75,270)); //right wall
@@ -61,8 +76,12 @@ public class Level extends ImageView{
     }
     
     private void setLevel1(){
-        addWall(new Wall(400,500,200,50,0)); 
-        addWall(new Wall(700,400,200,50,0)); 
-        addWall(new Wall(1000,300,200,50,0)); 
+        addWall(new Wall(400,500,200,50,0));  
+        addWall(new Wall(1000,300,200,50,0));
+        addWall(new Objective(700,400,200,50,0));
+    }
+    
+    private void setTutorial(){
+        addWall(new Objective(900,300,100,100,0));
     }
 }
