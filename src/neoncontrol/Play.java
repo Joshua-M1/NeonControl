@@ -12,9 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 
@@ -36,7 +34,6 @@ public class Play{
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
-            //setArrow();
             collided = false;
             if(A){
                 ss.setAngle(ss.getAngle() - 4);
@@ -125,6 +122,8 @@ public class Play{
                 case A: if(!paused) A = true; break;
                 case RIGHT:
                 case D: if(!paused) D = true; break;
+                case R: ss.setVelocityVec(new Vector(0,0)); ss.setPos(200, 200); ss.setAngle(0); ss.resetHitboxes();
+                        arrow.getElements().clear(); arrow.setCoordinates(200, 180, 200, 238.5);
             }
         });
         
