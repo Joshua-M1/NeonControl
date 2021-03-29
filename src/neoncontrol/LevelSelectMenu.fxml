@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neoncontrol.LevelSelectController">
    <children>
       <ImageView fx:id="background" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
          <image>
@@ -26,7 +26,7 @@
             <Image url="@../Graphics/Level_2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exit" fitHeight="57.0" fitWidth="147.0" layoutX="439.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit" fitHeight="57.0" fitWidth="147.0" layoutX="439.0" layoutY="336.0" onMousePressed="#setOnExitClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Graphics/Exit%20Button.png" />
          </image>
