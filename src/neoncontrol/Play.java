@@ -240,7 +240,16 @@ public class Play{
         ImageView levelSelect = new ImageView(new Image("Graphics/Level Select Button.png"));
         levelSelect.setX(320);
         levelSelect.setY(160);
-        levelSelect.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        levelSelect.setOnMouseClicked((MouseEvent e) ->{
+            try{
+            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml")); //Change this to LevelSelect.fxml file
+            Scene newScene = pane.getScene();
+            newScene.setRoot(root);
+            newScene.getWindow().setHeight(600);
+            newScene.getWindow().setWidth(975);
+            newScene.getWindow().centerOnScreen();
+            }catch(IOException ex){}
+        });
         pauseMenuList.add(levelSelect);
         
         pane.getChildren().addAll(pauseMenuList);

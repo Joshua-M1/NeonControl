@@ -48,7 +48,6 @@ public class LevelController implements Initializable {
         sp.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.0001));*/
         
         Arrow arrow = new Arrow(200, 180, 200, 180, 10);
-        arrow.setVisible(false);
         pane.getChildren().add(arrow);
         
         Label lb = new Label("Force Vector");
