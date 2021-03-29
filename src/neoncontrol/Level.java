@@ -8,6 +8,7 @@ package neoncontrol;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 /**
  *
  * @author addav
@@ -15,11 +16,11 @@ import javafx.scene.image.ImageView;
 public class Level extends ImageView{
     private ArrayList<Wall> wallList = new ArrayList<Wall>();
     int levelCount = 0;
-   
+    private ImageView instructions = new ImageView(new Image("Graphics/tutorial.png"));
 
-    public Level() {
+    public Level(Pane pane) {
         setBorders();
-        setTutorial();
+        setTutorial(pane);
         this.setImage(new Image("Graphics/background level.jpg"));
     }
 
@@ -53,18 +54,30 @@ public class Level extends ImageView{
         return wallList.get(index);
     }
     
-    public void setNextLevel(){
+    public int getCount(){
+        return levelCount;
+    }
+    
+    public void setNextLevel(Pane pane){
+        pane.getChildren().removeAll(getWallList());
+        if(levelCount==0){
+            pane.getChildren().remove(instructions);
+        }
+        
         levelCount++;
         ArrayList<Wall> tempList = new ArrayList<>();
         tempList.addAll(wallList);
         wallList.removeAll(tempList);
         
-        setBorders();
+        
         switch(levelCount){
             case 1: setLevel1(); break;
-            default: setTutorial();break;
+            case 2: setLevel2(); break;
+            default: break;
         }
+        setBorders();
         
+        pane.getChildren().addAll(getWallList());
     }
     
     private void setBorders(){
@@ -78,10 +91,17 @@ public class Level extends ImageView{
     private void setLevel1(){
         addWall(new Wall(400,500,200,50,0));  
         addWall(new Wall(1000,300,200,50,0));
-        addWall(new Objective(700,400,200,50,0));
+        addWall(new Wall(700,400,200,50,0));
+        addWall(new Objective(1100,120,100,100,0));
     }
     
-    private void setTutorial(){
+    private void setLevel2(){
+        addWall(new Wall(1125,500,100,200,45));
+        addWall(new Objective(1100,120,100,100,0));
+    }
+    
+    private void setTutorial(Pane pane){
         addWall(new Objective(900,300,100,100,0));
+        pane.getChildren().add(instructions);
     }
 }

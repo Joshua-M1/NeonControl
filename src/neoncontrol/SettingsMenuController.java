@@ -49,8 +49,6 @@ public class SettingsMenuController implements Initializable {
         Scene newScene = AnchorPane.getScene();
         newScene.getWindow().setHeight(720);
         newScene.getWindow().setWidth(1280);
-        newScene.getWindow().setX(150);
-        newScene.getWindow().setY(50);
         newScene.getWindow().centerOnScreen();
         newScene.setRoot(root);
     }

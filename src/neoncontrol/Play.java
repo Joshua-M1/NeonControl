@@ -1,13 +1,18 @@
 package neoncontrol;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
 import javafx.animation.Animation.Status;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -26,7 +31,8 @@ public class Play{
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
     Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
-
+   
+    
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
@@ -39,54 +45,59 @@ public class Play{
             if(D){
                 ss.setAngle(ss.getAngle() + 4);
             }
+            try{
+                level.getWallList().forEach((wall) -> {
 
-            level.getWallList().forEach((wall) -> {
+                    if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
+
+
+                        //touching objective
+                        ifLevelComplete(wall);
+
+                        ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
+                        collided = true;
+                        EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);                    
+                        };  
+                        animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                        animation.setCycleCount(6);
+                        animation.play();
+                        setArrow();
+                    }
+
+                    else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
+
+                        //touching objective
+                        ifLevelComplete(wall);
+
+                        ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
+                        collided = true;
+                        EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
+                        };  
+                        animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                        animation.setCycleCount(6);
+                        animation.play();
+                        setArrow();
+                    }
+
+                    else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
+
+                        //touching objective
+                        ifLevelComplete(wall);
+
+                        ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
+                        collided = true;
+                        setArrow();
+                    }                
+                });
                 
-                if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-                    
-                    //touching objective
-                    ifLevelComplete(wall);
-                    
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
-                    collided = true;
-                    EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);                    
-                    };  
-                    animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
-                    animation.setCycleCount(6);
-                    animation.play();
-                    setArrow();
-                }
-                
-                else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-                    
-                    //touching objective
-                    ifLevelComplete(wall);
-                    
-                    ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
-                    collided = true;
-                    EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
-                    };  
-                    animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
-                    animation.setCycleCount(6);
-                    animation.play();
-                    setArrow();
-                }
-                
-                else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
-                    
-                    //touching objective
-                    ifLevelComplete(wall);
-                    
-                    ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
-                    collided = true;
-                    setArrow();
-                }                
-            });
-            
-            if(!collided)
-                ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
-            
-            ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
+            }catch(java.util.ConcurrentModificationException ex){
+                //error with arrayList or something
+            }
+
+                if(!collided)
+                    ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
+
+                ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
         }
     };
     
@@ -106,8 +117,10 @@ public class Play{
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: if(paused){gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
-                             else{gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
+                case ESCAPE: if(paused){removePauseMenu();
+                                gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
+                             else{showPauseMenu();
+                                gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
                 case LEFT:
                 case A: if(!paused) A = true; break;
                 case RIGHT:
@@ -207,11 +220,57 @@ public class Play{
     }
     
     public void ifLevelComplete(Wall wall){
+
         if(wall instanceof Objective){
-                       pane.getChildren().removeAll(level.getWallList());
-                       level.setNextLevel();
-                       ss.reset();
-                       pane.getChildren().addAll(level.getWallList());
-                    }
+            level.setNextLevel(pane);
+            ss.reset();    
+        }
+    }
+    
+    private ArrayList<Node> pauseMenuList = new ArrayList<>();
+    
+    public void showPauseMenu(){
+        
+        ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
+        menuPane.setFitHeight(550);
+        menuPane.setFitWidth(600);
+        menuPane.setX(325);
+        menuPane.setY(75);
+        pauseMenuList.add(menuPane);
+        
+        ImageView exit = new ImageView(new Image("Graphics/Exit Button.png"));
+        exit.setX(475);
+        exit.setY(440);
+        exit.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        pauseMenuList.add(exit);
+        
+        ImageView mainMenu = new ImageView(new Image("Graphics/Main Menu Button.png"));
+        mainMenu.setX(330);
+        mainMenu.setY(300);
+        mainMenu.setOnMouseClicked((MouseEvent e) ->{
+            try{
+            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            Scene newScene = pane.getScene();
+            newScene.setRoot(root);
+            newScene.getWindow().setHeight(600);
+            newScene.getWindow().setWidth(975);
+            newScene.getWindow().centerOnScreen();
+            }catch(IOException ex){}
+            
+        });
+        pauseMenuList.add(mainMenu);
+        
+        ImageView levelSelect = new ImageView(new Image("Graphics/Level Select Button.png"));
+        levelSelect.setX(320);
+        levelSelect.setY(160);
+        levelSelect.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        pauseMenuList.add(levelSelect);
+        
+        pane.getChildren().addAll(pauseMenuList);
+    }
+    
+    public void removePauseMenu(){
+        pane.getChildren().removeAll(pauseMenuList);
+        pauseMenuList.clear();
     }
 }
