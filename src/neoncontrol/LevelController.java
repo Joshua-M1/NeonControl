@@ -47,7 +47,7 @@ public class LevelController implements Initializable {
         sp.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.0001));
         sp.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.0001));*/
         
-        Arrow arrow = new Arrow(200, 180, 200, 238.5, 10);
+        Arrow arrow = new Arrow(200, 180, 200, 180, 10);
         arrow.setVisible(false);
         pane.getChildren().add(arrow);
         
@@ -76,7 +76,7 @@ public class LevelController implements Initializable {
         
         
         
-        Play play = new Play(lvl, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb, c1, pane);
+        Play play = new Play(lvl, new PhysicsEngine(0.3), sp, Main.scene, arrow, pane);
         play.start();
     }     
 }

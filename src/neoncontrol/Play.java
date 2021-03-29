@@ -21,10 +21,8 @@ public class Play{
     private PhysicsEngine physics;
     private StickSpring ss;
     private final Scene keyChecker;
-    private Arrow arrow;
-    private Label lb;
-    private Circle c1;
-    private Pane pane;
+    private final Arrow arrow;
+    private final Pane pane;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
@@ -93,20 +91,17 @@ public class Play{
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb, Circle c1, Pane pane){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Pane pane){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
         this.arrow = arrow;
-        this.lb = lb;
-        this.c1 = c1;
         this.pane = pane;
     }    
     
     
     public void start(){
-        arrow.setVisible(false);
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
@@ -130,9 +125,6 @@ public class Play{
                 case D: if(!paused) D = false; break;
             }
         });
-        
-        
-        
     }
     
     public void setPhysics(PhysicsEngine physics){

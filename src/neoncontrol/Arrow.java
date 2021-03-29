@@ -15,7 +15,7 @@ import javafx.scene.shape.Path;
  * @author addav
  */
 public class Arrow extends Path{
-    private static final double defaultArrowHeadSize = 10.0;
+    private double defaultArrowHeadSize = 10.0;
     
     public Arrow(double startX, double startY, double endX, double endY, double arrowHeadSize){
         super();
@@ -42,9 +42,9 @@ public class Arrow extends Path{
         getElements().add(new LineTo(endX, endY));
     }
     
-    public Arrow(double startX, double startY, double endX, double endY){
-        this(startX, startY, endX, endY, defaultArrowHeadSize);
-    }
+//    public Arrow(double startX, double startY, double endX, double endY){
+//        this(startX, startY, endX, endY, defaultArrowHeadSize);
+//    }
     
     public void setCoordinates(double startX, double startY, double endX, double endY){
         //Line
@@ -65,5 +65,9 @@ public class Arrow extends Path{
         getElements().add(new LineTo(x1, y1));
         getElements().add(new LineTo(x2, y2));
         getElements().add(new LineTo(endX, endY));
+    }
+    
+    public void setArrowheadSize(double size){
+        this.defaultArrowHeadSize = size;
     }
 }
