@@ -12,9 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 
@@ -23,10 +21,8 @@ public class Play{
     private PhysicsEngine physics;
     private StickSpring ss;
     private final Scene keyChecker;
-    private Arrow arrow;
-    private Label lb;
-    private Circle c1;
-    private Pane pane;
+    private final Arrow arrow;
+    private final Pane pane;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
@@ -36,12 +32,10 @@ public class Play{
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
-            setArrow();
             collided = false;
             if(A){
                 ss.setAngle(ss.getAngle() - 4);
             }
-        
             if(D){
                 ss.setAngle(ss.getAngle() + 4);
             }
@@ -49,8 +43,6 @@ public class Play{
                 level.getWallList().forEach((wall) -> {
 
                     if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-
-
                         //touching objective
                         ifLevelComplete(wall);
 
@@ -65,7 +57,6 @@ public class Play{
                     }
 
                     else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-
                         //touching objective
                         ifLevelComplete(wall);
 
@@ -80,7 +71,6 @@ public class Play{
                     }
 
                     else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
-
                         //touching objective
                         ifLevelComplete(wall);
 
@@ -94,21 +84,19 @@ public class Play{
                 //error with arrayList or something
             }
 
-                if(!collided)
-                    ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
+            if(!collided)
+                ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
 
-                ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
+            ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb, Circle c1, Pane pane){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Pane pane){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
         this.arrow = arrow;
-        this.lb = lb;
-        this.c1 = c1;
         this.pane = pane;
     }    
     
@@ -125,6 +113,7 @@ public class Play{
                 case A: if(!paused) A = true; break;
                 case RIGHT:
                 case D: if(!paused) D = true; break;
+                case R: ss.reset(); arrow.getElements().clear(); arrow.setCoordinates(200, 180, 200, 238.5);
             }
         });
         
@@ -136,15 +125,7 @@ public class Play{
                 case D: if(!paused) D = false; break;
             }
         });
-        
-        
-        
     }
-    
-//    public void showMenu(Menu menu){
-//        
-//    }
-
     
     public void setPhysics(PhysicsEngine physics){
         this.physics = physics;
@@ -197,24 +178,20 @@ public class Play{
     }
     
     public void setArrow(){
+        arrow.setVisible(true);
         double xEnd = ss.getVelocityVec().getX()*4, yEnd = ss.getVelocityVec().getY()*4;
         arrow.getElements().clear();
         if(ss.getVelocityVec().getX()*4>60){
             xEnd = 60;
-//            System.out.println("x was changed (too big)");
         }    
         else if(ss.getVelocityVec().getX()*4<-60){
             xEnd = -60;
-//            System.out.println("x was changed (too small)");
-        }    
-//        
+        }
         if(ss.getVelocityVec().getY()*4>60){
             yEnd = 60;
-//            System.out.println("y was changed (too big)");
         }    
         else if(ss.getVelocityVec().getY()*4<-60){
             yEnd = -60;
-//            System.out.println("y was changed (too small)");
         }    
         arrow.setCoordinates(200, 180, 200+xEnd, 180+yEnd);
     }
@@ -223,7 +200,7 @@ public class Play{
 
         if(wall instanceof Objective){
             level.setNextLevel(pane);
-            ss.reset();    
+            ss.reset();
         }
     }
     
@@ -261,7 +238,13 @@ public class Play{
         ImageView levelSelect = new ImageView(new Image("Graphics/Level Select Button.png"));
         levelSelect.setX(menuPane.getX() - 5);
         levelSelect.setY(menuPane.getY() + 100);
-        levelSelect.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        levelSelect.setOnMouseClicked((MouseEvent e) ->{
+            try{
+            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml")); //Change this to LevelSelect.fxml file
+            Scene newScene = pane.getScene();
+            newScene.setRoot(root);
+            }catch(IOException ex){}
+        });
         pauseMenuList.add(levelSelect);
         
         pane.getChildren().addAll(pauseMenuList);

@@ -76,7 +76,6 @@ public class Level extends ImageView{
             default: break;
         }
         setBorders();
-        
         pane.getChildren().addAll(getWallList());
     }
     
