@@ -38,7 +38,6 @@ public class Play{
             if(A){
                 ss.setAngle(ss.getAngle() - 4);
             }
-        
             if(D){
                 ss.setAngle(ss.getAngle() + 4);
             }
@@ -46,8 +45,6 @@ public class Play{
                 level.getWallList().forEach((wall) -> {
 
                     if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-
-
                         //touching objective
                         ifLevelComplete(wall);
 
@@ -62,7 +59,6 @@ public class Play{
                     }
 
                     else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-
                         //touching objective
                         ifLevelComplete(wall);
 
@@ -77,7 +73,6 @@ public class Play{
                     }
 
                     else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
-
                         //touching objective
                         ifLevelComplete(wall);
 
@@ -91,10 +86,10 @@ public class Play{
                 //error with arrayList or something
             }
 
-                if(!collided)
-                    ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
+            if(!collided)
+                ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
 
-                ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
+            ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
         }
     };
     
@@ -111,6 +106,7 @@ public class Play{
     
     
     public void start(){
+        arrow.setVisible(false);
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
@@ -122,8 +118,7 @@ public class Play{
                 case A: if(!paused) A = true; break;
                 case RIGHT:
                 case D: if(!paused) D = true; break;
-                case R: ss.setVelocityVec(new Vector(0,0)); ss.setPos(200, 200); ss.setAngle(0); ss.resetHitboxes();
-                        arrow.getElements().clear(); arrow.setCoordinates(200, 180, 200, 238.5);
+                case R: ss.reset(); arrow.getElements().clear(); arrow.setCoordinates(200, 180, 200, 238.5);
             }
         });
         
@@ -139,11 +134,6 @@ public class Play{
         
         
     }
-    
-//    public void showMenu(Menu menu){
-//        
-//    }
-
     
     public void setPhysics(PhysicsEngine physics){
         this.physics = physics;
@@ -196,6 +186,7 @@ public class Play{
     }
     
     public void setArrow(){
+        arrow.setVisible(true);
         double xEnd = ss.getVelocityVec().getX()*4, yEnd = ss.getVelocityVec().getY()*4;
         arrow.getElements().clear();
         if(ss.getVelocityVec().getX()*4>60){
@@ -203,8 +194,7 @@ public class Play{
         }    
         else if(ss.getVelocityVec().getX()*4<-60){
             xEnd = -60;
-        }    
-//        
+        }
         if(ss.getVelocityVec().getY()*4>60){
             yEnd = 60;
         }    
@@ -218,7 +208,7 @@ public class Play{
 
         if(wall instanceof Objective){
             level.setNextLevel(pane);
-            ss.reset();    
+            ss.reset();
         }
     }
     
