@@ -44,10 +44,7 @@ public class LevelController implements Initializable {
         pane.getChildren().addAll(lvl.getWallList());
 
         StickSpring sp = new StickSpring(new Vector(0, 0), 0);
-        /*sp.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.0275));
-        sp.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.1525));
-        sp.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.0001));
-        sp.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.0001));*/
+
         
         Arrow arrow = new Arrow(200, 180, 200, 238.5, 10);
         pane.getChildren().add(arrow);
