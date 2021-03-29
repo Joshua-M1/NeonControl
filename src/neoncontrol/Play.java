@@ -36,7 +36,7 @@ public class Play{
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
-            setArrow();
+            //setArrow();
             collided = false;
             if(A){
                 ss.setAngle(ss.getAngle() - 4);
@@ -201,20 +201,16 @@ public class Play{
         arrow.getElements().clear();
         if(ss.getVelocityVec().getX()*4>60){
             xEnd = 60;
-//            System.out.println("x was changed (too big)");
         }    
         else if(ss.getVelocityVec().getX()*4<-60){
             xEnd = -60;
-//            System.out.println("x was changed (too small)");
         }    
 //        
         if(ss.getVelocityVec().getY()*4>60){
             yEnd = 60;
-//            System.out.println("y was changed (too big)");
         }    
         else if(ss.getVelocityVec().getY()*4<-60){
             yEnd = -60;
-//            System.out.println("y was changed (too small)");
         }    
         arrow.setCoordinates(200, 180, 200+xEnd, 180+yEnd);
     }
