@@ -211,43 +211,38 @@ public class Play{
         ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
         menuPane.setFitHeight(550);
         menuPane.setFitWidth(600);
-        menuPane.setX(325);
-        menuPane.setY(75);
+        menuPane.setX(Main.scene.getWidth()*0.5 - 325);
+        menuPane.setY(Main.scene.getHeight()*0.5 - 250);
         pauseMenuList.add(menuPane);
         
         ImageView exit = new ImageView(new Image("Graphics/Exit Button.png"));
-        exit.setX(475);
-        exit.setY(440);
+        exit.setX(menuPane.getX() + 150);
+        exit.setY(menuPane.getY() + 400);
         exit.setOnMouseClicked((MouseEvent e) ->System.exit(0));
         pauseMenuList.add(exit);
         
         ImageView mainMenu = new ImageView(new Image("Graphics/Main Menu Button.png"));
-        mainMenu.setX(330);
-        mainMenu.setY(300);
+        mainMenu.setX(menuPane.getX());
+        mainMenu.setY(menuPane.getY() + 250);
         mainMenu.setOnMouseClicked((MouseEvent e) ->{
             try{
             Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
-            newScene.getWindow().setHeight(600);
-            newScene.getWindow().setWidth(975);
-            newScene.getWindow().centerOnScreen();
+            
             }catch(IOException ex){}
             
         });
         pauseMenuList.add(mainMenu);
         
         ImageView levelSelect = new ImageView(new Image("Graphics/Level Select Button.png"));
-        levelSelect.setX(320);
-        levelSelect.setY(160);
+        levelSelect.setX(menuPane.getX() - 5);
+        levelSelect.setY(menuPane.getY() + 100);
         levelSelect.setOnMouseClicked((MouseEvent e) ->{
             try{
             Parent root = FXMLLoader.load(getClass().getResource("LevelSelectMenu.fxml"));
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
-            newScene.getWindow().setHeight(600);
-            newScene.getWindow().setWidth(975);
-            newScene.getWindow().centerOnScreen();
             }catch(IOException ex){}
         });
         pauseMenuList.add(levelSelect);
