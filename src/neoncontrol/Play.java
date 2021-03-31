@@ -34,10 +34,10 @@ public class Play{
         public void handle (long l){
             collided = false;
             if(A){
-                ss.setAngle(ss.getAngle() - 4);
+                ss.setAngle(ss.getAngle() - 3);
             }
             if(D){
-                ss.setAngle(ss.getAngle() + 4);
+                ss.setAngle(ss.getAngle() + 3);
             }
             try{
                 level.getWallList().forEach((wall) -> {

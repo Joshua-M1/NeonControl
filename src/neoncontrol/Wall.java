@@ -24,12 +24,17 @@ public class Wall extends ImageView{
     }
     
     public Wall(double xPos, double yPos, double xSize, double ySize, double angle){
-        hb = new Rectangle(xPos, yPos, xSize, ySize);
+        hb = new Rectangle();
         setXPos(xPos);
         setYPos(yPos);
         setXSize(xSize);
         setYSize(ySize);
         setAngle(angle);
+        hb.xProperty().bind(this.xProperty());
+        hb.yProperty().bind(this.yProperty());
+        hb.heightProperty().bind(this.fitHeightProperty());
+        hb.widthProperty().bind(this.fitWidthProperty());
+        hb.rotateProperty().bind(this.rotateProperty());
         normal.setVectorAlternate(1, angle);
         double x = normal.getX();
         normal.setX(-normal.getY());

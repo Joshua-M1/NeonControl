@@ -26,8 +26,8 @@ public class StickSpring extends ImageView{
     private double mass;
     
     private ArrayList<Rectangle> HBList = new ArrayList<>();
-    private Rectangle spring1HB = new Rectangle(10,6);
-    private Rectangle spring2HB = new Rectangle(10,6);
+    private Rectangle spring1HB = new Rectangle(18,6);
+    private Rectangle spring2HB = new Rectangle(18,6);
     private Rectangle stickHB = new Rectangle(18,64);
 
     public StickSpring() {
@@ -80,14 +80,14 @@ public class StickSpring extends ImageView{
         stickHB.setRotate(angle);
         spring1HB.setRotate(angle);
         spring2HB.setRotate(angle);
-        spring1HB.setX(getX()+12+(36*Math.sin(Math.toRadians(angle))));
+        spring1HB.setX(getX()+8+(36*Math.sin(Math.toRadians(angle))));
         spring1HB.setY(getY()+52-(36*Math.cos(Math.toRadians(angle))));
-        spring2HB.setX(getX()+12-(36*Math.sin(Math.toRadians(angle))));
+        spring2HB.setX(getX()+8-(36*Math.sin(Math.toRadians(angle))));
         spring2HB.setY(getY()+52+(36*Math.cos(Math.toRadians(angle))));
     }
     
     public double getCenterX(){
-        return getXPos()+9;
+        return getXPos()+8;
     }
     
     public double getCenterY(){
@@ -155,26 +155,26 @@ public class StickSpring extends ImageView{
         HBList.add(spring1HB);
         HBList.add(spring2HB);
         HBList.add(stickHB);
-        spring1HB.setX(this.getX()+12);
+        spring1HB.setX(this.getX()+8);
         spring1HB.setY(this.getY()+12);
-        //spring1HB.setStroke(Color.RED);
+        spring1HB.setStroke(Color.RED);
         spring1HB.setFill(Color.TRANSPARENT);
-        spring2HB.setX(this.getX()+12);
+        spring2HB.setX(this.getX()+8);
         spring2HB.setY(this.getY()+86);
-        //spring2HB.setStroke(Color.GREEN);
+        spring2HB.setStroke(Color.GREEN);
         spring2HB.setFill(Color.TRANSPARENT);
-        stickHB.setX(this.getX()+9);
+        stickHB.setX(this.getX()+8);
         stickHB.setY(this.getY()+24);
-        //stickHB.setStroke(Color.BLUE);
+        stickHB.setStroke(Color.BLUE);
         stickHB.setFill(Color.TRANSPARENT);
     }
     
     public void resetHitboxes(){
-        spring1HB.setX(this.getX()+12);
+        spring1HB.setX(this.getX()+8);
         spring1HB.setY(this.getY()+12);
-        spring2HB.setX(this.getX()+12);
+        spring2HB.setX(this.getX()+8);
         spring2HB.setY(this.getY()+86);
-        stickHB.setX(this.getX()+9);
+        stickHB.setX(this.getX()+8);
         stickHB.setY(this.getY()+24);
     }
 }
