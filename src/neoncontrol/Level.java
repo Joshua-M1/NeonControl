@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 /**
  *
  * @author addav
@@ -65,6 +66,8 @@ public class Level extends ImageView{
         }
         
         levelCount++;
+        for(Wall wall : getWallList())
+            pane.getChildren().removeAll(wall.getHitboxesList());
         ArrayList<Wall> tempList = new ArrayList<>();
         tempList.addAll(wallList);
         wallList.removeAll(tempList);
@@ -73,11 +76,13 @@ public class Level extends ImageView{
         switch(levelCount){
             case 1: setLevel1(); break;
             case 2: setLevel2(); break;
-            default: break;
+            default: break; 
         }
         setBorders();
         
         pane.getChildren().addAll(getWallList());
+        for(Wall wall : getWallList())
+            pane.getChildren().addAll(wall.getHitboxesList());
     }
     
     private void setBorders(){
@@ -85,14 +90,15 @@ public class Level extends ImageView{
         addWall(new Wall(800,300,900,75,270)); //right wall
         addWall(new Wall(-110,-10,1500,75,180)); //top wall
         addWall(new Wall(-110,630,1500,75,0)); //bottom wall
-        //addWall(new Wall(600,300,100,100,45));
+        
+            //addWall(new Wall(600,300,100,100,45));
     }
     
     private void setLevel1(){
         addWall(new Wall(400,500,200,50,0));  
         addWall(new Wall(1000,300,200,50,0));
         addWall(new Wall(700,400,200,50,0));
-        addWall(new Objective(1100,120,100,100,0));
+        //addWall(new Objective(1100,120,100,100,0));
     }
     
     private void setLevel2(){
@@ -101,7 +107,7 @@ public class Level extends ImageView{
     }
     
     private void setTutorial(Pane pane){
-        addWall(new Objective(900,300,100,100,0));
+        addWall(new Objective(500,300, 100,200,45));
         pane.getChildren().add(instructions);
     }
 }

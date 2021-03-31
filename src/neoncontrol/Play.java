@@ -47,8 +47,9 @@ public class Play{
             }
             try{
                 level.getWallList().forEach((wall) -> {
-
-                    if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
+                    
+                    for(int i = 0; i<4; i++)
+                    if(Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
 
 
                         //touching objective
@@ -64,7 +65,7 @@ public class Play{
                         setArrow();
                     }
 
-                    else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
+                    else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
 
                         //touching objective
                         ifLevelComplete(wall);
@@ -79,12 +80,12 @@ public class Play{
                         setArrow();
                     }
 
-                    else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
+                    else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided){
 
                         //touching objective
                         ifLevelComplete(wall);
-
-                        ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall));
+                        
+                        ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
                         collided = true;
                         setArrow();
                     }                

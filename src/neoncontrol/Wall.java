@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package neoncontrol;
+import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 /**
@@ -17,14 +19,14 @@ public class Wall extends ImageView{
     
     private double xPos, yPos, angle, xSize, ySize;
     private Vector normal = new Vector();
-    private Rectangle hb;
+    private ArrayList<Rectangle> hitboxesList = new ArrayList<>();
     
     public Wall(){
         setImage(new Image("Graphics/wall.png"));
     }
     
     public Wall(double xPos, double yPos, double xSize, double ySize, double angle){
-        hb = new Rectangle(xPos, yPos, xSize, ySize);
+        setHitboxesList(xPos, yPos, xSize, ySize);
         setXPos(xPos);
         setYPos(yPos);
         setXSize(xSize);
@@ -41,10 +43,32 @@ public class Wall extends ImageView{
         setImage(new Image("Graphics/wall.png"));
     }
     
-    public Rectangle getHB(){
-        return hb;
+    public ArrayList<Rectangle> getHitboxesList(){
+        return hitboxesList;
+    }
+    
+    public Vector getNormalVector(int wallCount){
+        Vector normal = new Vector();
+        normal.setVectorAlternate(1,(hitboxesList.get(wallCount).getRotate()+180)%360);
+        return normal;
     }
 
+    public void setHitboxesList(double xPos, double yPos, double xSize, double ySize){
+        hitboxesList.add(new Rectangle(xPos, yPos, xSize, 2)); //top 
+        hitboxesList.get(0).setFill(Color.RED);
+        hitboxesList.add(new Rectangle(xPos+xSize-(ySize/2), yPos+(ySize/2), ySize, 2)); //right
+        hitboxesList.get(1).setFill(Color.YELLOW);
+        hitboxesList.add(new Rectangle(xPos, yPos+ySize, xSize, 2));//bottom
+        hitboxesList.get(2).setFill(Color.BLUE);
+        hitboxesList.add(new Rectangle(xPos-(ySize/2),yPos+(ySize/2),ySize,3)); //left
+        hitboxesList.get(3).setFill(Color.GREEN);
+        
+        
+        for(int i = 0; i < 4; i++){
+            hitboxesList.get(i).setRotate(i*90);
+        }   
+    }
+    
     public double getXPos() {
         return xPos;
     }
@@ -68,9 +92,32 @@ public class Wall extends ImageView{
     }
 
     public void setAngle(double angle) {
+        rotateHitboxes(angle);
         this.angle = angle;
         this.setRotate(angle);
-        hb.setRotate(angle);
+        
+    }
+    
+    public void rotateHitboxes(double angle){
+        double centerX;
+        double centerY = yPos+(ySize/2);
+        double sizeRatio = (-1/(2*xSize/ySize))+0.5;
+        for(int i = 0; i < 4; i++){
+            Rectangle hitbox = hitboxesList.get(i);
+            double curX = hitbox.getX();
+            
+            if(i==0||i==2){
+                centerX = xPos;
+                hitbox.setX((Math.cos(Math.toRadians(-angle))*(curX-centerX)) + (Math.sin(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerX);
+                hitbox.setY(-(Math.sin(Math.toRadians(-angle))*(curX-centerX)) + (Math.cos(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerY);
+            }
+            else{
+                centerX = xPos + (xSize*sizeRatio);
+                hitbox.setX((Math.cos(Math.toRadians(-angle))*(curX-centerX)) + (Math.sin(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerX);
+                hitbox.setY(-(Math.sin(Math.toRadians(-angle))*(curX-centerX)) + (Math.cos(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerY);
+            }
+            hitbox.setRotate((hitbox.getRotate()+angle)%360);
+        }
     }
 
 
