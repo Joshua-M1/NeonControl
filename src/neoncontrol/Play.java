@@ -251,7 +251,6 @@ public class Play{
     }
     
     public void showLevelSelectMenu(){
-        //pane.getChildren().clear();
         pauseMenuList.clear();
         
         ImageView menuPane = new ImageView(new Image("Graphics/background level.jpg"));
@@ -267,8 +266,10 @@ public class Play{
         tutorial.preserveRatioProperty().set(false);  
         tutorial.setOnMouseClicked((MouseEvent e) -> {
             pane.getChildren().removeAll(pauseMenuList);
+            pane.getChildren().remove(ss);
             pauseMenuList.clear();
             level.setNextLevel(pane, 0);
+            pane.getChildren().add(ss);
             ss.reset();
         });
         pauseMenuList.add(tutorial);
@@ -279,6 +280,15 @@ public class Play{
         level1.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
         level1.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
         level1.preserveRatioProperty().set(false);
+        level1.setOnMouseClicked((MouseEvent e) -> {
+            pane.getChildren().removeAll(pauseMenuList);
+            pane.getChildren().remove(ss);
+            pauseMenuList.clear();
+            level.setNextLevel(pane, 1);
+            pane.getChildren().add(ss);
+            ss.reset();
+            ss.resetHitboxes();
+        });
         pauseMenuList.add(level1);
         
         ImageView level2 = new ImageView("Graphics/Level_2.png");
@@ -287,6 +297,14 @@ public class Play{
         level2.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
         level2.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
         level2.preserveRatioProperty().set(false);
+        level2.setOnMouseClicked((MouseEvent e) -> {
+            pane.getChildren().removeAll(pauseMenuList);
+            pane.getChildren().remove(ss);
+            pauseMenuList.clear();
+            level.setNextLevel(pane, 2);
+            pane.getChildren().add(ss);
+            ss.reset();
+        });
         pauseMenuList.add(level2);
         
         ImageView exitBT = new ImageView("Graphics/Exit Button.png");
