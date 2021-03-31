@@ -240,7 +240,7 @@ public class Play{
         levelSelect.setY(menuPane.getY() + 100);
         levelSelect.setOnMouseClicked((MouseEvent e) ->{
             try{
-            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml")); //Change this to LevelSelect.fxml file
+            Parent root = FXMLLoader.load(getClass().getResource("LevelSelectMenu.fxml"));
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
             }catch(IOException ex){}
