@@ -18,7 +18,7 @@ import javafx.scene.shape.*;
 public class Wall extends ImageView{
     
     private double xPos, yPos, angle, xSize, ySize;
-    private Vector normal = new Vector();
+    
     private ArrayList<Rectangle> hitboxesList = new ArrayList<>();
     
     public Wall(){
@@ -33,14 +33,7 @@ public class Wall extends ImageView{
         setYSize(ySize);
         setAngle(angle);
         
-        normal.setVectorAlternate(1, angle);
-        double x = normal.getX();
-        normal.setX(-normal.getY());
-        normal.setY(-x);
-        if(Math.abs(normal.getX()) == 0)
-            normal.setX(0);
-        if(Math.abs(normal.getY()) == 0)
-            normal.setY(0);
+        
         setImage(new Image("Graphics/wall.png"));
     }
     
@@ -107,16 +100,13 @@ public class Wall extends ImageView{
             Rectangle hitbox = hitboxesList.get(i);
             double curX = hitbox.getX();
             
-            if(i==0||i==2){
+            if(i==0||i==2)
                 centerX = xPos;
-                hitbox.setX((Math.cos(Math.toRadians(-angle))*(curX-centerX)) + (Math.sin(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerX);
-                hitbox.setY(-(Math.sin(Math.toRadians(-angle))*(curX-centerX)) + (Math.cos(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerY);
-            }
-            else{
-                centerX = xPos + (xSize*sizeRatio);
-                hitbox.setX((Math.cos(Math.toRadians(-angle))*(curX-centerX)) + (Math.sin(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerX);
-                hitbox.setY(-(Math.sin(Math.toRadians(-angle))*(curX-centerX)) + (Math.cos(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerY);
-            }
+            else
+                centerX = xPos + (xSize*sizeRatio);  
+            
+            hitbox.setX((Math.cos(Math.toRadians(-angle))*(curX-centerX)) + (Math.sin(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerX);
+            hitbox.setY(-(Math.sin(Math.toRadians(-angle))*(curX-centerX)) + (Math.cos(Math.toRadians(-angle))*(hitbox.getY()-centerY)) + centerY);
             hitbox.setRotate((hitbox.getRotate()+angle)%360);
         }
     }
@@ -146,9 +136,6 @@ public class Wall extends ImageView{
        
     }
     
-    public Vector getNormal(){
-        
-        return normal;
-    }
+   
     
 }
