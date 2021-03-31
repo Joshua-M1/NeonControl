@@ -198,7 +198,7 @@ public class Play{
     public void ifLevelComplete(Wall wall){
 
         if(wall instanceof Objective){
-            level.setNextLevel(pane);
+            level.setNextLevel(pane, -1);
             ss.reset();
         }
     }
@@ -251,13 +251,13 @@ public class Play{
     }
     
     public void showLevelSelectMenu(){
-        pane.getChildren().clear();
+        //pane.getChildren().clear();
         pauseMenuList.clear();
         
         ImageView menuPane = new ImageView(new Image("Graphics/background level.jpg"));
         menuPane.fitWidthProperty().bind(Main.stage.widthProperty());
         menuPane.fitHeightProperty().bind(Main.stage.heightProperty());
-        pauseMenuList.add(menuPane);
+        pane.getChildren().add(menuPane);
         
         ImageView tutorial = new ImageView("Graphics/Level_Tutorial.png");
         tutorial.xProperty().bind(Main.stage.widthProperty().multiply(0.03));
@@ -265,6 +265,12 @@ public class Play{
         tutorial.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
         tutorial.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
         tutorial.preserveRatioProperty().set(false);  
+        tutorial.setOnMouseClicked((MouseEvent e) -> {
+            pane.getChildren().removeAll(pauseMenuList);
+            pauseMenuList.clear();
+            level.setNextLevel(pane, 0);
+            ss.reset();
+        });
         pauseMenuList.add(tutorial);
         
         ImageView level1 = new ImageView("Graphics/Level_1.png");

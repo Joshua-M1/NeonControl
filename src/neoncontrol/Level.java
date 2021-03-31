@@ -58,7 +58,7 @@ public class Level extends ImageView{
         return levelCount;
     }
     
-    public void setNextLevel(Pane pane){
+    public void setNextLevel(Pane pane, int count){
         pane.getChildren().removeAll(getWallList());
         if(levelCount==0){
             pane.getChildren().remove(instructions);
@@ -69,8 +69,12 @@ public class Level extends ImageView{
         tempList.addAll(wallList);
         wallList.removeAll(tempList);
         
+        if(count != -1){
+            levelCount = count;
+        }
         
         switch(levelCount){
+            case 0: setTutorial(pane); break;
             case 1: setLevel1(); break;
             case 2: setLevel2(); break;
             default: break;
