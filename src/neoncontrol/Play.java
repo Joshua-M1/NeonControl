@@ -265,12 +265,7 @@ public class Play{
         tutorial.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
         tutorial.preserveRatioProperty().set(false);  
         tutorial.setOnMouseClicked((MouseEvent e) -> {
-            pane.getChildren().removeAll(pauseMenuList);
-            pane.getChildren().remove(ss);
-            pauseMenuList.clear();
-            level.setNextLevel(pane, 0);
-            pane.getChildren().add(ss);
-            ss.reset();
+            switchLevel(0, menuPane);
         });
         pauseMenuList.add(tutorial);
         
@@ -281,12 +276,7 @@ public class Play{
         level1.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
         level1.preserveRatioProperty().set(false);
         level1.setOnMouseClicked((MouseEvent e) -> {
-            pane.getChildren().removeAll(pauseMenuList);
-            pane.getChildren().remove(ss);
-            pauseMenuList.clear();
-            level.setNextLevel(pane, 1);
-            pane.getChildren().add(ss);
-            ss.reset();
+            switchLevel(1, menuPane);
         });
         pauseMenuList.add(level1);
         
@@ -297,12 +287,7 @@ public class Play{
         level2.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
         level2.preserveRatioProperty().set(false);
         level2.setOnMouseClicked((MouseEvent e) -> {
-            pane.getChildren().removeAll(pauseMenuList);
-            pane.getChildren().remove(ss);
-            pauseMenuList.clear();
-            level.setNextLevel(pane, 2);
-            pane.getChildren().add(ss);
-            ss.reset();
+            switchLevel(2, menuPane);
         });
         pauseMenuList.add(level2);
         
@@ -315,7 +300,13 @@ public class Play{
         exitBT.setOnMouseClicked((MouseEvent e) ->System.exit(0));
         pauseMenuList.add(exitBT);
         
-        pane.getChildren().addAll(pauseMenuList);
-        
+        pane.getChildren().addAll(pauseMenuList);    
+    }
+    
+    public void switchLevel(int levelCount, ImageView menuPane){
+        pane.getChildren().remove(menuPane);
+        removePauseMenu();
+        level.setNextLevel(pane, levelCount);
+        ss.reset();
     }
 }
