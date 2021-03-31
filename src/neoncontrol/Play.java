@@ -2,7 +2,6 @@ package neoncontrol;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
 import javafx.animation.Animation.Status;
@@ -239,11 +238,7 @@ public class Play{
         levelSelect.setX(menuPane.getX() - 5);
         levelSelect.setY(menuPane.getY() + 100);
         levelSelect.setOnMouseClicked((MouseEvent e) ->{
-            try{
-            Parent root = FXMLLoader.load(getClass().getResource("LevelSelectMenu.fxml"));
-            Scene newScene = pane.getScene();
-            newScene.setRoot(root);
-            }catch(IOException ex){}
+            showLevelSelectMenu();
         });
         pauseMenuList.add(levelSelect);
         
@@ -253,5 +248,51 @@ public class Play{
     public void removePauseMenu(){
         pane.getChildren().removeAll(pauseMenuList);
         pauseMenuList.clear();
+    }
+    
+    public void showLevelSelectMenu(){
+        pane.getChildren().clear();
+        pauseMenuList.clear();
+        
+        ImageView menuPane = new ImageView(new Image("Graphics/background level.jpg"));
+        menuPane.fitWidthProperty().bind(Main.stage.widthProperty());
+        menuPane.fitHeightProperty().bind(Main.stage.heightProperty());
+        pauseMenuList.add(menuPane);
+        
+        ImageView tutorial = new ImageView("Graphics/Level_Tutorial.png");
+        tutorial.xProperty().bind(Main.stage.widthProperty().multiply(0.03));
+        tutorial.yProperty().bind(Main.stage.heightProperty().multiply(0.05));
+        tutorial.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
+        tutorial.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        tutorial.preserveRatioProperty().set(false);  
+        pauseMenuList.add(tutorial);
+        
+        ImageView level1 = new ImageView("Graphics/Level_1.png");
+        level1.xProperty().bind(Main.stage.widthProperty().multiply(0.32));
+        level1.yProperty().bind(Main.stage.heightProperty().multiply(0.63));
+        level1.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
+        level1.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        level1.preserveRatioProperty().set(false);
+        pauseMenuList.add(level1);
+        
+        ImageView level2 = new ImageView("Graphics/Level_2.png");
+        level2.xProperty().bind(Main.stage.widthProperty().multiply(0.616));
+        level2.yProperty().bind(Main.stage.heightProperty().multiply(0.05));
+        level2.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
+        level2.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        level2.preserveRatioProperty().set(false);
+        pauseMenuList.add(level2);
+        
+        ImageView exitBT = new ImageView("Graphics/Exit Button.png");
+        exitBT.xProperty().bind(Main.stage.widthProperty().multiply(0.85));
+        exitBT.yProperty().bind(Main.stage.heightProperty().multiply(0.85));
+        exitBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.15));
+        exitBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.1));
+        exitBT.preserveRatioProperty().set(false);
+        exitBT.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        pauseMenuList.add(exitBT);
+        
+        pane.getChildren().addAll(pauseMenuList);
+        
     }
 }
