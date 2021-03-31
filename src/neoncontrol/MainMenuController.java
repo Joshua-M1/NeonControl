@@ -47,19 +47,19 @@ public class MainMenuController implements Initializable {
         exitBT.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.375));
         exitBT.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.7));
         exitBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.25));
-        exitBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.15));
+        exitBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         exitBT.preserveRatioProperty().set(false);
         
         playBT.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.375));
         playBT.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.4));
         playBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.25));
-        playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.15));
+        playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         playBT.preserveRatioProperty().set(false);
         
         settingsBT.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.375));
         settingsBT.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.55));
         settingsBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.25));
-        settingsBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.15));
+        settingsBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         settingsBT.preserveRatioProperty().set(false);
         
         bg.fitWidthProperty().bind(Main.stage.widthProperty());
@@ -71,11 +71,7 @@ public class MainMenuController implements Initializable {
     private void setOnPlayClicked(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Level.fxml"));
         Scene newScene = AnchorPane.getScene();
-        newScene.setRoot(root);
-        newScene.getWindow().setHeight(720);
-        newScene.getWindow().setWidth(1280);
-        newScene.getWindow().centerOnScreen();
-         
+        newScene.setRoot(root);   
     }
     
     private void setStage(Stage stage){

@@ -59,7 +59,7 @@ public class Level extends ImageView{
         return levelCount;
     }
     
-    public void setNextLevel(Pane pane){
+    public void setNextLevel(Pane pane, int count){
         pane.getChildren().removeAll(getWallList());
         if(levelCount==0){
             pane.getChildren().remove(instructions);
@@ -72,26 +72,27 @@ public class Level extends ImageView{
         tempList.addAll(wallList);
         wallList.removeAll(tempList);
         
+        if(count != -1){
+            levelCount = count;
+        }
         
         switch(levelCount){
+            case 0: setTutorial(pane); break;
             case 1: setLevel1(); break;
             case 2: setLevel2(); break;
             default: break; 
         }
         setBorders();
-        
         pane.getChildren().addAll(getWallList());
         for(Wall wall : getWallList())
             pane.getChildren().addAll(wall.getHitboxesList());
     }
     
     private void setBorders(){
-        addWall(new Wall(-435,300,900,75,90)); //left wall
-        addWall(new Wall(800,300,900,75,270)); //right wall
-        addWall(new Wall(-110,-10,1500,75,180)); //top wall
-        addWall(new Wall(-110,630,1500,75,0)); //bottom wall
-        
-            //addWall(new Wall(600,300,100,100,45));
+        addWall(new Wall(-700,300,1425,75,90)); //left wall
+        addWall(new Wall(Main.stage.getWidth()-1425/2,300,1425,75,270)); //right wall
+        addWall(new Wall(-210,-10,2000,75,180)); //top wall
+        addWall(new Wall(-210,Main.stage.getHeight()-25,2000,75,0)); //bottom wall
     }
     
     private void setLevel1(){

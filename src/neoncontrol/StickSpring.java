@@ -87,7 +87,7 @@ public class StickSpring extends ImageView{
     }
     
     public double getCenterX(){
-        return getXPos()+9;
+        return getXPos()+8;
     }
     
     public double getCenterY(){
@@ -163,18 +163,18 @@ public class StickSpring extends ImageView{
         spring2HB.setY(this.getY()+86);
         spring2HB.setStroke(Color.GREEN);
         spring2HB.setFill(Color.TRANSPARENT);
-        stickHB.setX(this.getX()+9);
+        stickHB.setX(this.getX()+8);
         stickHB.setY(this.getY()+24);
         stickHB.setStroke(Color.BLUE);
         stickHB.setFill(Color.TRANSPARENT);
     }
     
     public void resetHitboxes(){
-        spring1HB.setX(this.getX()+12);
+        spring1HB.setX(this.getX()+8);
         spring1HB.setY(this.getY()+12);
-        spring2HB.setX(this.getX()+12);
+        spring2HB.setX(this.getX()+8);
         spring2HB.setY(this.getY()+86);
-        stickHB.setX(this.getX()+9);
+        stickHB.setX(this.getX()+8);
         stickHB.setY(this.getY()+24);
     }
 }

@@ -2,7 +2,6 @@ package neoncontrol;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.animation.*;
 import javafx.animation.Animation.Status;
@@ -12,9 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 
@@ -23,10 +20,8 @@ public class Play{
     private PhysicsEngine physics;
     private StickSpring ss;
     private final Scene keyChecker;
-    private Arrow arrow;
-    private Label lb;
-    private Circle c1;
-    private Pane pane;
+    private final Arrow arrow;
+    private final Pane pane;
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
@@ -36,14 +31,12 @@ public class Play{
     private AnimationTimer gameTimer = new AnimationTimer() {
         @Override
         public void handle (long l){
-            setArrow();
             collided = false;
             if(A){
-                ss.setAngle(ss.getAngle() - 4);
+                ss.setAngle(ss.getAngle() - 3);
             }
-        
             if(D){
-                ss.setAngle(ss.getAngle() + 4);
+                ss.setAngle(ss.getAngle() + 3);
             }
             try{
                 level.getWallList().forEach((wall) -> {
@@ -95,21 +88,19 @@ public class Play{
                 //error with arrayList or something
             }
 
-                if(!collided)
-                    ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
+            if(!collided)
+                ss.setVelocityVec(physics.calculateMove(ss.getVelocityVec()));
 
-                ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
+            ss.move(ss.getVelocityVec().getX(),ss.getVelocityVec().getY()); 
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label lb, Circle c1, Pane pane){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Pane pane){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
         this.arrow = arrow;
-        this.lb = lb;
-        this.c1 = c1;
         this.pane = pane;
     }    
     
@@ -126,6 +117,7 @@ public class Play{
                 case A: if(!paused) A = true; break;
                 case RIGHT:
                 case D: if(!paused) D = true; break;
+                case R: ss.reset(); arrow.getElements().clear(); arrow.setCoordinates(200, 180, 200, 238.5);
             }
         });
         
@@ -137,15 +129,7 @@ public class Play{
                 case D: if(!paused) D = false; break;
             }
         });
-        
-        
-        
     }
-    
-//    public void showMenu(Menu menu){
-//        
-//    }
-
     
     public void setPhysics(PhysicsEngine physics){
         this.physics = physics;
@@ -198,24 +182,20 @@ public class Play{
     }
     
     public void setArrow(){
+        arrow.setVisible(true);
         double xEnd = ss.getVelocityVec().getX()*4, yEnd = ss.getVelocityVec().getY()*4;
         arrow.getElements().clear();
         if(ss.getVelocityVec().getX()*4>60){
             xEnd = 60;
-//            System.out.println("x was changed (too big)");
         }    
         else if(ss.getVelocityVec().getX()*4<-60){
             xEnd = -60;
-//            System.out.println("x was changed (too small)");
-        }    
-//        
+        }
         if(ss.getVelocityVec().getY()*4>60){
             yEnd = 60;
-//            System.out.println("y was changed (too big)");
         }    
         else if(ss.getVelocityVec().getY()*4<-60){
             yEnd = -60;
-//            System.out.println("y was changed (too small)");
         }    
         arrow.setCoordinates(200, 180, 200+xEnd, 180+yEnd);
     }
@@ -223,8 +203,8 @@ public class Play{
     public void ifLevelComplete(Wall wall){
 
         if(wall instanceof Objective){
-            level.setNextLevel(pane);
-            ss.reset();    
+            level.setNextLevel(pane, -1);
+            ss.reset();
         }
     }
     
@@ -235,36 +215,36 @@ public class Play{
         ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
         menuPane.setFitHeight(550);
         menuPane.setFitWidth(600);
-        menuPane.setX(325);
-        menuPane.setY(75);
+        menuPane.setX(Main.scene.getWidth()*0.5 - 325);
+        menuPane.setY(Main.scene.getHeight()*0.5 - 250);
         pauseMenuList.add(menuPane);
         
         ImageView exit = new ImageView(new Image("Graphics/Exit Button.png"));
-        exit.setX(475);
-        exit.setY(440);
+        exit.setX(menuPane.getX() + 150);
+        exit.setY(menuPane.getY() + 400);
         exit.setOnMouseClicked((MouseEvent e) ->System.exit(0));
         pauseMenuList.add(exit);
         
         ImageView mainMenu = new ImageView(new Image("Graphics/Main Menu Button.png"));
-        mainMenu.setX(330);
-        mainMenu.setY(300);
+        mainMenu.setX(menuPane.getX());
+        mainMenu.setY(menuPane.getY() + 250);
         mainMenu.setOnMouseClicked((MouseEvent e) ->{
             try{
             Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
-            newScene.getWindow().setHeight(600);
-            newScene.getWindow().setWidth(975);
-            newScene.getWindow().centerOnScreen();
+            
             }catch(IOException ex){}
             
         });
         pauseMenuList.add(mainMenu);
         
         ImageView levelSelect = new ImageView(new Image("Graphics/Level Select Button.png"));
-        levelSelect.setX(320);
-        levelSelect.setY(160);
-        levelSelect.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        levelSelect.setX(menuPane.getX() - 5);
+        levelSelect.setY(menuPane.getY() + 100);
+        levelSelect.setOnMouseClicked((MouseEvent e) ->{
+            showLevelSelectMenu();
+        });
         pauseMenuList.add(levelSelect);
         
         pane.getChildren().addAll(pauseMenuList);
@@ -273,5 +253,74 @@ public class Play{
     public void removePauseMenu(){
         pane.getChildren().removeAll(pauseMenuList);
         pauseMenuList.clear();
+    }
+    
+    public void showLevelSelectMenu(){
+        pauseMenuList.clear();
+        
+        ImageView menuPane = new ImageView(new Image("Graphics/background level.jpg"));
+        menuPane.fitWidthProperty().bind(Main.stage.widthProperty());
+        menuPane.fitHeightProperty().bind(Main.stage.heightProperty());
+        pane.getChildren().add(menuPane);
+        
+        ImageView tutorial = new ImageView("Graphics/Level_Tutorial.png");
+        tutorial.xProperty().bind(Main.stage.widthProperty().multiply(0.03));
+        tutorial.yProperty().bind(Main.stage.heightProperty().multiply(0.05));
+        tutorial.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
+        tutorial.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        tutorial.preserveRatioProperty().set(false);  
+        tutorial.setOnMouseClicked((MouseEvent e) -> {
+            pane.getChildren().removeAll(pauseMenuList);
+            pane.getChildren().remove(ss);
+            pauseMenuList.clear();
+            level.setNextLevel(pane, 0);
+            pane.getChildren().add(ss);
+            ss.reset();
+        });
+        pauseMenuList.add(tutorial);
+        
+        ImageView level1 = new ImageView("Graphics/Level_1.png");
+        level1.xProperty().bind(Main.stage.widthProperty().multiply(0.32));
+        level1.yProperty().bind(Main.stage.heightProperty().multiply(0.63));
+        level1.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
+        level1.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        level1.preserveRatioProperty().set(false);
+        level1.setOnMouseClicked((MouseEvent e) -> {
+            pane.getChildren().removeAll(pauseMenuList);
+            pane.getChildren().remove(ss);
+            pauseMenuList.clear();
+            level.setNextLevel(pane, 1);
+            pane.getChildren().add(ss);
+            ss.reset();
+        });
+        pauseMenuList.add(level1);
+        
+        ImageView level2 = new ImageView("Graphics/Level_2.png");
+        level2.xProperty().bind(Main.stage.widthProperty().multiply(0.616));
+        level2.yProperty().bind(Main.stage.heightProperty().multiply(0.05));
+        level2.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
+        level2.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        level2.preserveRatioProperty().set(false);
+        level2.setOnMouseClicked((MouseEvent e) -> {
+            pane.getChildren().removeAll(pauseMenuList);
+            pane.getChildren().remove(ss);
+            pauseMenuList.clear();
+            level.setNextLevel(pane, 2);
+            pane.getChildren().add(ss);
+            ss.reset();
+        });
+        pauseMenuList.add(level2);
+        
+        ImageView exitBT = new ImageView("Graphics/Exit Button.png");
+        exitBT.xProperty().bind(Main.stage.widthProperty().multiply(0.85));
+        exitBT.yProperty().bind(Main.stage.heightProperty().multiply(0.85));
+        exitBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.15));
+        exitBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.1));
+        exitBT.preserveRatioProperty().set(false);
+        exitBT.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        pauseMenuList.add(exitBT);
+        
+        pane.getChildren().addAll(pauseMenuList);
+        
     }
 }

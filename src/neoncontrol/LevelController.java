@@ -7,7 +7,6 @@ package neoncontrol;
 
 import javafx.scene.text.Font;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.FontPosture;
 
 /**
  * FXML Controller class
@@ -47,12 +45,9 @@ public class LevelController implements Initializable {
         
 
         StickSpring sp = new StickSpring(new Vector(0, 0), 0);
-        /*sp.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.0275));
-        sp.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.1525));
-        sp.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.0001));
-        sp.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.0001));*/
+
         
-        Arrow arrow = new Arrow(200, 180, 200, 238.5, 10);
+        Arrow arrow = new Arrow(200, 180, 200, 180, 10);
         pane.getChildren().add(arrow);
         
         Label lb = new Label("Force Vector");
@@ -80,7 +75,7 @@ public class LevelController implements Initializable {
         
         
         
-        Play play = new Play(lvl, new PhysicsEngine(0.3), sp, Main.scene, arrow, lb, c1, pane);
+        Play play = new Play(lvl, new PhysicsEngine(0.3), sp, Main.scene, arrow, pane);
         play.start();
     }     
 }
