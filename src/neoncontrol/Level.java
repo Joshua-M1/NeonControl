@@ -81,10 +81,9 @@ public class Level extends ImageView{
     
     private void setBorders(){
         addWall(new Wall(-700,300,1425,75,90)); //left wall
-        addWall(new Wall(800,300,1425,75,270)); //right wall
+        addWall(new Wall(Main.stage.getWidth()-1425/2,300,1425,75,270)); //right wall
         addWall(new Wall(-210,-10,2000,75,180)); //top wall
-        addWall(new Wall(-210,850,2000,75,0)); //bottom wall
-        //addWall(new Wall(600,300,100,100,45));
+        addWall(new Wall(-210,Main.stage.getHeight()-25,2000,75,0)); //bottom wall
     }
     
     private void setLevel1(){
