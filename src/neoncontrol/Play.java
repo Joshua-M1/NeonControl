@@ -287,7 +287,6 @@ public class Play{
             level.setNextLevel(pane, 1);
             pane.getChildren().add(ss);
             ss.reset();
-            ss.resetHitboxes();
         });
         pauseMenuList.add(level1);
         
