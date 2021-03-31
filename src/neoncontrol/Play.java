@@ -40,43 +40,45 @@ public class Play{
             }
             try{
                 level.getWallList().forEach((wall) -> {
+                    for(int i = 0; i<4; i++){
 
-                    if(Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-                        //touching objective
-                        ifLevelComplete(wall);
+                        if(Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
+                            //touching objective
+                            ifLevelComplete(wall);
 
-                        ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
-                        collided = true;
-                        EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);                    
-                        };  
-                        animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
-                        animation.setCycleCount(6);
-                        animation.play();
-                        setArrow();
+                            ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
+                            collided = true;
+                            EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);                    
+                            };  
+                            animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                            animation.setCycleCount(6);
+                            animation.play();
+                            setArrow();
+                        }
+
+                        else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
+                            //touching objective
+                            ifLevelComplete(wall);
+
+                            ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
+                            collided = true;
+                            EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
+                            };  
+                            animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
+                            animation.setCycleCount(6);
+                            animation.play();
+                            setArrow();
+                        }
+
+                        else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided){
+                            //touching objective
+                            ifLevelComplete(wall);
+
+                            ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
+                            collided = true;
+                            setArrow();
+                        }
                     }
-
-                    else if(Shape.intersect(ss.getHB1(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHB()).getBoundsInLocal().getWidth() == -1 && !collided){
-                        //touching objective
-                        ifLevelComplete(wall);
-
-                        ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
-                        collided = true;
-                        EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
-                        };  
-                        animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
-                        animation.setCycleCount(6);
-                        animation.play();
-                        setArrow();
-                    }
-
-                    else if(Shape.intersect(ss.getHB3(), wall.getHB()).getBoundsInLocal().getWidth() != -1 && !collided){
-                        //touching objective
-                        ifLevelComplete(wall);
-                        
-                        ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
-                        collided = true;
-                        setArrow();
-                    }                
                 });
                 
             }catch(java.util.ConcurrentModificationException ex){
