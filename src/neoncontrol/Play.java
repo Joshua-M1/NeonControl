@@ -253,7 +253,7 @@ public class Play{
     }
     
     public void showLevelSelectMenu(){
-        pauseMenuList.clear();
+        removePauseMenu();
         
         ImageView menuPane = new ImageView(new Image("Graphics/background level.jpg"));
         menuPane.fitWidthProperty().bind(Main.stage.widthProperty());
@@ -310,5 +310,9 @@ public class Play{
         removePauseMenu();
         level.setNextLevel(pane, levelCount);
         ss.reset();
+        gameTimer.start();
+        animation.play();
+        paused = false;
+        ss.setViewOrder(1);
     }
 }
