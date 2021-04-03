@@ -26,6 +26,7 @@ public class Play{
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
     Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
+    private ImageView level1 = new ImageView("Graphics/Level_1.png");
    
     
     private AnimationTimer gameTimer = new AnimationTimer() {
@@ -106,7 +107,7 @@ public class Play{
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: if(paused){removePauseMenu();
+                case ESCAPE: if(paused && !(pane.getChildren().contains(level1))){removePauseMenu();
                                 gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
                              else{showPauseMenu();
                                 gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
@@ -271,7 +272,6 @@ public class Play{
         });
         pauseMenuList.add(tutorial);
         
-        ImageView level1 = new ImageView("Graphics/Level_1.png");
         level1.xProperty().bind(Main.stage.widthProperty().multiply(0.32));
         level1.yProperty().bind(Main.stage.heightProperty().multiply(0.63));
         level1.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
@@ -312,7 +312,9 @@ public class Play{
         ss.reset();
         ss.setViewOrder(-1);
         gameTimer.start();
-        animation.play(); paused = false;
+        animation.play();
+        paused = false;
+        ss.setViewOrder(-1);
         A = false;
         D = false;
     }
