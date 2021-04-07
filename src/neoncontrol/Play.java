@@ -73,7 +73,7 @@ public class Play{
                         else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided){
                             //touching objective
                             ifLevelComplete(wall);
-
+                            System.out.println(wall.getNormalVector(i));
                             ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
                             collided = true;
                             setArrow();
