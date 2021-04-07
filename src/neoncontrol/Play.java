@@ -12,8 +12,8 @@ import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+//import javafx.scene.media.Media;
+//import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 
@@ -86,8 +86,7 @@ public class Play{
                             setArrow();
                         }
                     }
-                });
-                
+                });    
             }catch(java.util.ConcurrentModificationException ex){
                 //error with arrayList or something
             }
