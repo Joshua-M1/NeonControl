@@ -42,10 +42,8 @@ public class Wall extends ImageView{
     
     public Vector getNormalVector(int wallCount){
         Vector normal = new Vector();
-        normal.setVectorAlternate(1,(hitboxesList.get(wallCount).getRotate()));
-        double x = normal.getX();
-        normal.setX(-normal.getY()); //hhhhhhhhhhhhhhhh
-        normal.setY(-x);
+        normal.setVectorAlternate(1,(hitboxesList.get(wallCount).getRotate()+90));
+        normal.setX(-normal.getX());
         return normal;
     }
 
