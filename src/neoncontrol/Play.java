@@ -12,8 +12,8 @@ import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-//import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 
@@ -30,9 +30,9 @@ public class Play{
     Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
     private ImageView level1 = new ImageView("Graphics/Level_1.png");
     
-//    private static final String MEDIA_URL = "http://sfxcontent.s3.amazonaws.com/soundfx/Spring-Boing.mp3";
-//    Media media = new Media(MEDIA_URL);
-//    MediaPlayer mediaPlayer = new MediaPlayer(media);
+    private static final String MEDIA_URL = "http://sfxcontent.s3.amazonaws.com/soundfx/Spring-Boing.mp3";
+    Media media = new Media(MEDIA_URL);
+    MediaPlayer mediaPlayer = new MediaPlayer(media);
    
     
     private AnimationTimer gameTimer = new AnimationTimer() {
@@ -46,6 +46,7 @@ public class Play{
                 ss.setAngle(ss.getAngle() + 3);
             }
             try{
+                
                 level.getWallList().forEach((wall) -> {
                     for(int i = 0; i<4; i++){
 
@@ -61,6 +62,7 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
+                            mediaPlayer.play(); mediaPlayer.stop(); 
                         }
 
                         else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -75,6 +77,7 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
+                            mediaPlayer.play(); mediaPlayer.stop();
                         }
 
                         else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided){
@@ -177,8 +180,7 @@ public class Play{
                     case 3: ss.setImage(new Image("Graphics/spring 3.png")); Thread.sleep(2);count++; break;
                     case 4: ss.setImage(new Image("Graphics/spring 2.png")); Thread.sleep(2);count++; break;
                     case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count = 0; break;
-                } 
-            //mediaPlayer.setAutoPlay(true);  
+                }         
         }
         catch(InterruptedException ex){
             System.out.println("Animation Bug");
