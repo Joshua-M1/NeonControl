@@ -40,6 +40,9 @@ public class LevelController implements Initializable {
         
         Level lvl = new Level(pane);
         pane.getChildren().addAll(lvl.getWallList());
+        for(Wall wall : lvl.getWallList())
+            pane.getChildren().addAll(wall.getHitboxesList());
+        
 
         StickSpring sp = new StickSpring(new Vector(0, 0), 0);
 

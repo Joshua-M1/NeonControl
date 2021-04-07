@@ -7,8 +7,8 @@ public class PhysicsEngine {
         GRAVITY = weight;
     }
     
-    public Vector collisionSide(Vector v, Wall wall){
-        Vector v2 = v.add(wall.getNormal().multiplyConstant(v.dot(wall.getNormal()) * -2));
+    public Vector collisionSide(Vector v, Vector normal){
+        Vector v2 = v.add(normal.multiplyConstant(v.dot(normal) * -2));
         v2.setX(((int)(v2.getX() * 100))/100.0);
         v2.setY(((int)(v2.getY() * 100))/100.0);
         return v2;

@@ -26,9 +26,9 @@ public class StickSpring extends ImageView{
     private double mass;
     
     private ArrayList<Rectangle> HBList = new ArrayList<>();
-    private Rectangle spring1HB = new Rectangle(18,6);
-    private Rectangle spring2HB = new Rectangle(18,6);
-    private Rectangle stickHB = new Rectangle(18,64);
+    private Rectangle spring1HB = new Rectangle(16,6);
+    private Rectangle spring2HB = new Rectangle(16,6);
+    private Rectangle stickHB = new Rectangle(16,64);
 
     public StickSpring() {
         this.setImage(new Image("Graphics/spring 1.png"));
@@ -80,9 +80,9 @@ public class StickSpring extends ImageView{
         stickHB.setRotate(angle);
         spring1HB.setRotate(angle);
         spring2HB.setRotate(angle);
-        spring1HB.setX(getX()+8+(36*Math.sin(Math.toRadians(angle))));
+        spring1HB.setX(getX()+9+(36*Math.sin(Math.toRadians(angle))));
         spring1HB.setY(getY()+52-(36*Math.cos(Math.toRadians(angle))));
-        spring2HB.setX(getX()+8-(36*Math.sin(Math.toRadians(angle))));
+        spring2HB.setX(getX()+9-(36*Math.sin(Math.toRadians(angle))));
         spring2HB.setY(getY()+52+(36*Math.cos(Math.toRadians(angle))));
     }
     
@@ -155,11 +155,11 @@ public class StickSpring extends ImageView{
         HBList.add(spring1HB);
         HBList.add(spring2HB);
         HBList.add(stickHB);
-        spring1HB.setX(this.getX()+8);
+        spring1HB.setX(this.getX()+9);
         spring1HB.setY(this.getY()+12);
         spring1HB.setStroke(Color.RED);
         spring1HB.setFill(Color.TRANSPARENT);
-        spring2HB.setX(this.getX()+8);
+        spring2HB.setX(this.getX()+9);
         spring2HB.setY(this.getY()+86);
         spring2HB.setStroke(Color.GREEN);
         spring2HB.setFill(Color.TRANSPARENT);
