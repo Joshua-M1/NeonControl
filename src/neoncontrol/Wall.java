@@ -47,13 +47,13 @@ public class Wall extends ImageView{
     }
 
     public void setHitboxesList(double xPos, double yPos, double xSize, double ySize){
-        hitboxesList.add(new Rectangle(xPos, yPos, xSize, 2)); //top 
+        hitboxesList.add(new Rectangle(xPos, yPos, xSize, 5)); //top 
         hitboxesList.get(0).setFill(Color.RED);
-        hitboxesList.add(new Rectangle(xPos+xSize-(ySize/2), yPos+(ySize/2), ySize, 2)); //right
+        hitboxesList.add(new Rectangle(xPos+xSize-(ySize/2), yPos+(ySize/2), ySize, 5)); //right
         hitboxesList.get(1).setFill(Color.YELLOW);
-        hitboxesList.add(new Rectangle(xPos, yPos+ySize, xSize, 2));//bottom
+        hitboxesList.add(new Rectangle(xPos, yPos+ySize, xSize, 5));//bottom
         hitboxesList.get(2).setFill(Color.BLUE);
-        hitboxesList.add(new Rectangle(xPos-(ySize/2),yPos+(ySize/2),ySize,3)); //left
+        hitboxesList.add(new Rectangle(xPos-(ySize/2),yPos+(ySize/2),ySize, 5)); //left
         hitboxesList.get(3).setFill(Color.GREEN);
         
         
