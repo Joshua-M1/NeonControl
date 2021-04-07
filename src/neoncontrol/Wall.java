@@ -42,7 +42,8 @@ public class Wall extends ImageView{
     
     public Vector getNormalVector(int wallCount){
         Vector normal = new Vector();
-        normal.setVectorAlternate(1,(hitboxesList.get(wallCount).getRotate()+180)%360);
+        normal.setVectorAlternate(1,(hitboxesList.get(wallCount).getRotate()+90));
+        normal.setX(-normal.getX());
         return normal;
     }
 
@@ -53,7 +54,7 @@ public class Wall extends ImageView{
         hitboxesList.get(1).setFill(Color.YELLOW);
         hitboxesList.add(new Rectangle(xPos, yPos+ySize, xSize, 5));//bottom
         hitboxesList.get(2).setFill(Color.BLUE);
-        hitboxesList.add(new Rectangle(xPos-(ySize/2),yPos+(ySize/2),ySize, 5)); //left
+        hitboxesList.add(new Rectangle(xPos-(ySize/2),yPos+(ySize/2),ySize,5)); //left
         hitboxesList.get(3).setFill(Color.GREEN);
         
         

@@ -96,10 +96,10 @@ public class Level extends ImageView{
     }
     
     private void setLevel1(){
-        addWall(new Wall(400,500,200,50,0));  
-        addWall(new Wall(1000,300,200,50,0));
-        addWall(new Wall(700,400,200,50,0));
-        //addWall(new Objective(1100,120,100,100,0));
+        addWall(new Wall(Main.stage.getWidth()*0.25,Main.stage.getHeight()*0.85,200,50,0));  
+        addWall(new Wall(Main.stage.getWidth()*0.65,Main.stage.getHeight()*0.45,200,50,0));
+        addWall(new Wall(Main.stage.getWidth()*0.45,Main.stage.getHeight()*0.65,200,50,0));
+        addWall(new Objective(Main.stage.getWidth()*0.7,Main.stage.getHeight()*0.3,100,100,0));
     }
     
     private void setLevel2(){
