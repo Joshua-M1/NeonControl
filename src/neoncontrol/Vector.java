@@ -39,7 +39,6 @@ public class Vector {
         return y;
     }
     
-    
     public Vector add(Vector v2){
         return new Vector(x + v2.getX(), y + v2.getY());
     }

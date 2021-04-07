@@ -47,8 +47,6 @@ public class SettingsMenuController implements Initializable {
     private void setOnPlayClicked(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Level.fxml"));
         Scene newScene = AnchorPane.getScene();
-        newScene.getWindow().setHeight(720);
-        newScene.getWindow().setWidth(1280);
         newScene.getWindow().centerOnScreen();
         newScene.setRoot(root);
     }

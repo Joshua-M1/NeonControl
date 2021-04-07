@@ -16,28 +16,29 @@ import javafx.stage.Stage;
  *
  * @author jakot
  */
-public class Main extends Application{
+public class Main{
    
    public static Scene scene;
-   public static Stage stage = new Stage();
+   public static Stage stage;
+   
+   public static class Run extends Application{
+        @Override
+        public void start(Stage stage) throws Exception{
 
-   public void start(Stage stage) throws Exception{
-       
-        // Create a scene and place it in the stage
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        scene = new Scene(root);
-        this.stage.setFullScreen(true);
-        this.stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        this.stage.setResizable(false);
-        this.stage.setTitle("NeonControl"); // Set the stage title
-        this.stage.setScene(scene); // Place the scene in the stage
-        this.stage.show(); // Display the stage
-        
+             Main.stage = new Stage();
+             Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+             scene = new Scene(root);
+             Main.stage.setFullScreen(true);
+             Main.stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+             Main.stage.setResizable(false);
+             Main.stage.setTitle("NeonControl"); // Set the stage title
+             Main.stage.setScene(scene); // Place the scene in the stage
+             Main.stage.show(); // Display the stage
+        }
     }
     
     public static void main(String[] args) {
-        launch(args);
-        //hello it is i
+        Application.launch(Run.class);
     }
     
 }

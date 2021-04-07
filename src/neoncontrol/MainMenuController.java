@@ -83,8 +83,6 @@ public class MainMenuController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("SettingsMenu.fxml"));
         Scene newScene = AnchorPane.getScene();
         newScene.setRoot(root);
-        newScene.getWindow().setHeight(600);
-        newScene.getWindow().setWidth(975);
         
     }
 
