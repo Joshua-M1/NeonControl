@@ -12,6 +12,8 @@ import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 
@@ -27,6 +29,10 @@ public class Play{
     EventHandler<ActionEvent> noEvent;
     Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
     private ImageView level1 = new ImageView("Graphics/Level_1.png");
+    
+//    private static final String MEDIA_URL = "http://sfxcontent.s3.amazonaws.com/soundfx/Spring-Boing.mp3";
+//    Media media = new Media(MEDIA_URL);
+//    MediaPlayer mediaPlayer = new MediaPlayer(media);
    
     
     private AnimationTimer gameTimer = new AnimationTimer() {
@@ -172,11 +178,12 @@ public class Play{
                     case 3: ss.setImage(new Image("Graphics/spring 3.png")); Thread.sleep(2);count++; break;
                     case 4: ss.setImage(new Image("Graphics/spring 2.png")); Thread.sleep(2);count++; break;
                     case 5: ss.setImage(new Image("Graphics/spring 1.png")); Thread.sleep(2);count = 0; break;
-                }
+                } 
+            //mediaPlayer.setAutoPlay(true);  
         }
         catch(InterruptedException ex){
             System.out.println("Animation Bug");
-        } 
+        }
     }
     
     public void setArrow(){
