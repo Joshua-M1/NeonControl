@@ -41,7 +41,6 @@ public class Play{
             try{
                 level.getWallList().forEach((wall) -> {
                     for(int i = 0; i<4; i++){
-
                         if(Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
                             //touching objective
                             ifLevelComplete(wall);
@@ -69,11 +68,11 @@ public class Play{
                             animation.play();
                             setArrow();
                         }
-
-                        else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided){
+                        
+                        else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided
+                                && compareAngles(ss, wall.getHitboxesList().get(i))){
                             //touching objective
                             ifLevelComplete(wall);
-                            System.out.println(wall.getNormalVector(i));
                             ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
                             collided = true;
                             setArrow();
@@ -315,5 +314,26 @@ public class Play{
         animation.play(); paused = false;
         A = false;
         D = false;
+    }
+    
+    public static boolean compareAngles(StickSpring ss, Rectangle r){
+        double sa = (ss.getAngle()+90)%180, ra = r.getRotate(); //gets angles
+        boolean rollOver = false;
+        if(sa<0)
+            sa += 180;
+        double raUpper = (ra+45)%180, raLower = (ra-45)%180;
+        
+        if(raLower<=0){//sets upper bound
+            raLower += 180;
+            rollOver = true;
+        }
+        
+        if(ra+45>=180)
+            rollOver = true;
+        
+        if(!rollOver)
+            return sa<=raUpper && sa>=raLower;
+        else
+            return sa<=raUpper || sa>=raLower;
     }
 }
