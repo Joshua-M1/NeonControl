@@ -46,7 +46,6 @@ public class Play{
                 ss.setAngle(ss.getAngle() + 3);
             }
             try{
-                
                 level.getWallList().forEach((wall) -> {
                     for(int i = 0; i<4; i++){
 
@@ -62,7 +61,7 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
-                            mediaPlayer.play(); mediaPlayer.stop(); 
+                            mediaPlayer.setAutoPlay(true);
                         }
 
                         else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -77,7 +76,7 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
-                            mediaPlayer.play(); mediaPlayer.stop();
+                            mediaPlayer.setAutoPlay(true);
                         }
 
                         else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided){
