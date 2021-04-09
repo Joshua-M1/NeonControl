@@ -61,7 +61,11 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
-                            mediaPlayer.setAutoPlay(true);
+                            mediaPlayer = new MediaPlayer(media);
+                            mediaPlayer.setVolume(0.2);
+                            mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
+                            mediaPlayer.setStopTime(Duration.millis(400));
+                            mediaPlayer.play();
                         }
 
                         else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -81,7 +85,6 @@ public class Play{
                             mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
                             mediaPlayer.setStopTime(Duration.millis(400));
                             mediaPlayer.play();
-                            mediaPlayer.setAutoPlay(true);
                         }
                         
                         else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided
