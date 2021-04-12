@@ -16,6 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
+import java.io.*;
 
 public class Play{
     private Level level;
@@ -30,10 +31,9 @@ public class Play{
     Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
     private ImageView level1 = new ImageView("Graphics/Level_1.png");
     
-    private static final String MEDIA_URL = "http://sfxcontent.s3.amazonaws.com/soundfx/Spring-Boing.mp3";
-    Media media = new Media(MEDIA_URL);
-    MediaPlayer mediaPlayer;
-    
+    MediaPlayer boing = new MediaPlayer(new Media(new File("src/Audio/Spring-Boing.mp3").toURI().toString()));;
+    MediaPlayer tap = new MediaPlayer(new Media(new File("src/Audio/Tap.m4a").toURI().toString()));;
+    //MediaPlayer BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
     
     private AnimationTimer gameTimer = new AnimationTimer() {
         
@@ -61,13 +61,9 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
-                            mediaPlayer = new MediaPlayer(media);
-                            mediaPlayer.setVolume(0.2);
-                            mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
-                            mediaPlayer.setStopTime(Duration.millis(400));
-                            if(wall instanceof Objective)
-                                continue;
-                            mediaPlayer.play();
+                            if(!(wall instanceof Objective))
+                                boing.seek(Duration.ZERO);
+                            boing.play();
                         }
 
                         else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -82,13 +78,11 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
-                            mediaPlayer = new MediaPlayer(media);
-                            mediaPlayer.setVolume(0.2);
-                            mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
-                            mediaPlayer.setStopTime(Duration.millis(400));
-                            if(wall instanceof Objective)
-                                continue;
-                            mediaPlayer.play();
+
+                            if(!(wall instanceof Objective))
+                                boing.seek(Duration.ZERO);
+                            boing.play();
+                            
                         }
                         
                         else if(Shape.intersect(ss.getHB3(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && !collided
@@ -98,6 +92,9 @@ public class Play{
                             ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
                             collided = true;
                             setArrow();
+                            if(!(wall instanceof Objective))
+                                tap.seek(Duration.ZERO);
+                            tap.play();
                         }
                     }
                 });    
@@ -119,10 +116,13 @@ public class Play{
         this.keyChecker = keyChecker;
         this.arrow = arrow;
         this.pane = pane;
+        
     }    
     
     
     public void start(){
+        boing.setVolume(0.2);
+        //BGM.setAutoPlay(true);
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){

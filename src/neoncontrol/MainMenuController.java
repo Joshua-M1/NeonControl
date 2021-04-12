@@ -6,6 +6,7 @@
 package neoncontrol;
 
 import java.awt.Window;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.animation.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  * FXML Controller class
@@ -38,12 +41,17 @@ public class MainMenuController implements Initializable {
     private AnchorPane AnchorPane;
     @FXML
     private ImageView bg;
-
+    public static MediaPlayer BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        MainMenuController.BGM.setVolume(0.3);
+        MainMenuController.BGM.setAutoPlay(true);
+        MainMenuController.BGM.play();
+        
         exitBT.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.375));
         exitBT.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.7));
         exitBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.25));
