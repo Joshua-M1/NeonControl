@@ -80,7 +80,7 @@ public class Level extends ImageView{
         
         switch(levelCount){
             case 0: setTutorial(pane); break;
-            case 1: setLevel7(); break;
+            case 1: setLevel1(); break;
             case 2: setLevel2(); break;
             case 3: setLevel3(); break;
             case 4: setLevel4(); break;
