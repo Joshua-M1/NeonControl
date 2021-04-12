@@ -18,6 +18,8 @@ public class Level extends ImageView{
     private ArrayList<Wall> wallList = new ArrayList<Wall>();
     int levelCount = 0;
     private ImageView instructions = new ImageView(new Image("Graphics/tutorial.png"));
+    private double stageWidth = Main.stage.getWidth();
+    private double stageHeight = Main.stage.getHeight();
 
     public Level(Pane pane) {
         setBorders();
@@ -78,8 +80,12 @@ public class Level extends ImageView{
         
         switch(levelCount){
             case 0: setTutorial(pane); break;
-            case 1: setLevel1(); break;
+            case 1: setLevel7(); break;
             case 2: setLevel2(); break;
+            case 3: setLevel3(); break;
+            case 4: setLevel4(); break;
+            case 5: setLevel5(); break;
+            case 6: setLevel6(); break;
             default: break; 
         }
         setBorders();
@@ -89,26 +95,74 @@ public class Level extends ImageView{
     }
     
     private void setBorders(){
-        addWall(new Wall(-700,300,1425,75,90)); //left wall
-        addWall(new Wall(Main.stage.getWidth()-1425/2,300,1425,75,270)); //right wall
-        addWall(new Wall(-210,-10,2000,75,180)); //top wall
-        addWall(new Wall(-210,Main.stage.getHeight()-25,2000,75,0)); //bottom wall
+        addWall(new Wall(-700,300,stageWidth*0.93,stageHeight*0.1,90)); //left wall
+        addWall(new Wall(stageWidth-1425/2,300,stageWidth*0.93,stageHeight*0.1,270)); //right wall
+        addWall(new Wall(-210,-10,stageWidth*1.3,stageHeight*0.1,180)); //top wall
+        addWall(new Wall(-210,Main.stage.getHeight()-25,stageWidth*1.3,stageHeight*0.1,0)); //bottom wall
     }
     
     private void setLevel1(){
-        addWall(new Wall(Main.stage.getWidth()*0.25,Main.stage.getHeight()*0.85,200,50,0));  
-        addWall(new Wall(Main.stage.getWidth()*0.65,Main.stage.getHeight()*0.45,200,50,0));
-        addWall(new Wall(Main.stage.getWidth()*0.45,Main.stage.getHeight()*0.65,200,50,0));
-        addWall(new Objective(Main.stage.getWidth()*0.7,Main.stage.getHeight()*0.3,100,100,0));
+        addWall(new Wall(stageWidth*0.25,stageHeight*0.85,stageWidth*0.13,stageHeight*0.07,0));  
+        addWall(new Wall(stageWidth*0.65,stageHeight*0.45,stageWidth*0.13,stageHeight*0.07,0));
+        addWall(new Wall(stageWidth*0.45,stageHeight*0.65,stageWidth*0.13,stageHeight*0.07,0));
+        addWall(new Objective(stageWidth*0.7,stageHeight*0.3,stageWidth*0.07,stageWidth*0.07,0));
     }
     
     private void setLevel2(){
-        addWall(new Wall(1125,500,100,200,45));
-        addWall(new Objective(1100,120,100,100,0));
+        addWall(new Wall(stageWidth*0.91,stageHeight*0.81,stageWidth*0.13,stageHeight*0.35,45));
+        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,stageWidth*0.07,stageWidth*0.07,0));
     }
     
+    private void setLevel3(){
+        addWall(new Wall(stageWidth*0.1,stageHeight*0.1,stageWidth*0.46,stageWidth*0.07,90));
+        addWall(new Wall(stageWidth*0.3,stageHeight*0.9,stageWidth*0.46,stageWidth*0.07,270));
+        addWall(new Wall(stageWidth*0.5,stageHeight*0.1,stageWidth*0.46,stageWidth*0.07,90));
+        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,stageWidth*0.07,stageWidth*0.07,0));
+    }
+    
+    private void setLevel4(){
+        addWall(new Wall(stageWidth*0.68,stageHeight*0.55,stageWidth*0.13,stageHeight*0.07,0));
+        addWall(new Wall(stageWidth*0.88,stageHeight*0.55,stageWidth*0.13,stageHeight*0.07,0));
+        addWall(new Wall(stageWidth*0.78,stageHeight*0.25,stageWidth*0.13,stageHeight*0.07,0));
+        addWall(new Wall(stageWidth*0.15,stageHeight*0.8,stageWidth*0.59,stageWidth*0.07,330));
+        addWall(new Objective(stageWidth*0.81,stageHeight*0.75,stageWidth*0.07,stageWidth*0.07,0));
+    }
+    
+    private void setLevel5(){
+        addWall(new Wall(stageWidth*0.25,stageHeight*0.4,stageWidth*0.5,stageHeight*0.15,45));
+        addWall(new Wall(stageWidth*0.25,stageHeight*0.40,stageWidth*0.5,stageHeight*0.15,135));
+        addWall(new Objective(stageWidth*0.7,stageHeight*0.4,stageWidth*0.07,stageWidth*0.07,0));
+    }
+    
+    private void setLevel6(){
+        addWall(new Wall(stageWidth*0.53,stageHeight*0.51,stageWidth*0.15,stageHeight*0.07,90));
+        addWall(new Wall(stageWidth*0.395,stageHeight*0.51,stageWidth*0.15,stageHeight*0.07,90));
+        addWall(new Wall(stageWidth*0.451,stageHeight*0.599,stageWidth*0.173,stageHeight*0.08,0));
+        addWall(new Objective(stageWidth*0.504,stageHeight*0.45,stageWidth*0.07,stageWidth*0.07,0));
+    }
+    
+    private void setLevel7(){
+        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
+        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+    }
+    private void setLevel8(){
+        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
+        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+    }
+    
+    private void setLevel9(){
+        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
+        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+    }
+    
+    private void setLevel10(){
+        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
+        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+    }
+    
+    
     private void setTutorial(Pane pane){
-        addWall(new Objective(500,300, 100,200,45));
+        addWall(new Objective(stageWidth*0.7,stageHeight*0.4,stageWidth*0.07,stageWidth*0.07,0));
         pane.getChildren().add(instructions);
     }
 }
