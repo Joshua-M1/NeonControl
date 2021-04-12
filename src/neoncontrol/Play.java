@@ -65,6 +65,8 @@ public class Play{
                             mediaPlayer.setVolume(0.2);
                             mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
                             mediaPlayer.setStopTime(Duration.millis(400));
+                            if(wall instanceof Objective)
+                                continue;
                             mediaPlayer.play();
                         }
 
@@ -84,6 +86,8 @@ public class Play{
                             mediaPlayer.setVolume(0.2);
                             mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
                             mediaPlayer.setStopTime(Duration.millis(400));
+                            if(wall instanceof Objective)
+                                continue;
                             mediaPlayer.play();
                         }
                         
