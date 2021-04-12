@@ -95,10 +95,10 @@ public class Level extends ImageView{
     }
     
     private void setBorders(){
-        addWall(new Wall(-700,300,stageWidth*0.93,stageHeight*0.1,90)); //left wall
-        addWall(new Wall(stageWidth-1425/2,300,stageWidth*0.93,stageHeight*0.1,270)); //right wall
-        addWall(new Wall(-210,-10,stageWidth*1.3,stageHeight*0.1,180)); //top wall
-        addWall(new Wall(-210,Main.stage.getHeight()-25,stageWidth*1.3,stageHeight*0.1,0)); //bottom wall
+        addWall(new Wall(-stageWidth*0.456,stageHeight*0.347,stageWidth*0.93,stageHeight*0.1,90)); //left wall
+        addWall(new Wall(stageWidth*0.536,stageHeight*0.347,stageWidth*0.93,stageHeight*0.1,270)); //right wall
+        addWall(new Wall(-stageWidth*0.137,stageHeight*-0.015,stageWidth*1.3,stageHeight*0.1,180)); //top wall
+        addWall(new Wall(-stageWidth*0.137,stageHeight-25,stageWidth*1.3,stageHeight*0.1,0)); //bottom wall
     }
     
     private void setLevel1(){
@@ -142,8 +142,8 @@ public class Level extends ImageView{
     }
     
     private void setLevel7(){
-        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
-        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+        addWall(new Wall(stageWidth*0.15,stageHeight*0.80,600,150,90));
+        addWall(new Objective(stageWidth*0.7,stageHeight*0.35,stageWidth*0.07,stageWidth*0.07,0));
     }
     private void setLevel8(){
         addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));

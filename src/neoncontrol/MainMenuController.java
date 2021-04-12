@@ -5,7 +5,6 @@
  */
 package neoncontrol;
 
-import java.awt.Window;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.animation.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
