@@ -47,7 +47,6 @@ public class Play{
                 ss.setAngle(ss.getAngle() + 3);
             }
             try{
-                
                 level.getWallList().forEach((wall) -> {
                     for(int i = 0; i<4; i++){
                         if(Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -66,6 +65,8 @@ public class Play{
                             mediaPlayer.setVolume(0.2);
                             mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
                             mediaPlayer.setStopTime(Duration.millis(400));
+                            if(wall instanceof Objective)
+                                continue;
                             mediaPlayer.play();
                         }
 
@@ -85,6 +86,8 @@ public class Play{
                             mediaPlayer.setVolume(0.2);
                             mediaPlayer.setRate(mediaPlayer.getRate()*1.5);
                             mediaPlayer.setStopTime(Duration.millis(400));
+                            if(wall instanceof Objective)
+                                continue;
                             mediaPlayer.play();
                         }
                         
