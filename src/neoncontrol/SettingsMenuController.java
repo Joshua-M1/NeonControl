@@ -61,6 +61,7 @@ public class SettingsMenuController implements Initializable {
 
     @FXML
     private void setOnPlayClicked(MouseEvent event) throws IOException {
+        weightValue = massSlider.getValue();
         Parent root = FXMLLoader.load(getClass().getResource("Level.fxml"));
         Scene newScene = AnchorPane.getScene();
         newScene.getWindow().centerOnScreen();
