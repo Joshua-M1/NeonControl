@@ -69,9 +69,6 @@ public class LevelController implements Initializable {
         pane.getChildren().add(c2);
         
         pane.getChildren().add(sp);
-        pane.getChildren().add(sp.getHB1());
-        pane.getChildren().add(sp.getHB2());
-        pane.getChildren().add(sp.getHB3());
         
         
         

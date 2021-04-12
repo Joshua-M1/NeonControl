@@ -48,7 +48,7 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        MainMenuController.BGM.setVolume(0.3);
+        MainMenuController.BGM.setVolume(0.2);
         MainMenuController.BGM.setAutoPlay(true);
         MainMenuController.BGM.play();
         

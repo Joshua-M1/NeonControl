@@ -109,8 +109,8 @@ public class Level extends ImageView{
     }
     
     private void setLevel2(){
-        addWall(new Wall(stageWidth*0.91,stageHeight*0.81,stageWidth*0.13,stageHeight*0.35,45));
-        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,stageWidth*0.07,stageWidth*0.07,0));
+        addWall(new Wall(stageWidth*0.89,stageHeight*0.77,stageWidth*0.13,stageHeight*0.35,45));
+        addWall(new Objective(stageWidth*0.9,stageHeight*0.125,stageWidth*0.07,stageWidth*0.07,0));
     }
     
     private void setLevel3(){

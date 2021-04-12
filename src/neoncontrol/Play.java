@@ -33,7 +33,6 @@ public class Play{
     
     MediaPlayer boing = new MediaPlayer(new Media(new File("src/Audio/Spring-Boing.mp3").toURI().toString()));;
     MediaPlayer tap = new MediaPlayer(new Media(new File("src/Audio/Tap.m4a").toURI().toString()));;
-    //MediaPlayer BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
     
     private AnimationTimer gameTimer = new AnimationTimer() {
         
@@ -61,9 +60,11 @@ public class Play{
                             animation.setCycleCount(6);
                             animation.play();
                             setArrow();
-                            if(!(wall instanceof Objective))
+                            
+                            if(!(wall instanceof Objective)){
                                 boing.seek(Duration.ZERO);
-                            boing.play();
+                                boing.play();
+                            }
                         }
 
                         else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -79,9 +80,10 @@ public class Play{
                             animation.play();
                             setArrow();
 
-                            if(!(wall instanceof Objective))
+                            if(!(wall instanceof Objective)){
                                 boing.seek(Duration.ZERO);
-                            boing.play();
+                                boing.play();
+                            }
                             
                         }
                         
@@ -92,9 +94,10 @@ public class Play{
                             ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
                             collided = true;
                             setArrow();
-                            if(!(wall instanceof Objective))
+                            if(!(wall instanceof Objective)){
                                 tap.seek(Duration.ZERO);
-                            tap.play();
+                                tap.play();
+                            }
                         }
                     }
                 });    
@@ -122,7 +125,7 @@ public class Play{
     
     public void start(){
         boing.setVolume(0.2);
-        //BGM.setAutoPlay(true);
+        tap.setVolume(0.4);
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){

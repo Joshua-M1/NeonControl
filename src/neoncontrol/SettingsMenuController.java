@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
@@ -36,6 +37,8 @@ public class SettingsMenuController implements Initializable {
     private AnchorPane AnchorPane;
     @FXML
     private Slider massSlider;
+    @FXML
+    private CheckBox BGMCheckBox;
     public static double weightValue = 0.3;
 
     /**
@@ -59,8 +62,11 @@ public class SettingsMenuController implements Initializable {
         playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         playBT.preserveRatioProperty().set(false);
         
-        massSlider.layoutXProperty().bind(Main.stage.widthProperty().multiply(.41));
-        massSlider.layoutYProperty().bind(Main.stage.heightProperty().multiply(.7));
+        massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
+        massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        
+        BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
+        BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
     }    
 
     @FXML
@@ -68,8 +74,17 @@ public class SettingsMenuController implements Initializable {
         weightValue = massSlider.getValue();
         Parent root = FXMLLoader.load(getClass().getResource("Level.fxml"));
         Scene newScene = AnchorPane.getScene();
-        newScene.getWindow().centerOnScreen();
         newScene.setRoot(root);
+    }
+    
+    @FXML
+    private void setOnToggle(){
+        if(!BGMCheckBox.isSelected()){
+            MainMenuController.BGM.stop();
+        }
+        else{
+            MainMenuController.BGM.play();
+        }
     }
 
     @FXML
