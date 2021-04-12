@@ -75,7 +75,7 @@ public class LevelController implements Initializable {
         
         
         
-        Play play = new Play(lvl, new PhysicsEngine(0.3), sp, Main.scene, arrow, pane);
+        Play play = new Play(lvl, new PhysicsEngine(SettingsMenuController.weightValue), sp, Main.scene, arrow, pane);
         play.start();
     }     
 }

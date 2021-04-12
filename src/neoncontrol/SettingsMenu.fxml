@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neoncontrol.SettingsMenuController">
    <children>
-      <ImageView fitHeight="520.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bg" fitHeight="520.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Graphics/Settings%20Menu%20No%20Buttons.png" />
          </image>
@@ -21,5 +22,6 @@
             <Image url="@../Graphics/Exit%20Button.png" />
          </image>
       </ImageView>
+      <Slider fx:id="massSlider" blockIncrement="0.1" layoutX="223.0" layoutY="312.0" majorTickUnit="0.1" max="1.0" min="0.1" minorTickCount="0" prefHeight="37.0" prefWidth="239.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.3" />
    </children>
 </AnchorPane>
