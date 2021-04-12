@@ -12,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
+import java.io.*;
+import javafx.scene.media.*;
 /**
  *
  * @author jakot
@@ -24,15 +26,15 @@ public class Main{
    public static class Run extends Application{
         @Override
         public void start(Stage stage) throws Exception{
-             Main.stage = new Stage();
-             Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-             scene = new Scene(root);
-             Main.stage.setFullScreen(true);
-             Main.stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-             Main.stage.setResizable(false);
-             Main.stage.setTitle("NeonControl"); // Set the stage title
-             Main.stage.setScene(scene); // Place the scene in the stage
-             Main.stage.show(); // Display the stage
+            Main.stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            scene = new Scene(root);
+            Main.stage.setFullScreen(true);
+            Main.stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+            Main.stage.setResizable(false);
+            Main.stage.setTitle("NeonControl"); // Set the stage title
+            Main.stage.setScene(scene); // Place the scene in the stage
+            Main.stage.show(); // Display the stage
         }
     }
     
