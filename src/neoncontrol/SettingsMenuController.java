@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -32,6 +33,9 @@ public class SettingsMenuController implements Initializable {
     private ImageView exitBT;
     @FXML
     private AnchorPane AnchorPane;
+    @FXML
+    private Slider massSlider;
+    public static double weightValue = 0.3;
 
     /**
      * Initializes the controller class.
@@ -71,5 +75,4 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private void setOnHoverPlayBT(MouseEvent event) {
     }
-    
 }

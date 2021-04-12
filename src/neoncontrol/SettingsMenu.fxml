@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neoncontrol.SettingsMenuController">
    <children>
@@ -21,5 +24,11 @@
             <Image url="@../Graphics/Exit%20Button.png" />
          </image>
       </ImageView>
+      <Slider fx:id="massSlider" blockIncrement="0.1" layoutX="244.0" layoutY="310.0" majorTickUnit="0.1" max="1.0" min="0.1" minorTickCount="0" prefHeight="29.0" prefWidth="212.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.3" />
+      <Label layoutX="298.0" layoutY="278.0" text="Mass slider" textFill="#0004ff">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
