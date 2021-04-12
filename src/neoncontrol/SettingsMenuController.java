@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -57,6 +58,9 @@ public class SettingsMenuController implements Initializable {
         playBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.25));
         playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         playBT.preserveRatioProperty().set(false);
+        
+        massSlider.layoutXProperty().bind(Main.stage.widthProperty().multiply(.41));
+        massSlider.layoutYProperty().bind(Main.stage.heightProperty().multiply(.7));
     }    
 
     @FXML
