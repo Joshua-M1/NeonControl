@@ -6,6 +6,7 @@
 package neoncontrol;
 
 import java.util.ArrayList;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -17,7 +18,8 @@ import javafx.scene.paint.Color;
 public class Level extends ImageView{
     private ArrayList<Wall> wallList = new ArrayList<Wall>();
     int levelCount = 0;
-    private ImageView instructions = new ImageView(new Image("Graphics/tutorial.png"));
+    ImageView instructions = new ImageView(new Image("Graphics/tutorial.png"));
+    ImageView endMessage = new ImageView(new Image("Graphics/Thanks For Playing!.png"));
     private double stageWidth = Main.stage.getWidth();
     private double stageHeight = Main.stage.getHeight();
 
@@ -66,6 +68,9 @@ public class Level extends ImageView{
         if(levelCount==0){
             pane.getChildren().remove(instructions);
         }
+        if(levelCount==1){
+            pane.getChildren().remove(endMessage);
+        }
         
         levelCount++;
         for(Wall wall : getWallList())
@@ -88,6 +93,9 @@ public class Level extends ImageView{
             case 6: setLevel6(); break;
             case 7: setLevel7(); break;
             case 8: setLevel8(); break;
+            case 9: setLevel9(); break;
+            case 10: setLevel10(); break;
+            case 11: setLevelEnd(pane); break;
             default: break; 
         }
         setBorders();
@@ -158,15 +166,31 @@ public class Level extends ImageView{
     }
     
     private void setLevel9(){
-        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
-        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+        addWall(new Wall(stageWidth*0.40,stageHeight*0.51,stageWidth*0.15,stageHeight*0.07,90));
+        addWall(new Wall(stageWidth*0.70,stageHeight*0.51,stageWidth*0.12,stageHeight*0.07,90));
+        addWall(new Wall(stageWidth*0.2,stageHeight*0.16,stageWidth*0.46,stageWidth*0.07,330));
+        addWall(new Wall(stageWidth*0.58,stageHeight*0.16,stageWidth*0.46,stageWidth*0.07,330));
+        addWall(new Wall(stageWidth*0.2,stageHeight*0.82,stageWidth*0.46,stageWidth*0.07,30));
+        addWall(new Wall(stageWidth*0.58,stageHeight*0.82,stageWidth*0.46,stageWidth*0.07,30));
+        addWall(new Objective(stageWidth*0.85,stageHeight*0.50,stageWidth*0.07,stageWidth*0.07,0));
     }
     
     private void setLevel10(){
-        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
-        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+        addWall(new Wall(stageWidth*0.2,stageHeight*0.5,stageWidth*0.18,stageHeight*0.1,30));
+        addWall(new Wall(stageWidth*0.5,stageHeight*0.5,stageWidth*0.18,stageHeight*0.1,15));
+        addWall(new Wall(stageWidth*0.4,stageHeight*0.75,stageWidth*0.18,stageHeight*0.1,135));
+        addWall(new Wall(stageWidth*0.65,stageHeight*0.7,stageWidth*0.18,stageHeight*0.1,105));
+        addWall(new Wall(stageWidth*0.7,stageHeight*0.15,stageWidth*0.18,stageHeight*0.1,25));
+        addWall(new Wall(stageWidth*0.4,stageHeight*0.2,stageWidth*0.18,stageHeight*0.1,0));
+        addWall(new Wall(stageWidth*0.75,stageHeight*0.5,stageWidth*0.18,stageHeight*0.1,75));
+        addWall(new Objective(stageWidth*0.9,stageHeight*0.50,100,100,0));
     }
     
+    private void setLevelEnd(Pane pane){
+        endMessage.setX(stageWidth*0.24);
+        endMessage.setY(stageHeight*0.4);
+        pane.getChildren().add(endMessage);
+    }
     
     private void setTutorial(Pane pane){
         addWall(new Objective(stageWidth*0.7,stageHeight*0.4,stageWidth*0.07,stageWidth*0.07,0));
