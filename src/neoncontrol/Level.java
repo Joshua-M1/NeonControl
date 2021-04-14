@@ -86,6 +86,7 @@ public class Level extends ImageView{
             case 4: setLevel4(); break;
             case 5: setLevel5(); break;
             case 6: setLevel6(); break;
+            case 7: setLevel7(); break;
             default: break; 
         }
         setBorders();
@@ -142,8 +143,9 @@ public class Level extends ImageView{
     }
     
     private void setLevel7(){
-        addWall(new Wall(stageWidth*0.15,stageHeight*0.80,600,150,90));
-        addWall(new Objective(stageWidth*0.7,stageHeight*0.35,stageWidth*0.07,stageWidth*0.07,0));
+        addWall(new Wall(stageWidth*0.55, stageHeight*0.225, stageWidth*0.23, stageHeight*0.1, 90));
+        addWall(new Wall(stageWidth*0.55, stageHeight*0.73, stageWidth*0.23, stageHeight*0.1, 90));
+        addWall(new Objective(stageWidth*0.8,stageHeight*0.2,stageWidth*0.07,stageWidth*0.07,0));
     }
     private void setLevel8(){
         addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
