@@ -45,7 +45,6 @@ public class LevelController implements Initializable {
         
 
         StickSpring sp = new StickSpring(new Vector(0, 0), 0);
-
         
         Arrow arrow = new Arrow(200, 180, 200, 180, 10);
         pane.getChildren().add(arrow);
@@ -69,7 +68,6 @@ public class LevelController implements Initializable {
         pane.getChildren().add(c2);
         
         pane.getChildren().add(sp);
-        
         
         
         Play play = new Play(lvl, new PhysicsEngine(SettingsMenuController.weightValue), sp, Main.scene, arrow, pane);

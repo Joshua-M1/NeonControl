@@ -85,7 +85,7 @@ public class Level extends ImageView{
         
         switch(levelCount){
             case 0: setTutorial(pane); break;
-            case 1: setLevel1(); break;
+            case 1: setLevelEnd(pane); break;
             case 2: setLevel2(); break;
             case 3: setLevel3(); break;
             case 4: setLevel4(); break;
@@ -152,8 +152,9 @@ public class Level extends ImageView{
     }
     
     private void setLevel7(){
-        addWall(new Wall(stageWidth*0.15,stageHeight*0.80,600,150,90));
-        addWall(new Objective(stageWidth*0.7,stageHeight*0.35,stageWidth*0.07,stageWidth*0.07,0));
+        addWall(new Wall(stageWidth*0.55, stageHeight*0.225, stageWidth*0.23, stageHeight*0.1, 90));
+        addWall(new Wall(stageWidth*0.55, stageHeight*0.73, stageWidth*0.23, stageHeight*0.1, 90));
+        addWall(new Objective(stageWidth*0.8,stageHeight*0.2,stageWidth*0.07,stageWidth*0.07,0));
     }
     private void setLevel8(){
         addWall(new Wall(stageWidth*0.88,stageHeight*0.55,stageWidth*0.13,stageHeight*0.07,0));
