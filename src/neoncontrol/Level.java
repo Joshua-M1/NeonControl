@@ -184,7 +184,7 @@ public class Level extends ImageView{
         addWall(new Wall(stageWidth*0.7,stageHeight*0.15,stageWidth*0.18,stageHeight*0.1,25));
         addWall(new Wall(stageWidth*0.4,stageHeight*0.2,stageWidth*0.18,stageHeight*0.1,0));
         addWall(new Wall(stageWidth*0.75,stageHeight*0.5,stageWidth*0.18,stageHeight*0.1,75));
-        addWall(new Objective(stageWidth*0.9,stageHeight*0.50,100,100,0));
+        addWall(new Objective(stageWidth*0.9,stageHeight*0.50,stageWidth*0.07,stageWidth*0.07,0));
     }
     
     private void setLevelEnd(Pane pane){
