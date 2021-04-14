@@ -257,8 +257,7 @@ public class Play{
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
             
-            }catch(IOException ex){}
-            
+            }catch(IOException ex){}   
         });
         pauseMenuList.add(mainMenu);
         
@@ -281,27 +280,70 @@ public class Play{
     public void showLevelSelectMenu(){
         removePauseMenu();
         
-        ImageView menuPane = new ImageView(new Image("Graphics/background level.jpg"));
-        menuPane.fitWidthProperty().bind(Main.stage.widthProperty());
-        menuPane.fitHeightProperty().bind(Main.stage.heightProperty());
-        pane.getChildren().add(menuPane);
+        ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
+        menuPane.setFitHeight(550);
+        menuPane.setFitWidth(600);
+        menuPane.setX(Main.scene.getWidth()*0.5 - 325);
+        menuPane.setY(Main.scene.getHeight()*0.5 - 250);
+        pauseMenuList.add(menuPane);
         
-        //ADD WALL WITH NUMBERS HERE
+        pauseMenuList.addAll(createLevelList(menuPane));
         
-        ImageView exitBT = new ImageView("Graphics/Exit Button.png");
-        exitBT.xProperty().bind(Main.stage.widthProperty().multiply(0.85));
-        exitBT.yProperty().bind(Main.stage.heightProperty().multiply(0.85));
-        exitBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.15));
-        exitBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.1));
-        exitBT.preserveRatioProperty().set(false);
-        exitBT.setOnMouseClicked((MouseEvent e) ->System.exit(0));
-        pauseMenuList.add(exitBT);
+        ImageView mainMenu = new ImageView(new Image("Graphics/Main Menu Button.png"));
+        mainMenu.setX(menuPane.getX());
+        mainMenu.setY(menuPane.getY() + 300);
+        mainMenu.setOnMouseClicked((MouseEvent e) ->{
+            try{
+            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            Scene newScene = pane.getScene();
+            newScene.setRoot(root);
+            
+            }catch(IOException ex){}   
+        });
+        pauseMenuList.add(mainMenu);
+        
+        ImageView exit = new ImageView(new Image("Graphics/Exit Button.png"));
+        exit.setX(menuPane.getX() + 150);
+        exit.setY(menuPane.getY() + 400);
+        exit.setOnMouseClicked((MouseEvent e) ->System.exit(0));
+        pauseMenuList.add(exit);
         
         pane.getChildren().addAll(pauseMenuList);    
     }
     
-    public void switchLevel(int levelCount, ImageView menuPane){
-        pane.getChildren().remove(menuPane);
+    public ArrayList<ImageView> createLevelList(ImageView menuPane){
+        ArrayList<ImageView> levelList = new ArrayList<>();
+        levelList.add(new ImageView(new Image("Graphics/1.png")));
+        levelList.get(0).setOnMouseClicked((MouseEvent e) ->switchLevel(1));
+        levelList.add(new ImageView(new Image("Graphics/2.png")));
+        levelList.get(1).setOnMouseClicked((MouseEvent e) ->switchLevel(2));
+        levelList.add(new ImageView(new Image("Graphics/3.png")));
+        levelList.get(2).setOnMouseClicked((MouseEvent e) ->switchLevel(3));
+        levelList.add(new ImageView(new Image("Graphics/4.png")));
+        levelList.get(3).setOnMouseClicked((MouseEvent e) ->switchLevel(4));
+        levelList.add(new ImageView(new Image("Graphics/5.png")));
+        levelList.get(4).setOnMouseClicked((MouseEvent e) ->switchLevel(5));
+        levelList.add(new ImageView(new Image("Graphics/6.png")));
+        levelList.get(5).setOnMouseClicked((MouseEvent e) ->switchLevel(6));
+        levelList.add(new ImageView(new Image("Graphics/7.png")));
+        levelList.get(6).setOnMouseClicked((MouseEvent e) ->switchLevel(7));
+        levelList.add(new ImageView(new Image("Graphics/8.png")));
+        levelList.get(7).setOnMouseClicked((MouseEvent e) ->switchLevel(8));
+        levelList.add(new ImageView(new Image("Graphics/9.png")));
+        levelList.get(8).setOnMouseClicked((MouseEvent e) ->switchLevel(9));
+        levelList.add(new ImageView(new Image("Graphics/10.png")));
+        levelList.get(9).setOnMouseClicked((MouseEvent e) ->switchLevel(10));
+        
+        for(int i = 0; i < 10; i++){
+            levelList.get(i).setX(menuPane.getX()+(i%5)*100+75);
+            levelList.get(i).setY(menuPane.getY()+(i/5)*100+100);
+        }
+        
+        return levelList;
+    }
+    
+    
+    public void switchLevel(int levelCount){
         removePauseMenu();
         level.setNextLevel(pane, levelCount);
         ss.reset();
