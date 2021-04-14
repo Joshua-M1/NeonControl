@@ -28,9 +28,7 @@ public class Play{
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
-    Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
-    private ImageView level1 = new ImageView("Graphics/Level_1.png");
-    
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));    
     MediaPlayer boing = new MediaPlayer(new Media(new File("src/Audio/Spring-Boing.mp3").toURI().toString()));;
     MediaPlayer tap = new MediaPlayer(new Media(new File("src/Audio/Tap.m4a").toURI().toString()));;
     
@@ -130,7 +128,7 @@ public class Play{
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: if(paused && !(pane.getChildren().contains(level1))){removePauseMenu();
+                case ESCAPE: if(paused /**&& !(pane.getChildren().contains(level1))**/){removePauseMenu();
                                 gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
                              else{showPauseMenu();
                                 gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
