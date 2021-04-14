@@ -28,9 +28,7 @@ public class Play{
     int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
     EventHandler<ActionEvent> noEvent;
-    Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));
-    private ImageView level1 = new ImageView("Graphics/Level_1.png");
-    
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));    
     MediaPlayer boing = new MediaPlayer(new Media(new File("src/Audio/Spring-Boing.mp3").toURI().toString()));;
     MediaPlayer tap = new MediaPlayer(new Media(new File("src/Audio/Tap.m4a").toURI().toString()));;
     
@@ -130,7 +128,7 @@ public class Play{
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: if(paused && !(pane.getChildren().contains(level1))){removePauseMenu();
+                case ESCAPE: if(paused /**&& !(pane.getChildren().contains(level1))**/){removePauseMenu();
                                 gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
                              else{showPauseMenu();
                                 gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
@@ -286,7 +284,41 @@ public class Play{
         menuPane.fitHeightProperty().bind(Main.stage.heightProperty());
         pane.getChildren().add(menuPane);
         
-        //ADD WALL WITH NUMBERS HERE
+        ImageView lvl1 = new ImageView("Graphics/Wall.png");
+        lvl1.xProperty().bind(Main.stage.widthProperty().multiply(0.85));
+        lvl1.yProperty().bind(Main.stage.heightProperty().multiply(0.85));
+        lvl1.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.05));
+        lvl1.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.01));
+        lvl1.preserveRatioProperty().set(false);
+        lvl1.setOnMouseClicked((MouseEvent e) -> {level.setNextLevel(pane, 1);});
+        pauseMenuList.add(lvl1);
+        
+        ImageView lvl2 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl2);
+        
+        ImageView lvl3 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl3);
+        
+        ImageView lvl4 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl4);
+        
+        ImageView lvl5 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl5);
+        
+        ImageView lvl6 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl6);
+        
+        ImageView lvl7 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl7);
+        
+        ImageView lvl8 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl8);
+        
+        ImageView lvl9 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl9);
+        
+        ImageView lvl10 = new ImageView("Graphics/Wall.png");
+        pauseMenuList.add(lvl10);
         
         ImageView exitBT = new ImageView("Graphics/Exit Button.png");
         exitBT.xProperty().bind(Main.stage.widthProperty().multiply(0.85));
