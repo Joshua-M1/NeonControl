@@ -38,7 +38,6 @@ public class Play{
         
         @Override
         public void handle (long l){
-            tap.setVolume(0.5);
             collided = false;
             if(A){
                 ss.setAngle(ss.getAngle() - 3);
