@@ -283,37 +283,7 @@ public class Play{
         menuPane.fitHeightProperty().bind(Main.stage.heightProperty());
         pane.getChildren().add(menuPane);
         
-        ImageView tutorial = new ImageView("Graphics/Level_Tutorial.png");
-        tutorial.xProperty().bind(Main.stage.widthProperty().multiply(0.03));
-        tutorial.yProperty().bind(Main.stage.heightProperty().multiply(0.05));
-        tutorial.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
-        tutorial.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
-        tutorial.preserveRatioProperty().set(false);  
-        tutorial.setOnMouseClicked((MouseEvent e) -> {
-            switchLevel(0, menuPane);
-        });
-        pauseMenuList.add(tutorial);
-        
-        level1.xProperty().bind(Main.stage.widthProperty().multiply(0.32));
-        level1.yProperty().bind(Main.stage.heightProperty().multiply(0.63));
-        level1.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
-        level1.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
-        level1.preserveRatioProperty().set(false);
-        level1.setOnMouseClicked((MouseEvent e) -> {
-            switchLevel(1, menuPane);
-        });
-        pauseMenuList.add(level1);
-        
-        ImageView level2 = new ImageView("Graphics/Level_2.png");
-        level2.xProperty().bind(Main.stage.widthProperty().multiply(0.616));
-        level2.yProperty().bind(Main.stage.heightProperty().multiply(0.05));
-        level2.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.35));
-        level2.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
-        level2.preserveRatioProperty().set(false);
-        level2.setOnMouseClicked((MouseEvent e) -> {
-            switchLevel(2, menuPane);
-        });
-        pauseMenuList.add(level2);
+        //ADD WALL WITH NUMBERS HERE
         
         ImageView exitBT = new ImageView("Graphics/Exit Button.png");
         exitBT.xProperty().bind(Main.stage.widthProperty().multiply(0.85));
