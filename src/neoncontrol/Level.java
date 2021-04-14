@@ -86,6 +86,8 @@ public class Level extends ImageView{
             case 4: setLevel4(); break;
             case 5: setLevel5(); break;
             case 6: setLevel6(); break;
+            case 7: setLevel7(); break;
+            case 8: setLevel8(); break;
             default: break; 
         }
         setBorders();
@@ -146,8 +148,13 @@ public class Level extends ImageView{
         addWall(new Objective(stageWidth*0.7,stageHeight*0.35,stageWidth*0.07,stageWidth*0.07,0));
     }
     private void setLevel8(){
-        addWall(new Wall(stageWidth*0.20,stageHeight*0.81,200,700,90));
-        addWall(new Objective(stageWidth*0.80,stageHeight*0.30,100,100,0));
+        addWall(new Wall(stageWidth*0.88,stageHeight*0.55,stageWidth*0.13,stageHeight*0.07,0));
+        addWall(new Wall(stageWidth*0.75,stageHeight*0.54,stageWidth*0.04,stageHeight*0.20,135));
+        addWall(new Wall(stageWidth*0.3,stageHeight*0.9,stageWidth*0.46,stageWidth*0.07,270));
+        addWall(new Wall(stageWidth*0.28,stageHeight*0.16,stageWidth*0.46,stageWidth*0.07,330));
+        addWall(new Wall(stageWidth*0.5,stageHeight*0.2,stageWidth*0.46,stageWidth*0.07,90));
+        addWall(new Wall(stageWidth*0.91,stageHeight*0.81,stageWidth*0.13,stageHeight*0.35,45));
+        addWall(new Objective(stageWidth*0.85,stageHeight*0.30,stageWidth*0.07,stageWidth*0.07,0));
     }
     
     private void setLevel9(){
