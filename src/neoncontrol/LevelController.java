@@ -49,7 +49,7 @@ public class LevelController implements Initializable {
         Arrow arrow = new Arrow(200, 180, 200, 180, 10);
         pane.getChildren().add(arrow);
         
-        Label lb = new Label("Force Vector");
+        Label lb = new Label("Velocity Vector");
         lb.setLayoutX(140); lb.setLayoutY(75);
         lb.setFont(Font.font ("Verdana", 20));
         lb.setStyle("-fx-text-fill: red");
