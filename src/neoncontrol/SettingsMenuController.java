@@ -62,11 +62,11 @@ public class SettingsMenuController implements Initializable {
         playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         playBT.preserveRatioProperty().set(false);
         
-        massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
+        massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
         massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
         
-        BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
-        BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
+        BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.336));
     }    
 
     @FXML

@@ -6,11 +6,9 @@
 package neoncontrol;
 
 import java.util.ArrayList;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 /**
  *
  * @author addav
@@ -68,9 +66,6 @@ public class Level extends ImageView{
         if(levelCount==0){
             pane.getChildren().remove(instructions);
         }
-        if(levelCount==1){
-            pane.getChildren().remove(endMessage);
-        }
         
         levelCount++;
         for(Wall wall : getWallList())
@@ -81,6 +76,10 @@ public class Level extends ImageView{
         
         if(count != -1){
             levelCount = count;
+        }
+        
+        if(levelCount!=11){
+            pane.getChildren().remove(endMessage);
         }
         
         switch(levelCount){
