@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
+
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,13 +43,13 @@ public class Wall extends ImageView{
     }
 
     public void setHitboxesList(double xPos, double yPos, double xSize, double ySize){
-        hitboxesList.add(new Rectangle(xPos, yPos, xSize, 10)); //top
+        hitboxesList.add(new Rectangle(xPos, yPos, xSize, 20)); //top
         //hitboxesList.get(0).setFill(Color.RED);
-        hitboxesList.add(new Rectangle(xPos+xSize-(ySize/2), yPos+(ySize/2), ySize, 10)); //right
+        hitboxesList.add(new Rectangle(xPos+xSize-(ySize/2), yPos+(ySize/2), ySize, 20)); //right
         //hitboxesList.get(1).setFill(Color.YELLOW);
-        hitboxesList.add(new Rectangle(xPos, yPos+ySize, xSize, 10));//bottom
+        hitboxesList.add(new Rectangle(xPos, yPos+ySize, xSize, 20));//bottom
         //hitboxesList.get(2).setFill(Color.BLUE);
-        hitboxesList.add(new Rectangle(xPos-(ySize/2),yPos+(ySize/2),ySize,10)); //left
+        hitboxesList.add(new Rectangle(xPos-(ySize/2),yPos+(ySize/2),ySize,20)); //left
         //hitboxesList.get(3).setFill(Color.GREEN);
         
         

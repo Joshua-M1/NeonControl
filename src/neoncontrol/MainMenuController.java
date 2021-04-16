@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,9 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -42,22 +31,11 @@ public class MainMenuController implements Initializable {
     private AnchorPane AnchorPane;
     @FXML
     private ImageView bg;
-    public static MediaPlayer BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        MainMenuController.BGM.setVolume(0.1);
-        MainMenuController.BGM.setOnEndOfMedia(new Runnable() {
-            @Override
-            public void run() {
-                MainMenuController.BGM.seek(Duration.ZERO);
-                MainMenuController.BGM.play();
-            }
-        });
-        MainMenuController.BGM.play();
         
         exitBT.layoutXProperty().bind(Main.stage.widthProperty().multiply(0.375));
         exitBT.layoutYProperty().bind(Main.stage.heightProperty().multiply(0.7));
@@ -80,6 +58,7 @@ public class MainMenuController implements Initializable {
         bg.fitWidthProperty().bind(Main.stage.widthProperty());
         bg.fitHeightProperty().bind(Main.stage.heightProperty());
         bg.preserveRatioProperty().set(false);
+        
     }    
 
     @FXML

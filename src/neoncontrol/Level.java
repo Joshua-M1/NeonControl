@@ -1,27 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
 
 import java.util.ArrayList;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 /**
  *
  * @author addav
  */
 public class Level extends ImageView{
     private ArrayList<Wall> wallList = new ArrayList<Wall>();
-    int levelCount = 0;
-    ImageView instructions = new ImageView(new Image("Graphics/tutorial.png"));
-    ImageView endMessage = new ImageView(new Image("Graphics/Thanks For Playing!.png"));
-    private double stageWidth = Main.stage.getWidth();
-    private double stageHeight = Main.stage.getHeight();
+    private int levelCount = 0;
+    private ImageView instructions = new ImageView(new Image("Graphics/tutorial.png")), 
+                      endMessage = new ImageView(new Image("Graphics/Thanks For Playing!.png"));
+    private double stageWidth = Main.stage.getWidth(), stageHeight = Main.stage.getHeight();
 
     public Level(Pane pane) {
         setBorders();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
 
 import java.util.ArrayList;
@@ -18,17 +13,12 @@ import javafx.scene.paint.Color;
  * @author addav
  */
 public class StickSpring extends ImageView{
-    private double yPos;
-    private double xPos;
-    private double angle;
+    private double yPos, xPos, angle, mass;
     
     private Vector velVector;
-    private double mass;
     
     private ArrayList<Rectangle> HBList = new ArrayList<>();
-    private Rectangle spring1HB = new Rectangle(16,6);
-    private Rectangle spring2HB = new Rectangle(16,6);
-    private Rectangle stickHB = new Rectangle(16,64);
+    private Rectangle spring1HB = new Rectangle(16,6), spring2HB = new Rectangle(16,6), stickHB = new Rectangle(16,64);
 
     public StickSpring() {
         this.setImage(new Image("Graphics/spring 1.png"));
