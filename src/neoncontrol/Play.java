@@ -17,6 +17,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import javafx.scene.shape.*;
 import java.io.*;
+import javafx.scene.control.Label;
 
 public class Play{
     private Level level;
@@ -27,6 +28,7 @@ public class Play{
     private final Pane pane;
     private int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
+    private Label bounceCounter;
     private EventHandler<ActionEvent> noEvent;
     private Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));    
     public static MediaPlayer boing = new MediaPlayer(new Media(new File("src/Audio/Spring-Boing.mp3").toURI().toString())), 
@@ -60,7 +62,7 @@ public class Play{
                             animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                             animation.setCycleCount(6);
                             animation.play();
-                            setArrow();
+                            setBounceCounter();
                             
                             if(!(wall instanceof Objective)){
                                 boing.seek(Duration.ZERO);
@@ -83,8 +85,8 @@ public class Play{
                             animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                             animation.setCycleCount(6);
                             animation.play();
-                            setArrow();
-
+                            setBounceCounter();
+                            
                             if(!(wall instanceof Objective)){
                                 boing.seek(Duration.ZERO);
                                 boing.play();
@@ -102,7 +104,7 @@ public class Play{
                             ifLevelComplete(wall);
                             ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
                             collided = true;
-                            setArrow();
+                            setBounceCounter();
                             if(!(wall instanceof Objective)){
                                 tap.seek(Duration.ZERO);
                                 tap.play();
@@ -125,13 +127,14 @@ public class Play{
         }
     };
     
-    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Pane pane){
+    public Play(Level level, PhysicsEngine physics, StickSpring ss, Scene keyChecker, Arrow arrow, Label bounceCounter, Pane pane){
         this.level = level;
         this.physics = physics;
         this.ss = ss;
         this.keyChecker = keyChecker;
         this.arrow = arrow;
         this.pane = pane;
+        this.bounceCounter = bounceCounter;
         
     }    
     
@@ -159,7 +162,7 @@ public class Play{
                 case A: if(!paused) A = false; break;
                 case RIGHT:
                 case D: if(!paused) D = false; break;
-                //Testing purposes only, remove before submitting!
+                //Testing purposes only, remove before submitting!!!!!!!!!
                 case N: 
                     if(level.getCount() != 11)
                         switchLevel(level.getCount()+1);
@@ -390,5 +393,13 @@ public class Play{
             return sa<=raUpper && sa>=raLower;
         else
             return sa<=raUpper || sa>=raLower;
+    }
+    
+    public void setBounceCounter(){
+        String text = bounceCounter.getText();
+        String[] textParts = text.split("\t");
+        int bounces = Integer.parseInt(textParts[1]);
+        bounces++;
+        bounceCounter.setText("Bounce count:\t"+bounces);
     }
 }

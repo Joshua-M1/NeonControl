@@ -36,8 +36,7 @@ public class LevelController implements Initializable {
         Level lvl = new Level(pane);
         pane.getChildren().addAll(lvl.getWallList());
         for(Wall wall : lvl.getWallList())
-            pane.getChildren().addAll(wall.getHitboxesList());
-        
+            pane.getChildren().addAll(wall.getHitboxesList());   
 
         StickSpring sp = new StickSpring(new Vector(0, 0), 0);
         
@@ -62,10 +61,15 @@ public class LevelController implements Initializable {
         c2.setLayoutX(200); c2.setLayoutY(180);
         pane.getChildren().add(c2);
         
+        Label bounceCounter = new Label("Bounce count:\t0");
+        bounceCounter.setTextFill(Color.RED);
+        bounceCounter.setLayoutX(10); bounceCounter.setLayoutY(10);
+        bounceCounter.setFont(Font.font ("Verdana", 15));
+        pane.getChildren().add(bounceCounter);
+        
         pane.getChildren().add(sp);
-        
-        
-        Play play = new Play(lvl, new PhysicsEngine(SettingsMenuController.weightValue), sp, Main.scene, arrow, pane);
+               
+        Play play = new Play(lvl, new PhysicsEngine(SettingsMenuController.weightValue), sp, Main.scene, arrow, bounceCounter, pane);
         play.start();
     }     
 }
