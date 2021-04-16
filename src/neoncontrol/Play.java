@@ -159,6 +159,10 @@ public class Play{
                 case A: if(!paused) A = false; break;
                 case RIGHT:
                 case D: if(!paused) D = false; break;
+                //Testing purposes only, remove before submitting!
+                case N: 
+                    if(level.getCount() != 11)
+                        switchLevel(level.getCount()+1);
             }
         });
     }
