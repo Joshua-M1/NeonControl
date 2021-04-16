@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
 
 import java.io.IOException;
@@ -14,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,7 +32,9 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private Slider massSlider;
     @FXML
-    private CheckBox BGMCheckBox;
+    public CheckBox BGMCheckBox;
+    @FXML
+    public CheckBox SFXCheckBox;
     public static double weightValue = 0.3;
 
     /**
@@ -46,6 +42,12 @@ public class SettingsMenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if(Play.boing.getVolume() != 0)
+            SFXCheckBox.setSelected(true);
+        
+        if(Play.BGM.getStatus().toString().equals("PLAYING"))
+            BGMCheckBox.setSelected(true);
+        
         bg.fitWidthProperty().bind(Main.stage.widthProperty());
         bg.fitHeightProperty().bind(Main.stage.heightProperty());
         bg.preserveRatioProperty().set(false);
@@ -64,9 +66,13 @@ public class SettingsMenuController implements Initializable {
         
         massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
         massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        massSlider.setValue(weightValue);
         
-        BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
-        BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.336));
+        BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
+        BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        
+        SFXCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
+        SFXCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
     }    
 
     @FXML
@@ -78,12 +84,26 @@ public class SettingsMenuController implements Initializable {
     }
     
     @FXML
-    private void setOnToggle(){
+    private void setOnToggleBGM(){
         if(!BGMCheckBox.isSelected()){
-            MainMenuController.BGM.stop();
+            Play.BGM.stop();
         }
         else{
-            MainMenuController.BGM.play();
+            Play.BGM.play();
+        }
+    }
+    
+    @FXML
+    private void setOnToggleSFX(){
+        if(!SFXCheckBox.isSelected()){
+            Play.ding.setVolume(0);
+            Play.tap.setVolume(0);
+            Play.boing.setVolume(0);
+        }
+        else{
+            Play.ding.setVolume(0.4);
+            Play.boing.setVolume(0.2);
+            Play.tap.setVolume(0.4);
         }
     }
 

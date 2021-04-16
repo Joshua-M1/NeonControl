@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
 
 import javafx.scene.text.Font;
@@ -50,7 +45,7 @@ public class LevelController implements Initializable {
         pane.getChildren().add(arrow);
         
         Label lb = new Label("Velocity Vector");
-        lb.setLayoutX(140); lb.setLayoutY(75);
+        lb.setLayoutX(130); lb.setLayoutY(75);
         lb.setFont(Font.font ("Verdana", 20));
         lb.setStyle("-fx-text-fill: red");
         pane.getChildren().add(lb);

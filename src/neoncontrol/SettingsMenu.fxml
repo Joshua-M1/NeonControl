@@ -24,8 +24,13 @@
             <Image url="@../Graphics/Exit%20Button.png" />
          </image>
       </ImageView>
-      <Slider fx:id="massSlider" blockIncrement="0.1" layoutX="223.0" layoutY="312.0" majorTickUnit="0.1" max="0.5" min="0.1" minorTickCount="0" prefHeight="37.0" prefWidth="239.0" showTickMarks="true" snapToTicks="true" value="0.3" />
-      <CheckBox fx:id="BGMCheckBox" layoutX="226.0" layoutY="231.0" mnemonicParsing="false" onAction="#setOnToggle" selected="true" text="Background Music" textFill="#900e0e">
+      <Slider fx:id="massSlider" blockIncrement="0.1" layoutX="223.0" layoutY="312.0" majorTickUnit="0.1" max="1.0" min="0.1" minorTickCount="0" prefHeight="37.0" prefWidth="239.0" showTickMarks="true" snapToTicks="true" value="0.3" />
+      <CheckBox fx:id="BGMCheckBox" layoutX="223.0" layoutY="254.0" mnemonicParsing="false" onAction="#setOnToggleBGM" text="Background Music" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="SFXCheckBox" layoutX="223.0" layoutY="197.0" mnemonicParsing="false" onAction="#setOnToggleSFX" text="Sound Effects" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

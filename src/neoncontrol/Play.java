@@ -25,13 +25,15 @@ public class Play{
     private final Scene keyChecker;
     private final Arrow arrow;
     private final Pane pane;
-    int count = 0;
+    private int count = 0;
     private boolean collided = false, paused = false, A = false, D = false;
-    EventHandler<ActionEvent> noEvent;
-    Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));    
-    MediaPlayer boing = new MediaPlayer(new Media(new File("src/Audio/Spring-Boing.mp3").toURI().toString()));;
-    MediaPlayer tap = new MediaPlayer(new Media(new File("src/Audio/Tap.m4a").toURI().toString()));;
-    
+    private EventHandler<ActionEvent> noEvent;
+    private Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));    
+    public static MediaPlayer boing = new MediaPlayer(new Media(new File("src/Audio/Spring-Boing.mp3").toURI().toString())), 
+                              tap = new MediaPlayer(new Media(new File("src/Audio/Tap.m4a").toURI().toString())), 
+                              ding = new MediaPlayer(new Media(new File("src/Audio/Ding.mp3").toURI().toString())), 
+                              BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
+
     private AnimationTimer gameTimer = new AnimationTimer() {
         
         @Override
@@ -64,6 +66,10 @@ public class Play{
                                 boing.seek(Duration.ZERO);
                                 boing.play();
                             }
+                            else{
+                                ding.seek(Duration.ZERO);
+                                ding.play();
+                            }   
                         }
 
                         else if(Shape.intersect(ss.getHB1(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() != -1 && Shape.intersect(ss.getHB2(), wall.getHitboxesList().get(i)).getBoundsInLocal().getWidth() == -1 && !collided){
@@ -83,6 +89,10 @@ public class Play{
                                 boing.seek(Duration.ZERO);
                                 boing.play();
                             }
+                            else{
+                                ding.seek(Duration.ZERO);
+                                ding.play();
+                            } 
                             
                         }
                         
@@ -97,6 +107,10 @@ public class Play{
                                 tap.seek(Duration.ZERO);
                                 tap.play();
                             }
+                            else{
+                                ding.seek(Duration.ZERO);
+                                ding.play();
+                            } 
                         }
                     }
                 });    
@@ -121,10 +135,9 @@ public class Play{
         
     }    
     
-    
     public void start(){
-        boing.setVolume(0.2);
-        tap.setVolume(0.4);
+        tap.setRate(1.125);
+        ding.setRate(1.75);
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){

@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import java.io.*;
-import javafx.scene.media.*;
+import javafx.util.Duration;
 /**
  *
  * @author jakot
@@ -35,6 +28,18 @@ public class Main{
             Main.stage.setTitle("NeonControl"); // Set the stage title
             Main.stage.setScene(scene); // Place the scene in the stage
             Main.stage.show(); // Display the stage
+            Play.ding.setVolume(0.4);
+            Play.boing.setVolume(0.2);
+            Play.tap.setVolume(0.4);
+            Play.BGM.setVolume(0.1);
+            Play.BGM.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    Play.BGM.seek(Duration.ZERO);
+                    Play.BGM.play();
+                }
+            });
+            Play.BGM.play();
         }
     }
     

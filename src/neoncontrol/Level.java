@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package neoncontrol;
 
 import java.util.ArrayList;
@@ -15,11 +10,10 @@ import javafx.scene.layout.Pane;
  */
 public class Level extends ImageView{
     private ArrayList<Wall> wallList = new ArrayList<Wall>();
-    int levelCount = 0;
-    ImageView instructions = new ImageView(new Image("Graphics/tutorial.png"));
-    ImageView endMessage = new ImageView(new Image("Graphics/Thanks For Playing!.png"));
-    private double stageWidth = Main.stage.getWidth();
-    private double stageHeight = Main.stage.getHeight();
+    private int levelCount = 0;
+    private ImageView instructions = new ImageView(new Image("Graphics/tutorial.png")), 
+                      endMessage = new ImageView(new Image("Graphics/Thanks For Playing!.png"));
+    private double stageWidth = Main.stage.getWidth(), stageHeight = Main.stage.getHeight();
 
     public Level(Pane pane) {
         setBorders();
@@ -179,7 +173,7 @@ public class Level extends ImageView{
         addWall(new Wall(stageWidth*0.2,stageHeight*0.5,stageWidth*0.18,stageHeight*0.1,30));
         addWall(new Wall(stageWidth*0.5,stageHeight*0.5,stageWidth*0.18,stageHeight*0.1,15));
         addWall(new Wall(stageWidth*0.4,stageHeight*0.75,stageWidth*0.18,stageHeight*0.1,135));
-        addWall(new Wall(stageWidth*0.65,stageHeight*0.7,stageWidth*0.18,stageHeight*0.1,105));
+        addWall(new Wall(stageWidth*0.63,stageHeight*0.7,stageWidth*0.18,stageHeight*0.1,105)); //
         addWall(new Wall(stageWidth*0.7,stageHeight*0.15,stageWidth*0.18,stageHeight*0.1,25));
         addWall(new Wall(stageWidth*0.4,stageHeight*0.2,stageWidth*0.18,stageHeight*0.1,0));
         addWall(new Wall(stageWidth*0.75,stageHeight*0.5,stageWidth*0.18,stageHeight*0.1,75));
