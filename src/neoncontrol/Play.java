@@ -62,11 +62,11 @@ public class Play{
                             animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                             animation.setCycleCount(6);
                             animation.play();
-                            setBounceCounter();
                             
                             if(!(wall instanceof Objective)){
                                 boing.seek(Duration.ZERO);
                                 boing.play();
+                                setBounceCounter();
                             }
                             else{
                                 ding.seek(Duration.ZERO);
@@ -85,11 +85,11 @@ public class Play{
                             animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                             animation.setCycleCount(6);
                             animation.play();
-                            setBounceCounter();
                             
                             if(!(wall instanceof Objective)){
                                 boing.seek(Duration.ZERO);
                                 boing.play();
+                                setBounceCounter();
                             }
                             else{
                                 ding.seek(Duration.ZERO);
@@ -104,10 +104,10 @@ public class Play{
                             ifLevelComplete(wall);
                             ss.setVelocityVec(physics.collisionSide(ss.getVelocityVec(), wall.getNormalVector(i)));
                             collided = true;
-                            setBounceCounter();
                             if(!(wall instanceof Objective)){
                                 tap.seek(Duration.ZERO);
                                 tap.play();
+                                setBounceCounter();
                             }
                             else{
                                 ding.seek(Duration.ZERO);
@@ -162,7 +162,7 @@ public class Play{
                 case A: if(!paused) A = false; break;
                 case RIGHT:
                 case D: if(!paused) D = false; break;
-                //Testing purposes only, remove before submitting!!!!!!!!!
+                //Testing purposes only, remove before submitting!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 case N: 
                     if(level.getCount() != 11)
                         switchLevel(level.getCount()+1);
@@ -244,8 +244,10 @@ public class Play{
         if(wall instanceof Objective){
             level.setNextLevel(pane, -1);
             pane.getChildren().remove(ss);
+            pane.getChildren().remove(bounceCounter);
             ss.reset();
             pane.getChildren().add(ss);
+            pane.getChildren().add(bounceCounter);
         }
     }
     
@@ -297,7 +299,7 @@ public class Play{
     
     public void showLevelSelectMenu(){
         removePauseMenu();
-        
+        //
         ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
         menuPane.setFitHeight(550);
         menuPane.setFitWidth(600);
@@ -312,10 +314,9 @@ public class Play{
         mainMenu.setY(menuPane.getY() + 300);
         mainMenu.setOnMouseClicked((MouseEvent e) ->{
             try{
-            Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            Scene newScene = pane.getScene();
-            newScene.setRoot(root);
-            
+                Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+                Scene newScene = pane.getScene();
+                newScene.setRoot(root);
             }catch(IOException ex){}   
         });
         pauseMenuList.add(mainMenu);
@@ -362,6 +363,7 @@ public class Play{
     
     
     public void switchLevel(int levelCount){
+        pane.getChildren().remove(bounceCounter);
         removePauseMenu();
         level.setNextLevel(pane, levelCount);
         ss.reset();
@@ -372,6 +374,7 @@ public class Play{
         ss.setViewOrder(-1);
         A = false;
         D = false;
+        pane.getChildren().add(bounceCounter);
     }
     
     public static boolean compareAngles(StickSpring ss, Rectangle r){

@@ -43,11 +43,11 @@ public class LevelController implements Initializable {
         Arrow arrow = new Arrow(200, 180, 200, 180, 10);
         pane.getChildren().add(arrow);
         
-        Label lb = new Label("Velocity Vector");
-        lb.setLayoutX(130); lb.setLayoutY(75);
-        lb.setFont(Font.font ("Verdana", 20));
-        lb.setStyle("-fx-text-fill: red");
-        pane.getChildren().add(lb);
+        Label velLbl = new Label("Velocity Vector");
+        velLbl.setLayoutX(130); velLbl.setLayoutY(75);
+        velLbl.setFont(Font.font ("Verdana", 20));
+        velLbl.setStyle("-fx-text-fill: red");
+        pane.getChildren().add(velLbl);
         
         Circle c1 = new Circle(70);
         c1.setLayoutX(200); c1.setLayoutY(180);
