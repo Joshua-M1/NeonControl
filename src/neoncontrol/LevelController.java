@@ -3,19 +3,13 @@ package neoncontrol;
 import javafx.scene.text.Font;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-/**
- * FXML Controller class
- *
- * @author jakot
- */
 public class LevelController implements Initializable {
 
     @FXML
