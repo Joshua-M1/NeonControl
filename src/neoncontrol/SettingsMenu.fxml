@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neoncontrol.SettingsMenuController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="neoncontrol.SettingsMenuController">
    <children>
       <ImageView fx:id="bg" fitHeight="520.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,16 +24,31 @@
             <Image url="@../Graphics/Exit%20Button.png" />
          </image>
       </ImageView>
-      <Slider fx:id="massSlider" blockIncrement="0.1" layoutX="223.0" layoutY="312.0" majorTickUnit="0.1" max="1.0" min="0.1" minorTickCount="0" prefHeight="37.0" prefWidth="239.0" showTickMarks="true" snapToTicks="true" value="0.3" />
-      <CheckBox fx:id="BGMCheckBox" layoutX="223.0" layoutY="254.0" mnemonicParsing="false" onAction="#setOnToggleBGM" text="Background Music" textFill="WHITE">
+      <Slider fx:id="massSlider" blockIncrement="0.1" layoutX="92.0" layoutY="310.0" majorTickUnit="0.1" max="1.0" min="0.1" minorTickCount="0" prefHeight="35.0" prefWidth="239.0" showTickMarks="true" snapToTicks="true" value="0.3" />
+      <CheckBox fx:id="BGMCheckBox" layoutX="196.0" layoutY="254.0" mnemonicParsing="false" onAction="#setOnToggleBGM" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="SFXCheckBox" layoutX="223.0" layoutY="197.0" mnemonicParsing="false" onAction="#setOnToggleSFX" text="Sound Effects" textFill="WHITE">
+      <CheckBox fx:id="SFXCheckBox" layoutX="196.0" layoutY="197.0" mnemonicParsing="false" onAction="#setOnToggleSFX" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </CheckBox>
+      <ImageView fx:id="playBT1" fitHeight="50.0" fitWidth="584.0" layoutX="142.0" layoutY="190.0" onMouseClicked="#setOnPlayClicked" onMouseEntered="#setOnHoverPlayBT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Sound%20Effects.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playBT11" fitHeight="50.0" fitWidth="584.0" layoutX="189.0" layoutY="247.0" onMouseClicked="#setOnPlayClicked" onMouseEntered="#setOnHoverPlayBT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Background%20Music.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playBT111" fitHeight="47.0" fitWidth="435.0" layoutX="251.0" layoutY="300.0" onMouseClicked="#setOnPlayClicked" onMouseEntered="#setOnHoverPlayBT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Graphics/Speed%20of%20Play.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
