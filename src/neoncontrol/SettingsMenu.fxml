@@ -41,12 +41,12 @@
             <Image url="@../Graphics/Sound%20Effects.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="MusicLbl" fitHeight="50.0" fitWidth="584.0" layoutX="189.0" layoutY="247.0" onMouseClicked="#setOnPlayClicked" onMouseEntered="#setOnHoverPlayBT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="MusicLbl" fitHeight="50.0" fitWidth="584.0" layoutX="189.0" layoutY="247.0" onMouseClicked="#setOnPlayClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Graphics/Background%20Music.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="SpeedLbl" fitHeight="47.0" fitWidth="435.0" layoutX="251.0" layoutY="300.0" onMouseClicked="#setOnPlayClicked" onMouseEntered="#setOnHoverPlayBT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="SpeedLbl" fitHeight="47.0" fitWidth="435.0" layoutX="251.0" layoutY="300.0" onMouseClicked="#setOnPlayClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Graphics/Speed%20of%20Play.png" />
          </image>
