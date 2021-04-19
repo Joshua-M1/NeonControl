@@ -2,7 +2,10 @@ package neoncontrol;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
+import javafx.beans.property.Property;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -76,16 +79,26 @@ public class SettingsMenuController implements Initializable {
         massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
         massSlider.setValue(weightValue);
         
-        
         BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
         BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.20));
         
         SFXCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
         SFXCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.15));
+        
+        volumeSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
+        volumeSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        volumeSlider.setValue(volume);
+        
+        Play.ding.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4));
+        Play.tap.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4));
+        Play.BGM.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.1));
+        Play.boing.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.2));
+        
     }    
 
     @FXML
     private void setOnPlayClicked(MouseEvent event) throws IOException {
+        volume = volumeSlider.getValue();
         weightValue = massSlider.getValue();
         Parent root = FXMLLoader.load(getClass().getResource("Level.fxml"));
         Scene newScene = AnchorPane.getScene();
@@ -119,12 +132,5 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private void setOnExitClicked(MouseEvent event) {
         System.exit(0);
-    }
-
-    @FXML
-    private void setOnVolumeChange(MouseEvent event) {
-        Play.ding.setVolume(0.4*volume);
-        Play.boing.setVolume(0.2*volume);
-        Play.tap.setVolume(0.4*volume);
     }
 }
