@@ -138,14 +138,14 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private void setOnToggleSFX(){
         if(!SFXCheckBox.isSelected()){
-            Play.ding.setVolume(0);
-            Play.tap.setVolume(0);
-            Play.boing.setVolume(0);
+            Play.ding.volumeProperty().bind(volumeSlider.valueProperty().multiply(0));
+            Play.tap.volumeProperty().bind(volumeSlider.valueProperty().multiply(0));
+            Play.boing.volumeProperty().bind(volumeSlider.valueProperty().multiply(0));
         }
         else{
-            Play.ding.setVolume(0.4*volume);
-            Play.boing.setVolume(0.2*volume);
-            Play.tap.setVolume(0.4*volume);
+            Play.ding.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4));
+            Play.tap.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4)); 
+            Play.boing.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.2));
         }
     }
 
