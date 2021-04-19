@@ -278,7 +278,7 @@ public class Play{
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
             
-            }catch(IOException ex){}   
+            }catch(IOException ex){ex.printStackTrace();}   
         });
         pauseMenuList.add(mainMenu);
         
