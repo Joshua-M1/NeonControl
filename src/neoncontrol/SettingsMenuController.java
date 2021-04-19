@@ -44,6 +44,8 @@ public class SettingsMenuController implements Initializable {
     private ImageView MusicLbl;
     @FXML
     private ImageView SpeedLbl;
+    @FXML
+    private ImageView VolumeLbl;
 
     /**
      * Initializes the controller class.
@@ -76,12 +78,37 @@ public class SettingsMenuController implements Initializable {
         massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
         massSlider.setValue(weightValue);
         
+        volumeSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(0.23));
+        volumeSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.28));
+        volumeSlider.setValue(volume);
         
         BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
         BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.20));
         
         SFXCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
         SFXCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.15));
+        
+        SoundEffectLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.12));
+        SoundEffectLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.125));
+        SoundEffectLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.6));
+        SoundEffectLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.25));
+        
+        MusicLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.145));
+        MusicLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.18));
+        MusicLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.6));
+        MusicLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        
+        
+        VolumeLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.145));
+        VolumeLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.22));
+        VolumeLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.3));
+        VolumeLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.15));
+        
+        SpeedLbl.xProperty().bind(Main.stage.widthProperty().multiply(-0.05));
+        SpeedLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.33));
+        SpeedLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.6));
+        SpeedLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.25));
+        
     }    
 
     @FXML
