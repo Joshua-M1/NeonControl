@@ -36,9 +36,8 @@ public class Play{
                               ding = new MediaPlayer(new Media(new File("src/Audio/Ding.mp3").toURI().toString())), 
                               BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
     private ArrayList<Node> pauseMenuList = new ArrayList<>();
-
+    
     private AnimationTimer gameTimer = new AnimationTimer() {
-        
         @Override
         public void handle (long l){
             collided = false;
