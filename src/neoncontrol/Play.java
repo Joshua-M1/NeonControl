@@ -255,7 +255,6 @@ public class Play{
     }
     
     public void showPauseMenu(){
-        
         ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
         menuPane.setFitHeight(550);
         menuPane.setFitWidth(600);
