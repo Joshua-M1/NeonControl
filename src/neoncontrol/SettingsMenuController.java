@@ -35,7 +35,9 @@ public class SettingsMenuController implements Initializable {
     public CheckBox BGMCheckBox;
     @FXML
     public CheckBox SFXCheckBox;
-    public static double weightValue = 0.3;
+    @FXML
+    private Slider volumeSlider;
+    public static double weightValue = 0.3, volume = 1;
 
     /**
      * Initializes the controller class.
@@ -73,6 +75,10 @@ public class SettingsMenuController implements Initializable {
         
         SFXCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
         SFXCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        
+        volumeSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
+        volumeSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        volumeSlider.setValue(volume);
     }    
 
     @FXML
@@ -101,9 +107,9 @@ public class SettingsMenuController implements Initializable {
             Play.boing.setVolume(0);
         }
         else{
-            Play.ding.setVolume(0.4);
-            Play.boing.setVolume(0.2);
-            Play.tap.setVolume(0.4);
+            Play.ding.setVolume(0.4*volume);
+            Play.boing.setVolume(0.2*volume);
+            Play.tap.setVolume(0.4*volume);
         }
     }
 
@@ -113,6 +119,9 @@ public class SettingsMenuController implements Initializable {
     }
 
     @FXML
-    private void setOnHoverPlayBT(MouseEvent event) {
+    private void setOnVolumeChange(MouseEvent event) {
+        Play.ding.setVolume(0.4*volume);
+        Play.boing.setVolume(0.2*volume);
+        Play.tap.setVolume(0.4*volume);
     }
 }

@@ -35,6 +35,7 @@ public class Play{
                               tap = new MediaPlayer(new Media(new File("src/Audio/Tap.m4a").toURI().toString())), 
                               ding = new MediaPlayer(new Media(new File("src/Audio/Ding.mp3").toURI().toString())), 
                               BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
+    private ArrayList<Node> pauseMenuList = new ArrayList<>();
 
     private AnimationTimer gameTimer = new AnimationTimer() {
         
@@ -254,8 +255,6 @@ public class Play{
         }
     }
     
-    private ArrayList<Node> pauseMenuList = new ArrayList<>();
-    
     public void showPauseMenu(){
         
         ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
@@ -381,13 +380,13 @@ public class Play{
     }
     
     public static boolean compareAngles(StickSpring ss, Rectangle r){
-        double sa = (ss.getAngle()+90)%180, ra = r.getRotate(); //gets angles
+        double sa = (ss.getAngle()+90)%180, ra = r.getRotate();
         boolean rollOver = false;
         if(sa<0)
             sa += 180;
         double raUpper = (ra+45)%180, raLower = (ra-45)%180;
         
-        if(raLower<=0){//sets upper bound
+        if(raLower<=0){
             raLower += 180;
             rollOver = true;
         }
