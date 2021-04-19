@@ -33,6 +33,8 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private ImageView SpeedLbl;
     @FXML
+    private ImageView VolumeLbl;
+    @FXML
     private ImageView playBT;
     @FXML
     private ImageView exitBT;
