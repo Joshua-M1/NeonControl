@@ -14,6 +14,7 @@ public class Level extends ImageView{
     private ImageView instructions = new ImageView(new Image("Graphics/tutorial.png")), 
                       endMessage = new ImageView(new Image("Graphics/Thanks For Playing!.png"));
     private double stageWidth = Main.stage.getWidth(), stageHeight = Main.stage.getHeight();
+    private ImageView lvlIndicator = new ImageView();
 
     public Level(Pane pane) {
         setBorders();
@@ -60,7 +61,7 @@ public class Level extends ImageView{
         if(levelCount==0){
             pane.getChildren().remove(instructions);
         }
-        
+                
         levelCount++;
         for(Wall wall : getWallList())
             pane.getChildren().removeAll(wall.getHitboxesList());
@@ -95,6 +96,15 @@ public class Level extends ImageView{
         pane.getChildren().addAll(getWallList());
         for(Wall wall : getWallList())
             pane.getChildren().addAll(wall.getHitboxesList());
+        
+        if(pane.getChildren().contains(lvlIndicator))
+            pane.getChildren().remove(lvlIndicator);
+        lvlIndicator.setLayoutX(stageWidth*0.96);
+        lvlIndicator.setLayoutY(stageHeight*0.004);
+        if(levelCount!=0 && levelCount!=11){
+            lvlIndicator.setImage(new Image("Graphics/"+String.valueOf(levelCount)+".png"));
+            pane.getChildren().add(lvlIndicator);
+        }    
     }
     
     private void setBorders(){
