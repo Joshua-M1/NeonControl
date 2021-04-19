@@ -26,6 +26,12 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private ImageView SoundEffectLbl;
     @FXML
+    private ImageView MusicLbl;
+    @FXML
+    private ImageView SpeedLbl;
+    @FXML
+    private ImageView VolumeLbl;
+    @FXML
     private ImageView playBT;
     @FXML
     private ImageView exitBT;
@@ -40,10 +46,6 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private Slider volumeSlider;
     public static double weightValue = 0.3, volume = 1;
-    @FXML
-    private ImageView MusicLbl;
-    @FXML
-    private ImageView SpeedLbl;
 
     /**
      * Initializes the controller class.
@@ -72,9 +74,13 @@ public class SettingsMenuController implements Initializable {
         playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         playBT.preserveRatioProperty().set(false);
         
-        massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
-        massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.21));
+        massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.338));
         massSlider.setValue(weightValue);
+        
+        volumeSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(0.21));
+        volumeSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.28));
+        volumeSlider.setValue(volume);
         
         BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
         BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.20));
@@ -82,9 +88,26 @@ public class SettingsMenuController implements Initializable {
         SFXCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
         SFXCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.15));
         
-        volumeSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
-        volumeSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
-        volumeSlider.setValue(volume);
+        SoundEffectLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.12));
+        SoundEffectLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.125));
+        SoundEffectLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.6));
+        SoundEffectLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.25));
+        
+        MusicLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.145));
+        MusicLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.18));
+        MusicLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.6));
+        MusicLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
+        
+        
+        VolumeLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.19));
+        VolumeLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.25));
+        VolumeLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.3));
+        VolumeLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.15));
+        
+        SpeedLbl.xProperty().bind(Main.stage.widthProperty().multiply(.149));
+        SpeedLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.31));
+        SpeedLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.6));
+        SpeedLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.25));
         
         Play.ding.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4));
         Play.tap.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4));
