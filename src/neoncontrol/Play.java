@@ -27,7 +27,7 @@ public class Play{
     private final Arrow arrow;
     private final Pane pane;
     private int count = 0;
-    private boolean collided = false, paused = false, A = false, D = false;
+    private boolean collided = false, paused = false, A = false, D = false, playing = true;
     private Label bounceCounter;
     private EventHandler<ActionEvent> noEvent;
     private Timeline animation = new Timeline(new KeyFrame(Duration.millis(0), noEvent));    
@@ -60,8 +60,7 @@ public class Play{
 
                             ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 90));
                             collided = true;
-                            EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);                    
-                            };  
+                            EventHandler<ActionEvent> eventHandler = e -> {runAnimation(ss, 1);};  
                             animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                             animation.setCycleCount(6);
                             animation.play();
@@ -83,8 +82,7 @@ public class Play{
 
                             ss.setVelocityVec(physics.collisionSpring(ss.getVelocityVec(), ss.getAngle() + 270));
                             collided = true;
-                            EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);
-                            };  
+                            EventHandler<ActionEvent> eventHandler = e -> { runAnimation(ss, 2);};  
                             animation = new Timeline(new KeyFrame(Duration.millis(40), eventHandler));
                             animation.setCycleCount(6);
                             animation.play();
@@ -147,9 +145,9 @@ public class Play{
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: if(paused){removePauseMenu();
+                case ESCAPE: if(paused && playing){removePauseMenu();
                                 gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
-                             else{
+                             else if(playing){
                                 showPauseMenu();
                                 gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
                 case LEFT:
@@ -273,7 +271,7 @@ public class Play{
             Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
-            
+            playing = false;
             }catch(IOException ex){ex.printStackTrace();}   
         });
         pauseMenuList.add(mainMenu);
