@@ -1,4 +1,4 @@
-package neoncontrol;
+    package neoncontrol;
 
 import javafx.scene.image.Image;
 
