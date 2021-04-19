@@ -2,7 +2,10 @@ package neoncontrol;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
+import javafx.beans.property.Property;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,11 +77,11 @@ public class SettingsMenuController implements Initializable {
         playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         playBT.preserveRatioProperty().set(false);
         
-        massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.225));
-        massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        massSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(.21));
+        massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.338));
         massSlider.setValue(weightValue);
         
-        volumeSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(0.23));
+        volumeSlider.translateXProperty().bind(Main.stage.widthProperty().multiply(0.21));
         volumeSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.28));
         volumeSlider.setValue(volume);
         
@@ -99,20 +102,26 @@ public class SettingsMenuController implements Initializable {
         MusicLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.35));
         
         
-        VolumeLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.145));
-        VolumeLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.22));
+        VolumeLbl.xProperty().bind(Main.stage.widthProperty().multiply(0.19));
+        VolumeLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.25));
         VolumeLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.3));
         VolumeLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.15));
         
-        SpeedLbl.xProperty().bind(Main.stage.widthProperty().multiply(-0.05));
-        SpeedLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.33));
+        SpeedLbl.xProperty().bind(Main.stage.widthProperty().multiply(.149));
+        SpeedLbl.yProperty().bind(Main.stage.heightProperty().multiply(0.31));
         SpeedLbl.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.6));
         SpeedLbl.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.25));
+        
+        Play.ding.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4));
+        Play.tap.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.4));
+        Play.BGM.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.1));
+        Play.boing.volumeProperty().bind(volumeSlider.valueProperty().multiply(0.2));
         
     }    
 
     @FXML
     private void setOnPlayClicked(MouseEvent event) throws IOException {
+        volume = volumeSlider.getValue();
         weightValue = massSlider.getValue();
         Parent root = FXMLLoader.load(getClass().getResource("Level.fxml"));
         Scene newScene = AnchorPane.getScene();
@@ -146,12 +155,5 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private void setOnExitClicked(MouseEvent event) {
         System.exit(0);
-    }
-
-    @FXML
-    private void setOnVolumeChange(MouseEvent event) {
-        Play.ding.setVolume(0.4*volume);
-        Play.boing.setVolume(0.2*volume);
-        Play.tap.setVolume(0.4*volume);
     }
 }

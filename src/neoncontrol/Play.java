@@ -36,9 +36,8 @@ public class Play{
                               ding = new MediaPlayer(new Media(new File("src/Audio/Ding.mp3").toURI().toString())), 
                               BGM = new MediaPlayer(new Media(new File("src/Audio/HOME - Resonance.mp3").toURI().toString()));
     private ArrayList<Node> pauseMenuList = new ArrayList<>();
-
+    
     private AnimationTimer gameTimer = new AnimationTimer() {
-        
         @Override
         public void handle (long l){
             collided = false;
@@ -279,7 +278,7 @@ public class Play{
             Scene newScene = pane.getScene();
             newScene.setRoot(root);
             
-            }catch(IOException ex){}   
+            }catch(IOException ex){ex.printStackTrace();}   
         });
         pauseMenuList.add(mainMenu);
         
@@ -301,7 +300,7 @@ public class Play{
     
     public void showLevelSelectMenu(){
         removePauseMenu();
-        //
+        
         ImageView menuPane = new ImageView(new Image("Graphics/wall.png"));
         menuPane.setFitHeight(550);
         menuPane.setFitWidth(600);
@@ -319,7 +318,7 @@ public class Play{
                 Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
                 Scene newScene = pane.getScene();
                 newScene.setRoot(root);
-            }catch(IOException ex){}   
+            }catch(IOException ex){ex.printStackTrace();}   
         });
         pauseMenuList.add(mainMenu);
         
@@ -405,6 +404,6 @@ public class Play{
         String[] textParts = text.split("\t");
         int bounces = Integer.parseInt(textParts[1]);
         bounces++;
-        bounceCounter.setText("Bounce count:\t"+bounces);
+        bounceCounter.setText("Bounce counter:\t"+bounces);
     }
 }
