@@ -29,6 +29,10 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private ImageView SoundEffectLbl;
     @FXML
+    private ImageView MusicLbl;
+    @FXML
+    private ImageView SpeedLbl;
+    @FXML
     private ImageView playBT;
     @FXML
     private ImageView exitBT;
@@ -43,10 +47,6 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private Slider volumeSlider;
     public static double weightValue = 0.3, volume = 1;
-    @FXML
-    private ImageView MusicLbl;
-    @FXML
-    private ImageView SpeedLbl;
 
     /**
      * Initializes the controller class.
