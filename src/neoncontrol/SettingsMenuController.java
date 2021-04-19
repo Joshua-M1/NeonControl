@@ -40,7 +40,6 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private Slider volumeSlider;
     public static double weightValue = 0.3, volume = 1;
-    public static double weightValue = 0.3;
     @FXML
     private ImageView MusicLbl;
     @FXML
