@@ -404,6 +404,6 @@ public class Play{
         String[] textParts = text.split("\t");
         int bounces = Integer.parseInt(textParts[1]);
         bounces++;
-        bounceCounter.setText("Bounce count:\t"+bounces);
+        bounceCounter.setText("Bounce counter:\t"+bounces);
     }
 }
