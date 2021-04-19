@@ -24,6 +24,8 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private ImageView bg;
     @FXML
+    private ImageView SoundEffectLbl;
+    @FXML
     private ImageView playBT;
     @FXML
     private ImageView exitBT;
@@ -36,6 +38,10 @@ public class SettingsMenuController implements Initializable {
     @FXML
     public CheckBox SFXCheckBox;
     public static double weightValue = 0.3;
+    @FXML
+    private ImageView MusicLbl;
+    @FXML
+    private ImageView SpeedLbl;
 
     /**
      * Initializes the controller class.
@@ -58,7 +64,7 @@ public class SettingsMenuController implements Initializable {
         exitBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
         exitBT.preserveRatioProperty().set(false);
         
-        playBT.xProperty().bind(Main.stage.widthProperty().multiply(-0.1));
+        playBT.xProperty().bind(Main.stage.widthProperty().multiply(-0.05));
         playBT.yProperty().bind(Main.stage.heightProperty().multiply(0.33));
         playBT.fitWidthProperty().bind(Main.stage.widthProperty().multiply(0.25));
         playBT.fitHeightProperty().bind(Main.stage.heightProperty().multiply(0.125));
@@ -68,11 +74,12 @@ public class SettingsMenuController implements Initializable {
         massSlider.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
         massSlider.setValue(weightValue);
         
-        BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
-        BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
         
-        SFXCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.275));
-        SFXCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.35));
+        BGMCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
+        BGMCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.20));
+        
+        SFXCheckBox.translateXProperty().bind(Main.stage.widthProperty().multiply(.18));
+        SFXCheckBox.translateYProperty().bind(Main.stage.heightProperty().multiply(.15));
     }    
 
     @FXML

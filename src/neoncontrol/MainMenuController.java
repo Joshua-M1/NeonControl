@@ -31,6 +31,8 @@ public class MainMenuController implements Initializable {
     private AnchorPane AnchorPane;
     @FXML
     private ImageView bg;
+    @FXML
+    private Pane pane;
     /**
      * Initializes the controller class.
      */
