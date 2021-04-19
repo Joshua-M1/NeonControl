@@ -29,7 +29,6 @@ public class Wall extends ImageView{
         
         
         setImage(new Image("Graphics/wall.png"));
-        ///**Peanut butter baby**/ setImage(new Image("https://www.myinstants.com/media/instants_images/peanut-butter-baby-2.PNG"));
     }
     
     public ArrayList<Rectangle> getHitboxesList(){

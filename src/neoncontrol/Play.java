@@ -1,5 +1,5 @@
-    package neoncontrol;
-
+package neoncontrol;
+//Joshua Morency
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.input.*;
@@ -147,9 +147,10 @@ public class Play{
         gameTimer.start();
         keyChecker.setOnKeyPressed((KeyEvent e) -> {
             switch (e.getCode()){
-                case ESCAPE: if(paused /**&& !(pane.getChildren().contains(level1))**/){removePauseMenu();
+                case ESCAPE: if(paused){removePauseMenu();
                                 gameTimer.start(); if(animation.getStatus().equals(Status.PAUSED))animation.play(); paused = false;} 
-                             else{showPauseMenu();
+                             else{
+                                showPauseMenu();
                                 gameTimer.stop(); if(animation.getStatus().equals(Status.RUNNING)) animation.pause(); paused = true;} break;
                 case LEFT:
                 case A: if(!paused) A = true; break;
@@ -165,10 +166,6 @@ public class Play{
                 case A: if(!paused) A = false; break;
                 case RIGHT:
                 case D: if(!paused) D = false; break;
-                //Testing purposes only, remove before submitting!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                case N: 
-                    if(level.getCount() != 11)
-                        switchLevel(level.getCount()+1);
             }
         });
     }

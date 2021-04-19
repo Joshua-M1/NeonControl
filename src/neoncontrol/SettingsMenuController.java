@@ -127,12 +127,12 @@ public class SettingsMenuController implements Initializable {
     
     @FXML
     private void setOnToggleBGM(){
-        if(!BGMCheckBox.isSelected()){
+        if(!BGMCheckBox.isSelected())
             Play.BGM.stop();
-        }
-        else{
+        
+        else
             Play.BGM.play();
-        }
+        
     }
     
     @FXML
