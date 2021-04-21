@@ -312,6 +312,7 @@ public class Play{
                 Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
                 Scene newScene = pane.getScene();
                 newScene.setRoot(root);
+                playing = false;
             }catch(IOException ex){ex.printStackTrace();}   
         });
         pauseMenuList.add(mainMenu);
