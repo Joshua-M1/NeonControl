@@ -55,7 +55,7 @@ public class LevelController implements Initializable {
         c2.setLayoutX(200); c2.setLayoutY(180);
         pane.getChildren().add(c2);
         
-        Label bounceCounter = new Label("Bounce count:\t0");
+        Label bounceCounter = new Label("Bounce counter:\t0");
         bounceCounter.setTextFill(Color.RED);
         bounceCounter.setLayoutX(10); bounceCounter.setLayoutY(10);
         bounceCounter.setFont(Font.font ("Verdana", 15));
