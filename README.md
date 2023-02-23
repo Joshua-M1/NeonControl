@@ -23,7 +23,7 @@
 
 ### Inspiration
 
- * [Chrome MarkDown Plugin](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk?hl=en).
+ * [GMTK Game Jam 2020](https://youtu.be/RGeAkU2wu4o?t=1264).
 
 ### Collaborators
  * joshua git
