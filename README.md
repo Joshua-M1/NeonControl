@@ -1,7 +1,7 @@
 # NeonControl
 
 ## Description
- A simple platforming game created as a final project for D.E.C. in Computer Science.
+ A simple platforming game created as a final project for a D.E.C. in Computer Science.
 
 ## Gameplay
  The game is composed of selectable levels where the player character must navigate the environment to the goal. The twist? the player does not
@@ -26,6 +26,6 @@
  * [GMTK Game Jam 2020](https://youtu.be/RGeAkU2wu4o?t=1264).
 
 ### Collaborators
- * joshua git
- * jakob git
- * arnaud git
+ * [Joshua Morency](https://github.com/Joshua-M1)
+ * [Jakob Thibodeau](https://github.com/Jakotibodos)
+ * [Arnaud Davignon](https://github.com/ArnaudDavignon)
