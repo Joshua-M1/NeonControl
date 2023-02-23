@@ -1,25 +1,15 @@
 # NeonControl
+
+## Description
+ A simple platforming game created as a final project for D.E.C. in Computer Science.
+
+## Gameplay
+ The game is composed of selectable levels where the player character must navigate the environment to the goal. The twist? the player does not
+ have direct control over their own movement. The player character is a spring that - upon collision with barriers - bounces around in a manner
+ correlating to real-world physics. The only input the player may provide is what direction to angle the spring. 
  
- > See also [my video instuctions](https://www.cs.mcgill.ca/~mschie3/COMP361/Repository-Best-Practices.mp4) in the screencasts section on MyCourses.
-
-## The Rules
-
- * Feel free to edit/replace this file.
- * Do not delete or rename the [reports](reports), [client](client), [server](server) or [docs](docs) directories.  
-See [Static Content](#static-content)
- * Don't clutter your repo, update your [```.gitignore```](.gitignore) file, depending on your client language / technology.
-    * Don't commit binaries. (Images, jar files, class files, etc...)
-    * Don't commit buffer files. (Vim buffer files, IDE meta files etc...)
- * Place your documentation in [```docs```](docs) on [master](branch).
- * Commit frequently, commit fine grained.
- * Use branches
- * **Don't push on master!**
-    * Create a new branch for your feature.
-    * Work until stable / tested.
-    * Merge / rebase your temporary branch back to master.
-    * Delete your temporary branch.
-
-## Static content
+ With a theme based on bright neon colours and a copyright-free soundtrack, this is less a game and more a proof of concept for a potential future
+ project.
 
 ## Useful Links
 
@@ -32,4 +22,6 @@ See [Static Content](#static-content)
  * [Git CheatSheet](git-cheatsheet.md).
  * [Advanced Rest Client (Rest Call Code Generator)](https://docs.advancedrestclient.com/installation).
 
-### Requirements
+### Collaborators
+jakob git
+arnaud git
